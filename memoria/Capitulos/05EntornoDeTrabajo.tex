@@ -1,0 +1,406 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 5
+%
+%---------------------------------------------------------------------
+
+\chapter{Entorno de trabajo}
+
+
+
+
+\begin{resumen}
+Los generadores kinéticos basan su funcionamiento en captar las vibraciones y movimientos del ambiente y transformarlos en energía eléctrica. Por esto de cara a las pruebas de funcionamiento hay que simular un entorno en el que se puedan generar vibraciones, controlar su frecuencia y amplitud y ser capaces de varias estos parámetros de manera estable, controlada y repetible. 
+Para la realización de este entorno es por tanto necesario, una señal de frecuencia controlable y un dispositivo que transforme esa señal en vibraciones mecánicas. 
+La señal se obtendrá de un generador de funciones y la vibración de uno de vibraciones. Además será necesario tomar algunas medidas adicionales para que esto funcione.  
+\end{resumen}
+
+
+
+%-------------------------------------------------------------------
+\section{Generador de señales}
+%-------------------------------------------------------------------
+\label{cap5:sec:introduction}
+%------------------------------------------------------------------
+A la hora de construir y probar un \ac{EHG} que produce energía eléctrica a partir de vibraciones, es necesario poder reproducir estas vibraciones en un entorno controlado. Además dado que el \ac{EHG} es muy sensible a la frecuencia de estas vibraciones dada su alta \ac{Q} se hace imprescindible poder controlarla de forma precisa.
+
+Por otro lado, el \ac{EHG} posee una frecuencia de resonancia, y si la frecuencia del entorno no coincide con esta, se dice que el generador esta desintonizado. 
+Para causar esta situación también es necesario poder controlar la frecuencia a la que se esta excitando el sistema. 
+
+De esta manera variando la frecuencia se puede estudiar completamente como reacciona el \ac{EHG}.
+
+Para poder tener control sobre la frecuencia de trabajo se va a emplear un generador de señales \textbf{Tektronix CFG250.}
+\begin{figure}[h!]
+        \centering
+		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap5/gen-func2}  
+        \caption{Generador Tektronix CFG250.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\FloatBarrier
+
+En este generador se podrá seleccionar la frecuencia y la amplitud de la señal además de estudiar el comportamiento del \ac{EHG} con los diferentes tipos de señales que puede producir.
+Sus características son:
+
+\begin{itemize}
+\item Formas de onda: Sinusoidal, triangular y cuadrada
+\item Rango de frecuencias: 0.2Hz - 2MHz
+\item Voltaje máximo a la salida: 20Vpp
+\item Impedancia de salida: 50$\Omega$
+\end{itemize}
+
+\begin{figure}[h!]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/gen-func3}  
+        \caption{Funciones del generador}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\begin{enumerate}
+  \item Botón de encendido.
+  \item Led de encendido.
+  \item Selector deforma de onda.
+  \item Selector de escala de frecuencia.
+  \item Selector fino de frecuencia.
+  \item Selector de amplitud.
+  \item Selector del nivel de salida (0,2Vpp-20Vpp).
+  \item Inversor de señal.
+  \item Ciclo de trabajo.
+  \item Ajuste del offset.
+  \item Barrido.
+  \item Tasa de barrido.
+  \item Ancho del barrido.
+  \item Salida principal BNC.
+  \item Salida BNC de TTL.
+  \end{enumerate}
+
+
+%-------------------------------------------------------------------
+\subsection{Resultados}
+%-------------------------------------------------------------------
+Los resultados obtenidos tras probar este generador has sido satisfactorios. Produce señales con gran precision y su control es sencillo. La seleccion en frecuencia es medianamente precisa y las primeras pruebas indican que se puede emplear para producir señales para el \ac{EHG}.
+
+Asimismo se disponía de un generador de funciones Promax GF1000. 
+Tras probar este último generador se han hallado problemas con las señales de salida, mas inestables de lo recomendado.
+
+Por lo tanto el generador que se empleará a partir de ahora va a ser el Textronix.
+
+\begin{figure}[h!]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/Promax}  
+        \caption{Generador Promax}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+
+%-------------------------------------------------------------------
+\section{Generador de vibraciones}
+%-------------------------------------------------------------------
+\label{cap5:sec:transceivers}
+%------------------------------------------------------------------
+Una vez obtenida una manera generar una señal y controlar su frecuencia, hace falta generar las vibraciones. Para esto existen dispositivos que mediante una señal de cierta frecuencia en su entrada, son capaces de producir una vibración mecánica de la misma frecuencia. Para probar el diseño del \ac{EHG} es necesario contar con uno de estos dispositivos.
+Por otro lado, los generadores de vibraciones también son controlables en amplitud aunque en este sentido tienen ciertas limitaciones como se verá mas adelante.
+
+El generador empleado es el modelo \textbf{2185.00 de Frederiksen.} 
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/vibgen2}  
+        \caption{Generador de vibraciones.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+Sus especificaciones técnicas son:
+
+
+\begin{itemize}
+\item Rango de frecuencias: 0.1Hz-5kHz
+\item Amplitud: 7 mm a 1 Hz, reduciéndose al aumentar la frecuencia.
+\item Impedancia de entrada: 8 $\Omega$.
+\item Corriente máxima: 1A, limitada por fusible.
+\end{itemize}
+
+
+
+%-------------------------------------------------------------------
+\subsection{Descripción}
+%-------------------------------------------------------------------
+Este generador es prácticamente un altavoz. Una bobina enrollada alrededor de un núcleo de aluminio que se mueve en el seno de un campo magnético permanente cuando se le aplica una corriente alterna. Esta bobina esta guiada por dos suspensiones para un conseguir un movimiento óptimo.
+La conexión de este generador al generador de funciones se realiza mediante conectores de 8mm.
+Presenta asimismo dos sistemas de seguridad.
+
+El primero es relativo a la corriente. La bobina esta protegida por un fusible de 1A por lo que altas corrientes solo provocarían la ruptura del fusible, dejando la bobina intacta.
+
+El segundo se refiere a la mecánica. Es posible bloquear el sistema móvil mediante una pletina. De esta manera se puede manipular el generador montando y desmontando el \ac{EHG} sin dañar el sistema.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/vibgen3}  
+        \caption{Partes del generador.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+
+\FloatBarrier
+
+\begin{enumerate}
+  \item Portafusible 1A.
+  \item Vástago vibrante.
+  \item Pletina de bloqueo del vástago.
+  \item Conectores de la señal de excitación.
+  \end{enumerate}
+  
+  
+%-------------------------------------------------------------------
+\subsection{Utilización}
+%-------------------------------------------------------------------
+
+Para usar este generador de vibraciones, bastaría con conectar directamente a su entrada una señal sinusoidal proporcionada por un generador de funciones según la hoja de características del fabricante. 
+Tras una prueba con esta configuración se comprueba que de los dos generadores disponibles en el \ac{LSI} ninguno es capaz de conseguir movimiento dada su baja potencia de salida.
+Es por esto que se decide implementar un amplificador que adapte la señal de excitación al uso que se le quiere dar.
+
+
+%-------------------------------------------------------------------
+\section{Amplificadores de señal}
+%-------------------------------------------------------------------
+\label{cap5:sec:currentDevices}
+%-------------------------------------------------------------------
+
+
+
+
+Como ya se ha comentado los generadores de funciones disponibles no son capaces de proporcionar toda la potencia necesaria.
+
+Conociendo por el fabricante que la impedancia interna son 8$\Omega$ y que la corriente maxima es 1A, es trivial hallar la potencia máxima admisible por el generador de vibraciones: 8W.
+Con esta limitación se pasa a desarrollar diferentes amplificadores.
+
+Puesto que el generador de funciones Tektronix es capaz de dar a su salida una señal de hasta 20Vpp no habría problema en que moviese por si solo al generador de vibraciones. El problema surge porque no es capaz de entregar toda la corriente necesaria.
+Por ello como primera solución se contempla el uso de dos transistores de potencia en configuración de colector común.
+Sin embargo no se llega a implementar debido a la inestabilidad que presentarían los transistores.
+Por otro lado dado que el generador de vibraciones consta de una bobina de 8$\Omega$ se procederá a probar varios amplificadores comerciales de audio.
+%-------------------------------------------------------------------
+\subsection{Amplificador de bajo voltaje LM386}
+%-------------------------------------------------------------------
+
+La primera solución se ha construido alrededor de un amplificador operacional LM386 en configuración de Bass Boost tal y como indica el fabricante en su hoja de características \cite{LM386}, dado que se va a trabajar en frecuencias bajas.
+
+Esquema de montaje:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilm386_2}  
+        \caption{LM386 en configuracion Bass Boost.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\FloatBarrier
+
+Y su respuesta en baja frecuencia es:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilm386}  
+        \caption{Respuesta en frecuencia.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\FloatBarrier
+
+Finalmente el amplificador queda asi:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilm386_3}  
+        \caption{Amplificador implementado.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\FloatBarrier
+
+Tras diversas pruebas se obtiene que este amplificador no es capaz de entregar suficiente potencia a su salida, descartándose inmediatamente.
+
+%-------------------------------------------------------------------
+\subsection{Amplificador de potencia LM384}
+%-------------------------------------------------------------------
+
+La segunda solución está basada en un amplificador integrado de 5W, el LM384.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilm384}  
+        \caption{Amplificador de potencia LM384.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+Este circuito está adaptado para una carga de 8$\Omega$ y en teoría es capaz de entregar 5W \cite{LM384}. 
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/LM384-det}  
+        \caption{Montaje del amplificador.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+Una vez montado se prueba y se encuentra que el integrado sufre un excesivo calentamiento, además de esto, produce una distorsión importante de la señal de salida, lo que hace que el generador de vibraciones no se excite con una sinusoidal pura.
+Se prueban distintos integrados obteniéndose el mismo resultado con todos ellos.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/lm384_distorsion}  
+        \caption{Gráfica de distorsión.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+Recurriendo a las gráficas de la hoja de características se comprueba que el fabricante no contempla el uso para frecuencias tan bajas, e incluso que la distorsión armónica en estos rangos se dispara lo que puede explicar la salida que se obtiene.
+Otros parámetros como la máxima corriente de salida, la ganancia o la potencia de salida son correctos para el uso que se está haciendo del circuito.
+
+A partir de este momento se decide como parámetro de diseño, no exigir la potencia al circuito integrado y delegar esta función en un par de transistores de potencia en configuración de colector común, añadiendo otra etapa para darles estabilidad mediante un amplificador operacional realimentado.
+
+%-------------------------------------------------------------------
+\subsection{Amplificador de potencia LME49710}
+%-------------------------------------------------------------------
+Para la tercera y ultima solución se va a implementar un amplificador en dos etapas.
+La primera etapa se implementa con un amplificador operacional LME49710 específico para audio y de alta fidelidad. La diferencia más importante con el anterior integrado es la distorsión armónica que presenta para baja frecuencia.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/lme49710_distorsion}  
+        \caption{Distorsion del LME49710.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+La diferencia con la distorsión del amplificador anterior es notable. Para el rango cercano a los 20Hz, el que se va a emplear en este proyecto, la distorsión del LM384 es 20.000 veces mayor que para el LME49710 \cite{LME49710}. 
+Para la segunda etapa se usará un par de transistores \ac{BJT} de potencia en colector común que se encargaran de proporcionar la corriente.
+
+
+\begin{itemize}
+\item Primera etapa
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap5/amplilme49710-med}  
+        \caption{1ª etapa.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+\end{itemize}
+
+Caracterización de la primera etapa:
+
+Para una frecuencia del entorno de 15Hz la ganancia de esta etapa quedaría:
+$$A=\frac{Vo}{Vi}=\frac{Z1+Z2}{Z2}$$
+$$Z1=3.6K\Omega$$
+$$Z2=200+Zc\Omega$$
+$$Zc=\frac{1}{jwc}=\frac{1}{j*2*pi*f*C}=-j225$$
+Quedando la ganancia:
+$$A=\frac{3.8K-j225}{200-j225} $$
+$$|A|=12.64$$
+
+
+\begin{itemize}
+\item Sistema completo
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilme49710-mej}  
+        \caption{Sistema completo.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+\end{itemize}
+Moviendo la realimentación a la salida del par de transistores, proporciona a estabilidad necesaria para este uso, que era el principal problema de la primera solución que no se llegó a implementar.
+Con la primera etapa implementada mediante un amplificador de audio de alta fidelidad que produce una señal con gran calidad, y una segunda etapa realimentada que proporciona la potencia, se consigue un amplificador de potencia y alta fidelidad que se ajusta perfectamente al uso que se le quiere dar. 
+
+De esta manera el circuito final queda así:
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/amplilme49710_imp}  
+        \caption{Sistema completo.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+%-------------------------------------------------------------------
+\subsection{Resultados}
+%-------------------------------------------------------------------
+
+Los resultados obtenidos del amplificador basado en el LME49710 indican que es apto para alimentar el generador de vibraciones.
+\begin{figure}[!h]
+        \centering
+        \subfloat[Amplificador sin carga a la salida.]{\label{fig:cap5:cngdheader}\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap5/salida-LME49710}} 
+        \qquad
+		\subfloat[Amplificador con carga a la salida.]{\label{fig:cap5:headerfootprint}\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap5/salida-LME49710-gen}}
+\caption{Capturas del amplificador.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+\FloatBarrier
+
+Como se puede ver en las capturas, al conectar la carga se produce una distorsión de la señal. Esto es producido porque la carga no es resistiva pura, y por lo tanto produce una inadaptación importante, aun así la frecuencia de la señal de salida respecto a la entrada se mantiene claramente por lo que sería suficiente para atacar el generador de vibraciones de esta manera.
+De todas formas, se estudiará el implementar una red de adaptación de impedancia previa caracterización de la inductancia de la bobina.
+
+%-------------------------------------------------------------------
+\section{Caracterización y adaptación del generador.}
+%-------------------------------------------------------------------
+\label{cap5:sec:adaptacion}
+%-------------------------------------------------------------------
+
+Para una optima transferencia de la potencia del amplificador es necesario apartar las impedancias.
+Como primer paso hay que caracterizar la inductancia de la bobina.
+Se diseña un filtro paso bajo de primer orden RL con la bobina y una resistencia de R=6.5$\Omega$.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/filtros1}  
+        \caption{Filtro RL paso bajo.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+Mediante el generador de funciones Textronix CFG250 se van introduciendo progresivamente señales, aumentando su frecuencia hasta que la tension de salida sea un 30\% menor que al inicio.
+Con este procedimiento se halla que la frecuencia para la que la salida cae 3dB es 29KHz.
+Tomando esta como frecuencia de corte se procede a hallar la inductancia sabiendo que la bobina presenta una inductancia de la forma:
+$$Zl=(8+jwL)\Omega$$
+
+$$A=\frac{Vo}{Vi}=\frac{R}{R+Zl}=\frac{R}{R+Rl+jwL}$$
+$$A=\frac{R}{R+Rl}*\frac{1}{1+jw\frac{L}{R+Rl}}$$
+$$|A|=|\frac{R}{R+Rl}|*|\frac{1}{1+jw\frac{L}{R+Rl}}|$$
+La frecuencia de corte será aquella para la que la función de transferencia toma un valor de:
+$$|A|=\frac{1}{\sqrt{2}}$$
+$$\sqrt{2}=\sqrt{1+w^2\frac{L^2}{(R+Rl)^2}}$$
+$$1=w^2\frac{L^2}{(R+Rl)^2}$$
+Quedando la frecuencia:
+$$Fc=\frac{R+Rl}{2\pi L}$$
+Volviendo a la frecuencia de corte de 29KHz y a los demás datos conocidos:
+$$L=\frac{6.5+8}{2\pi 29*10^3}=79\mu H$$
+Por lo tanto la impedancia de la bobina del generador queda:
+$$Zl=(8+jw79\mu )\Omega$$
+
+Sin embargo, este estudio serviría si la frecuencia de trabajo fuese constante ya que la adaptación de cargas reactivas solo se puede conseguir para una frecuencia fija. Dado que uno de los objetivos del proyecto es variar la frecuencia, no se podría adaptar la carga siempre.
+
+A la vista de los resultados, el sistema amplificador-generador de vibraciones va a mantenerse sin cambios.
+
+%------------------------------------------------------------------
+%\section*{\NotasBibliograficas}
+%-------------------------------------------------------------------
+%\TocNotasBibliograficas
+
+%Citamos algo para que aparezca en la bibliografía\ldots
+%\citep{ldesc2e}
+
+%\medskip
+
+%Y también ponemos el acrónimo \ac{CVS} para que no cruja.
+
+%Ten en cuenta que si no quieres acrónimos (o no quieres que te falle la compilación en ``release'' mientras no tengas ninguno) basta con que no definas la constante \verb+\acronimosEnRelease+ (en \texttt{config.tex}).
+
+
+%-------------------------------------------------------------------
+%\section*{\ProximoCapitulo}
+%-------------------------------------------------------------------
+%\TocProximoCapitulo
+
+%...
+
+% Variable local para emacs, para  que encuentre el fichero maestro de
+% compilación y funcionen mejor algunas teclas rápidas de AucTeX
+%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../Tesis.tex"
+%%% End:

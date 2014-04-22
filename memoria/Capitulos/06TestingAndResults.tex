@@ -1,0 +1,254 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 6
+%
+%---------------------------------------------------------------------
+
+\chapter{Testings and Results}
+
+\begin{FraseCelebre}
+\begin{Frase}
+She's up all night to the sun\\
+I'm up all night to get some\\
+she's up all night for good fun\\
+I'm up all night to get lucky 
+\end{Frase}
+\begin{Fuente}
+Thomas \& Guy-Manuel, Daft Punk
+\end{Fuente}
+\end{FraseCelebre}
+
+\begin{resumen}
+Some tests were applied to the main platform modules for the purpose of proving their proper functionality. The main capabilities that make the platform valuable such as power consumption or spectrum sensing features have been tested. The descriptions of the carried out tests and corresponding results are exposed in this chapter.  
+\end{resumen}
+
+%-------------------------------------------------------------------
+\section{Test Model}
+%-------------------------------------------------------------------
+\label{cap6:sec:testModel}
+%-------------------------------------------------------------------
+The purposes of testing some of the platform functions are to prove valuable capabilities and proper modules functionality. Characterization is not expressly required and modules must respond to operation parameters provided by manufacturers. The already used firmware includes several test-benches to apply. Most of the software tools employed to test the platform are extracted, at least partially, from them. For a further description on the carried out tests, consult \cite{juanpfc}. 
+
+Tests are simple and they check bounded functions related to the platform main capabilities and features. Sleeping modes operation and corresponding current consumption at different modes was measured. Microcontroller computing capabilities and \ac{RI}s performance, regarding agility or when sensing the spectrum, also have been tested. On the other hand, chargerSHIELD behavior was characterized.   
+
+%-------------------------------------------------------------------
+\section{Energy management test}
+%-------------------------------------------------------------------
+\label{cap6:sec:consumptionTest}
+%-------------------------------------------------------------------
+This test tries to bring the \ac{CNGD} under different operation modes. On the one hand, different sleeping modes and energy options for \ac{RI}s and \ac{MCU} are achieved consecutively. On the other hand, consumed current by the platform is measured at each situation. 
+This test was already included at the firmware and just few changes were needed to fully carry it out. These changes suppose the functions to control the power at the \ac{RI}s and they are described later in this chapter.  
+
+8 Different situations are configured. Following description covers the initial state and sequential happening events:
+
+\begin{itemize}
+\item A situation: Initial situation. The three \ac{RI}s and the \ac{MCU} are in run mode.
+\item B situation: 434 MHz \ac{RI} goes to sleep mode. 
+\item C situation: Power supply at 434 MHz \ac{RI} is switch off.  
+\item D situation: 868 MHz \ac{RI} goes to sleep mode.
+\item E situation: Power supply at 868 MHz \ac{RI} is switch off.
+\item F situation: 2.4 GHz \ac{RI} goes to sleep mode.
+\item G situation: Power supply 2.4 GHz \ac{RI} is switch off.
+\item H situation: \ac{MCU} goes to sleep mode.
+\end{itemize} 
+
+Consumption measures are reflected at Figure \ref{fig:cap6:energymodes}, where a graph shows how the current consumption goes down throughout the different presented situations.
+
+\figura{Bitmap/Capitulo6/consumption}{width=\textwidth}{fig:cap6:energymodes}%
+{cNGD current consumption at different energy modes.}
+
+%-------------------------------------------------------------------
+\section{Computing test}
+%-------------------------------------------------------------------
+\label{cap6:sec:computing}
+%-------------------------------------------------------------------
+This test intends to measure the computational cost of the communication protocol stack management. This could help to make a good software planning and avoid troubles interfering the application proper running. Moreover, it is important to adjust the management tasks period carefully for good communications performance.
+
+For this, it will be determined how long takes to be accomplished the management task in a \ac{FFD}. Nominal clock frequency is set to 80 MHz and no network activity is considered. Management tasks are taken every 25 ms. This test is fully provided at the firmware. 
+
+Table \ref{tab:cap6:tasktime} shows separately the measured time for \ac{RI}s and different protocol versions, Mesh and P2P. 
+
+\begin{table}[h]
+\centering
+\scalebox{0.9}{
+\begin{tabular}{l r r}
+\hline
+\hline
+Management part & P2P Protocol & MiWi Protocol \\ \hline \hline
+Common management & 134.1 $\mu$s &  150.6 $\mu$s \\ \hline
+434 MHz RI  & 1.3 $\mu$s & 1.3 $\mu$s\\ \hline
+868 MHz RI  & 1.2 $\mu$s & 1.2 $\mu$s\\ \hline
+2.4 GHz RI  & 1.2 $\mu$s & 1.2 $\mu$s\\ \hline\hline
+Total time & 137.8 $\mu$s & 154.3 $\mu$s \\ \hline \hline
+\end{tabular}}
+
+\caption{Time costs on the communication protocol management tasks.%
+         \label{tab:cap6:tasktime}}
+\end{table}
+
+%-------------------------------------------------------------------
+\section{Spectrum sensing test}
+%-------------------------------------------------------------------
+\label{cap6:sec:spectrum}
+%-------------------------------------------------------------------
+This test tries to show the right spectrum sensing capability of the platform since it supposes a key point for its purposes. Using two \ac{CNGD} prototypes and making use of the functions provided by the \ac{HAL}, three simple scenarios show energy sensing features at the three different frequency bands. All the scenarios host a device continuously transmitting unicast packets at a specific channel. This \ac{RF} activity is detected by the platform at different spectrum energy scans. 
+
+First scenario is conducted over the 434 MHz band. This band posses 2 available channels when using a bit-rate of 119,2 kbps. Transmitting device is making use of channel 1. Figure \ref{fig:cap6:434sensing} shows the energy scan traces deployed by the firmware.
+\begin{figure}[!h]
+\centering
+\subfloat[Before start transmitting packets.]{\label{fig:cap6:434sensingpre}\includegraphics[height=25px]{Imagenes/Bitmap/Capitulo6/434sensingpre}}%
+~
+\subfloat[After start transmitting packets.]{\label{fig:cap6:434sensingpost}\includegraphics[height=25px]{Imagenes/Bitmap/Capitulo6/434sensingpost}}%
+\caption{Spectrum energy sensing at 434 MHz.}
+\label{fig:cap6:434sensing}
+\end{figure}
+
+Second scenario is conducted over the 868 MHz band. This band posses 7 available channels when using a bit-rate of 119,2 kbps. Transmitting device is making use of channel 4. Figure \ref{fig:cap6:868sensing} shows the energy scan traces deployed by the firmware.
+
+\begin{figure}[!h]
+\centering
+\subfloat[Before start transmitting packets.]{\label{fig:cap6:868sensingpre}\includegraphics[height=70px]{Imagenes/Bitmap/Capitulo6/868sensingpre}}%
+\qquad
+\subfloat[After start transmitting packets.]{\label{fig:cap6:868sensingpost}\includegraphics[height=70px]{Imagenes/Bitmap/Capitulo6/868sensingpost}}%
+\caption{Spectrum energy sensing at 868 MHz.}
+\label{fig:cap6:868sensing}
+\end{figure}
+
+Third scenario is conducted over the 2.4 GHz band. This band posses 16 available channels. Transmitting device is making use of channel 4. Figure \ref{fig:cap6:2400sensing} shows the energy scan traces deployed by the firmware.
+
+\begin{figure}[!h]
+\centering
+\subfloat[Before start transmitting packets.]{\label{fig:cap6:868sensingpre}\includegraphics[height=130px]{Imagenes/Bitmap/Capitulo6/2400sensingpre}}%
+~
+\subfloat[After start transmitting packets.]{\label{fig:cap6:868sensingpost}\includegraphics[height=130px]{Imagenes/Bitmap/Capitulo6/2400sensingpost}}%
+\caption{Spectrum energy sensing at 2.4 GHz.}
+\label{fig:cap6:2400sensing}
+\end{figure}
+
+%-------------------------------------------------------------------
+\section{Radio interfaces agility test}
+%-------------------------------------------------------------------
+\label{cap6:sec:radioagility}
+%-------------------------------------------------------------------
+This test evaluates how long take different management tasks over the \ac{RI}s to be accomplished. These management tasks cover spectrum energy scans and changes over \ac{TX} power, operation channel, and energy modes. This test was fully available at the firmware. Table \ref{tab:cap6:radioagility} illustrates the results.
+
+\begin{table}[h]
+\centering
+\scalebox{0.9}{
+\begin{tabular}{l r r r}
+\hline
+\hline
+Operation & 434 MHz RI & 868 MHz RI & 2.4 GHz RI\\ \hline \hline
+TX channel switch & 30.45 ms  &  30.4 ms & 0.151 ms \\ \hline
+TX power change & 55.8 $\mu$s & 55.8 $\mu$s & 70.1 $\mu$s \\ \hline
+Sleep and wake up & 15.4 ms & 15.4 ms & 0.364 ms\\ \hline
+Spectrum energy scan & 194.48 ms & 908 ms & 410.13 ms\\ \hline \hline
+\end{tabular}}
+
+\caption{Time costs on the RIs management tasks.%
+         \label{tab:cap6:radioagility}}
+\end{table}
+
+%-------------------------------------------------------------------
+\section{Effective rate test}
+%-------------------------------------------------------------------
+\label{cap6:sec:radiocommunication}
+%-------------------------------------------------------------------
+Effective rate provided by the MRF49XA and MRF24J40 transceivers when driven by the firmware was already described in \cite{juanpfc}. The obtained performance must match performance achieved at the \ac{CNGD}. Hence, this checking supposes a partial test compared to the full previous characterization. However, it tries new unchecked aspects of the \ac{RI}s management and proves functionality. 
+
+Employed protocol at the test-bench, for simplicity, is MiWi$^{TM}$ P2P. The three \ac{RI}s are checked and different maintenance task periods for the protocol stack are tried. In total, periods of 1 ms, 25 ms and 500 ms were tested, not obtaining performance differences among them. To avoid redundancy, shown results correspond to 25 ms period.
+
+The two tried \ac{TX} modes are broadcast and unicast (8 Bytes address). Main communication parameters set for the test follow:
+
+\begin{itemize}
+\item Payload size is set to 90 Bytes.
+\item \ac{TX} and \ac{RX} buffer is configured as 10 packets for each \ac{RI}.
+\item Total number of sent packets is 250.
+\item VERIFY\_TRANSMIT option is enabled for MRF24J40 module.
+\item \emph{ENABLE\_SECURITY} option is active.
+\end{itemize}
+
+Both versions, $\mu$Trans module at 434 MHz and 868 MHz, posses similar performance since they share the same transceiver. Tables \ref{cap6:tab:effectiverate434868fast} and \ref{cap6:tab:effectiverate434868slow} illustrate the results at two different bit-rates, 115200 and 38400 bps, for an $\mu$Trans \ac{RI}.
+
+\begin{table}[h]
+\centering
+\scalebox{0.9}{
+\begin{tabular}{ c  c  c  c  c }
+\hline
+\hline
+\multirow{2}{*}{TX mode} & Received  & Total & TX Time & Effective\\
+  &  packets & bits & (s) & rate (kpbs)\\ \hline \hline
+
+Broadcast & 125 (50 \%) & 90000 & 2.88 & 31.250    \\ \hline
+Unicast & 250 (100 \%) & 180000 & 7.34 & 24.511 \\ \hline \hline
+\end{tabular}
+}
+\caption{Effective rate, received packets comparison for 434/868 RI using P2P protocol at 115200 bps.%
+         \label{cap6:tab:effectiverate434868fast}}
+\end{table} 
+
+\begin{table}[h]
+\centering
+\scalebox{0.9}{
+\begin{tabular}{ c  c  c  c  c }
+\hline
+\hline
+\multirow{2}{*}{TX mode} & Received  & Total & TX Time & Effective\\
+  &  packets & bits & (s) & rate (kpbs)\\ \hline \hline
+Broadcast & 250 (100 \%) & 180000 & 6.22 & 28.938   \\ \hline
+Unicast & 250 (100 \%) & 180000 & 8.7 & 20.669 \\ \hline \hline
+
+\end{tabular}
+}
+\caption{Effective rate, received packets comparison for 434/868 RI using P2P protocol at 38400 bps.%
+         \label{cap6:tab:effectiverate434868slow}}
+\end{table}
+
+It is important to observe how there are not packet losses at unicast mode, and for 38400 bps there are not lost packets either when broadcasting. On the other hand, \ac{TX} power and antenna conditions must be reviewed, since these suppose a change with respect to previous tests.
+
+Table \ref{cap6:tab:effectiverate2.4} illustrates the results for MRF24J40 transceiver as 2.4 GHz \ac{RI} using a P2P protocol. 
+
+\begin{table}[h]
+\centering
+\scalebox{0.9}{
+\begin{tabular}{ c  c  c  c  c }
+\hline
+\hline
+\multirow{2}{*}{TX mode} & Received  & Total & TX Time & Effective\\
+  &  packets & bits & (s) & rate (kpbs)\\ \hline \hline
+
+Broadcast & 130 (52 \%) & 93600 & 3.25 & 28.8    \\ \hline
+Unicast & 140 (56 \%) & 100800 & 3.54 & 28.474 \\ \hline \hline
+
+\end{tabular}
+}
+\caption{Effective rate, received packets comparison for 2.4 GHZ RI using P2P protocol at 250 kbps.%
+         \label{cap6:tab:effectiverate2.4}}
+\end{table} 
+
+A worrying issue, already described in \cite{juanpfc}, is the packet loss even transmitting at unicast mode. The reason for this fact still remains certainly unknown, but there are some possible explanations. Most feasible option at the current moment is that \ac{ACK} packets are misinterpreted by the receiver and it considers a single \ac{ACK} response for more than one packet. This is possible because \ac{ACK} packets are not numerically sequenced at MiWi$^{TM}$ protocol. In order to solve this issue, a work at the \ac{LSI} presented in \cite{guillepfc} shows a flow control mechanism at MiWi$^{TM}$ \ac{MAC} layer that apparently avoid packet losses at unicast mode.
+
+It has been concluded that the communication rate bottleneck is placed at \ac{RX} rate, which sets the maximum communication bit-rate between two devices around 25-30 kbps for all the \ac{RI}s.
+
+%-------------------------------------------------------------------
+\section{chargerSHIELD performance test}
+%-------------------------------------------------------------------
+\label{cap6:sec:charger}
+%-------------------------------------------------------------------
+As it was mentioned, small testings were made during the mounting process. Nevertheless, this test shows the chargerSHIELD performance test facing a battery full charge operation.
+
+When testing the chargerSHIELD proper operation, few charging sequences were carried out. Taking measures every 2 hours of battery voltage conditions and the current flowing through it. Figure \ref{fig:cap6:chargergraph} shows the average results, battery voltages are view as blue bars referenced on the left side, while current flow is expressed over an orange line respect to values at the right side.
+
+\figura{Bitmap/Capitulo6/charger}{width=\textwidth}{fig:cap6:chargergraph}%
+{Batteries voltage evolution while charging with chargerSHIELD.}
+
+Charging time for the defined batteries can be estimated around 12-16 hours. The ready battery led notifies the battery is ready when approximately 60\% of the total charge is available, label at the figure shows the time the led turns on. It is a normal behavior for \ac{NIMH} batteries to supply higher voltages than their nominal value despite they are supposed to provide up to 3.6 V, specially during charging processes. The charger properly switches off the charging current when voltage at the battery reveals a high enough charge.
+
+
+% Variable local para emacs, para  que encuentre el fichero maestro de
+% compilación y funcionen mejor algunas teclas rápidas de AucTeX
+%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../Tesis.tex"
+%%% End:

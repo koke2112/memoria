@@ -1,0 +1,271 @@
+% Fichero con acrónimos para su uso con GlossTeX
+%
+% El listado de acrónimos funciona de manera similar a las referencias
+% bibliográficas. Este  fichero es equivalente por tanto  al .bib, con
+% el listado de  los acrónimos disponibles. A lo  largo del documento,
+% cuando se  utilice alguno  de ellos, se  referencia para  indicar al
+% sistema que queremos que dicho  acrónimo aparezca en el glosario. En
+% contra de  lo que ocurre con  la bibliografía, el  texto original no
+% sufre ninguna modificación.
+%
+% Las entradas son:
+% @entry{<etiqueta>[,<item>[,<forma larga>]]} [<texto>]
+%
+% La etiqueta es el  nombre del acrónimo (equivalente a la etiqueta en
+% BibTeX) que luego se utiliza para "referenciarlo" en el texto.
+
+% Para  que  la  generación   en  Release  con  el  Makefile  funcione
+% correctamente, necesitarás  al menos tener  referenciado un acrónimo
+% dentro del  texto.  Si  no quieres usar  acrónimos, o de  momento no
+% tienes ninguno  referenciado, basta con que no  definas la constante
+% \acronimosEnRelease en config.tex
+
+@entry{IEEE, , \emph{Institute of Electrical and Electronics Engineers}}
+
+@entry{EHG, , \emph{Energy Harvesting Generator}}
+
+@entry{Q, , \emph{Factor de calidad}}
+
+@entry{BJT, , \emph{Bipolar Junction Transistor}}
+
+@entry{PLA, , \emph{Poliácido Láctico}}
+
+@entry{PET, , \emph{Tereftalato de polietileno}}
+
+
+
+
+
+@entry{ITU, , \emph{International Telecommunication Union}} 
+
+@entry{QOS,QoS,\emph{Quality of Service}}
+
+@entry{WSN, , \emph{Wireless Sensor Network}}
+
+@entry{CWSN, ,\emph{Cognitive Wireless Sensor Network}}
+
+@entry{WPAN, , \emph{Wireless Personal Area Network}}
+
+@entry{CR, , \emph{Cognitive Radio}}
+
+@entry{ISM, , \emph{Industrial, Scientific and Medical}}
+
+@entry{CN, , \emph{Cognitive Network}}
+
+@entry{SN, , \emph{Sensor Network}}
+
+@entry{WN, , \emph{Wireless Network}}
+
+@entry{PAN, , \emph{Personal Area Network}}
+
+@entry{CWSN, , \emph{Cognitive Wireless Sensor Network}}
+
+@entry{WRAN, , \emph{Wireless Reginal Area Network}}
+
+@entry{WAHSN, , \emph{Wireless Ad-hoc Sensor Network}}
+
+@entry{CNGD,cNGD, \emph{Cognitive Next Generation Device}}
+
+@entry{FCD, , \emph{First Cognitive Device}}
+
+@entry{FP7, , \emph{7th Framework Programme for Research and Technological Development}}
+
+@entry{FFD, , \emph{Full Function Device}}
+
+@entry{RFD, , \emph{Reduced Function Device}}
+
+@entry{RF, , \emph{Radio Frequency}}
+
+@entry{RSSI, , \emph{Received Signal Strength Indication}}
+
+@entry{SNR, , \emph{Signal to Noise Ratio}}
+
+@entry{CRMODULE,CRmodule,\emph{Cognitive Radio Module}}
+
+@entry{HAL, , \emph{Hardware Abstraction Layer}}
+
+@entry{ACK, , \emph{Acknowledgment}}
+
+@entry{LSI, , \emph{Laboratorio de Sistemas Integrados}}
+
+@entry{DIE, , \emph{Departamento de Ingenier\'ia Electr\'onica}}
+
+@entry{ETSIT, , \emph{Escuela T\'ecnica Superior de Ingenieros en Telecomunicaci\'on}}
+
+@entry{UPM, , \emph{Universidad Polit\'ecnica de Madrid}}
+
+@entry{FCC, , \emph{Federal Communications Commission}}
+
+@entry{OFCOM, Ofcom, \emph{Office of Communications}}
+
+@entry{SDR, , \emph{Software-Defined Radio}}
+
+@entry{MAC, , \emph{Medium Access Control}}
+
+@entry{I2C,$I^{2}$C, \emph{Inter-Integrated Circuit}}
+
+@entry{SPI, , \emph{Serial Peripheral Interface}}
+
+@entry{UART, , \emph{Universal Asynchronous Receiver-Transmitter}}
+
+@entry{USB, , \emph{Universal Serial Bus}}
+
+@entry{DAC, , \emph{Digital-to-Analog Converter}}
+
+@entry{OSI, , \emph{Open Systems Interconnection}}
+
+@entry{DSA, , \emph{Dinamic Spectrum Access}}
+
+@entry{AWD, , \emph{Advanced Wireless Dynamics}} 
+
+@entry{PIC, , \emph{Peripheral Interface Controller}}
+
+@entry{MCU, , \emph{Microcontroller}}
+
+@entry{MIPS, , \emph{Microprocessor without Interlocked Pipeline Stages}}
+
+@entry{RISC, , \emph{Reduced Instruction Set Computer}}
+
+@entry{SRAM, , \emph{Static Random Access Memory}}
+
+@entry{SRAM, , \emph{Random Access Memory}}
+
+@entry{LOWPAN, LoWPAN, \emph{Low-Rate Wireless Personal Area Network}}
+
+@entry{API, , \emph{Application Programming Interface}}
+
+@entry{CRN, , \emph{Cognitive Radio Network}}
+
+@entry{RAM, , \emph{Random Access Memory}}
+
+@entry{KP, , \emph{Knowledge Plane}}
+
+@entry{PHY, , \emph{Physical}}
+
+@entry{IP, , \emph{Internet Protocol}}
+
+@entry{RI, , \emph{Radio Interface}}
+
+@entry{SINR, , \emph{Signal to Interference and Noise Ratio}}
+
+@entry{6LOWPAN,6LoWPAN, \emph{IPv6 Low Power WPAN}}
+
+@entry{VCC, , \emph{Virtual Control Channel}}
+
+@entry{DMIPS, ,\emph{Dhrystone Million Instructions per Second}}
+
+@entry{CPU, ,\emph{Central Processing Unit}}
+
+@entry{SENDORA, ,Sensor Network for Dynamic and Cognitive Radio Access}
+
+@entry{FPGA, , \emph{Field Programmable Gate Array}}
+
+@entry{VGA, , \emph{Video Graphics Array}}
+
+@entry{APL, , \emph{Academic Public License}}
+
+@entry{TKN, ,\emph{Telecommunication Networks Group}}
+
+@entry{TU, ,\emph{Technische Universit\"at}}
+
+@entry{USRP, , \emph{Universal Software Radio Peripheral}}
+
+@entry{SISO, , \emph{Single-Input Single-Output}}
+
+@entry{MIMO, , \emph{Multiple-Input Multiple-Output}}
+
+@entry{EM, , \emph{Electro-Magnetic}}
+
+@entry{BER, , \emph{Bit-Error Rate}}
+
+@entry{EDA, , \emph{Electronic Design Automation}}
+
+@entry{PCB, , \emph{Printed Circuit Board}}
+
+@entry{SPICE, ,\emph{Simulation Program with Integrated Circuits Emphasis}}
+
+@entry{M2M, ,\emph{Machine-to-machine}}
+
+@entry{TX, ,\emph{Transmission}}
+
+@entry{GPIO, ,\emph{General Purpose Input-Output}}
+
+@entry{MCLR, ,\emph{Master Clear}}
+
+@entry{PLL, ,\emph{Phase-locked loop}}
+
+@entry{FIFO, ,\emph{First-in First-out}}
+
+@entry{FHSS, ,\emph{Frequency Hopping Spread Spectrum}}
+
+@entry{DQI, ,\emph{Data Quality Indicator}}
+
+@entry{ED, ,\emph{Energy Detect}}
+
+@entry{SPST, ,\emph{Single Pole, Single Throw}}
+
+@entry{CMOS, ,\emph{Complementary Metal Oxide Semiconductor}}
+
+@entry{NICD, Ni-Cd,\emph{Nickel-Cadmium}}
+
+@entry{NIMH, Ni-MH,\emph{Nickel-Metal Hydride}}
+
+@entry{LIION, Li-ion,\emph{Lithium-Ion}}
+
+@entry{EEPROM, ,\emph{Electrically Erasable Programmable Read-Only Memory}}
+
+@entry{IRDA, IrDA, \emph{Infrared Data Association}}
+
+@entry{OTG, , \emph{On-The-Go}}
+
+@entry{ADC, ,\emph{Analog-to-Digital Converter}}
+
+@entry{RTCC, ,\emph{Real-Time Clock/Calendar}}
+
+@entry{RX, ,\emph{Reception}}
+
+@entry{QPSK, ,\emph{Quadrature Phase-Shift Keying}}
+
+@entry{FSK, ,\emph{Frequency-Shift Keying}}
+
+@entry{LED, ,\emph{Light-Emitting Diode}}
+
+@entry{SMD, ,\emph{Surface-Mount Devices}}
+
+@entry{PCB, ,\emph{Printed Circuit Board}}
+
+@entry{BoM, , \emph{Bill of Materials}}
+
+@entry{DMA, , \emph{Direct Memory Access}}
+
+@entry{CN, , \emph{Change Notification}}
+
+@entry{RMII, , \emph{Reduced Media Independent Interface}}
+
+@entry{ICD, , \emph{In-Circuit Debugger}}
+
+@entry{IDE, ,\emph{Integrated development environment}}
+
+@entry{TTL, , \emph{Transistor-Transistor Logic}}
+
+@entry{MOS, , \emph{Metal-Oxide-Semiconductor}}
+
+@entry{MII, , \emph{Media Independent Interface}}
+
+@entry{RMII, , \emph{Reduced Media Independent Interface}}
+
+@entry{OTAP, , \emph{Over The Air Programming}}
+
+@entry{GSM,,\emph{Global System for Mobile}}
+
+@entry{GPRS,,\emph{General Packet Radio Service}}
+
+@entry{QR, , \emph{Quick Response}}
+
+@entry{SOIC, , \emph{Small Outline Integrated Circuit}}
+
+@entry{CDC, ,\emph{Communications Device Class}}
+
+@entry{SMA, ,\emph{SubMiniature version A}}
+
+
