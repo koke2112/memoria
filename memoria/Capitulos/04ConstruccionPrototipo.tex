@@ -40,6 +40,8 @@ Las distintas partes del prototipo tienen que características especiales en cuan
 %-------------------------------------------------------------------
 \subsection{Lámina}
 %-------------------------------------------------------------------
+\label{cap4:sub:lamina1}
+%-------------------------------------------------------------------
 La lámina es si cabe la parte mas critica del prototipo. Es la encargada de transmitir la vibración a los imanes para imprimirles movimiento.
 La lámina tiene que que cumplir con ciertos requisitos. 
 Debe tener un modulo de Young y por lo tanto una constante de amortiguamiento alta, y una resistencia a la fatiga muy alta también.
@@ -87,20 +89,15 @@ A la hora de buscar el material y tras estudiar distintas alternativas, los punt
 
 Tras comprar una de estas ultimas en una ferretería se halla que la aleación de acero inoxidable del que esta hecha es una de las aleaciones buscadas (AL.301) por sus características de flexibilidad y resistencia a la fatiga.
 
-
 \begin{figure}[!h]
         \centering
-        \subfloat[Lámina de acero de una paleta de obra.]{\label{fig:cap4:paleta1}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/paleta}} 
-        \qquad
-		\subfloat[Distintos cortes de la paleta.]{\label{fig:cap4:cortes}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/cortes}}
-\caption{Paleta de obra.}
-        \label{fig:cap4:paleta}
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap4/paleta}  
+        \caption{Paleta.}
+        \label{fig:cap4:paleta1}
 \end{figure}
 
-Este acero se va a mecanizar en diferentes tamaños que son 1, 1.5, 2 y 2.5cm como se puede ver en la imagen \ref{fig:cap4:cortes}.
-Por otro lado el grosor de este acero es de 0.5mm.
+Por otro lado el grosor de este acero es de 0.5mm. En función de este y de los tamaños de las láminas que se obtengan de la paleta se puede conocer la frecuencia de resonancia del generador.
 
-Con todos estos datos ya se esta en disposición de poder calcular la frecuencia de resonancia de cualquier lamina construida con este material.
 
 %-------------------------------------------------------------------
 \subsection{Base}
@@ -108,7 +105,7 @@ Con todos estos datos ya se esta en disposición de poder calcular la frecuencia 
 
 El material de la base tiene que ser lo suficientemente rígido como para poder transmitir las vibraciones del entorno a la lamina absorbiendo las mínimas posibles.
 
-Para esto en principio se dispone de metacrilato y PVC en el \ac{LSI} aunque posteriormente se recurrirá a \ac{PLA} impreso en 3D en las impresoras 3D cedidas por BQ a la \ac{ETSIT}.
+Para esto en principio se dispone de metacrilato y \ac{PVC} en el \ac{LSI} aunque posteriormente se recurrirá a \ac{PLA} impreso en 3D en las impresoras 3D cedidas por BQ a la \ac{ETSIT}.
 
 El \ac{PLA} es un termoplástico biodegradable derivado de vegetales como el maíz. Sus características son parecidas al \ac{PET} y se puede conseguir mas o menos rigidez mediante una impresión mas o menos densa.
 Las posibilidades que ofrece la impresión 3D para prototipado rápido son incalculables. Se puede fabricar cualquier pieza en el momento, si bien se requieren ciertos conocimientos de diseño 3D.
@@ -119,7 +116,7 @@ Las posibilidades que ofrece la impresión 3D para prototipado rápido son incalcu
         \label{fig:cap4:pla}
 \end{figure}
 Este termoplástico tiene una temperatura de fusión de 160º sin embargo su temperatura óptima de extrusión para impresión ronda los 200º.
-Su densidad es de $1.2g/cm^3$ lo que lo convierte en un material mas ligero que el PVC e igual al metacrilato. La principal ventaja de usar \ac{PLA} frente al PVC o el metacrilato además de la facilidad para hacer piezas mas precisas, es la capacidad de variar la densidad interna de la pieza (cantidad de material empleado). De esta manera dos piezas de las mismas dimensiones de metacrilato y \ac{PLA}, pueden pesar distinto aunque la densidad del material sea la misma. Esto es útil a la hora de fabricar piezas de las que no se requiera grandes esfuerzos como se verá mas adelante.
+Su densidad es de $1.2g/cm^3$ lo que lo convierte en un material mas ligero que el \ac{PVC} e igual al metacrilato. La principal ventaja de usar \ac{PLA} frente al \ac{PVC} o el metacrilato además de la facilidad para hacer piezas mas precisas, es la capacidad de variar la densidad interna de la pieza (cantidad de material empleado). De esta manera dos piezas de las mismas dimensiones de metacrilato y \ac{PLA}, pueden pesar distinto aunque la densidad del material sea la misma. Esto es útil a la hora de fabricar piezas de las que no se requiera grandes esfuerzos como se verá mas adelante.
 
 %-------------------------------------------------------------------
 \subsection{Bobina}
@@ -149,19 +146,31 @@ Tienen unas grandes prestaciones, siendo en estos momentos, los imanes permanent
         \label{fig:cap4:imanes}
 \end{figure}
 %-------------------------------------------------------------------
-\section{Fabricación}
+\section{Materiales disponibles}
 %-------------------------------------------------------------------
-\label{cap4:sec:fabricacion}
+\label{cap4:sec:materialconst}
 %-------------------------------------------------------------------
 
+%-------------------------------------------------------------------
+\subsection{Lámina}
+%-------------------------------------------------------------------
+Las laminas para el generador se van a obtener a partir de la paleta vista en la sección \ref{cap4:sub:lamina1}. Este acero se va a mecanizar en diferentes tamaños que son 1cm, 1.5cm, 2cm y 2.5cm como se puede ver en la imagen \ref{fig:cap4:cortes}.
 
-
+Una lamina de por ejemplo 2cm de ancho, 5cm de largo y 0.5mm de grosor tiene una frecuencia de resonancia de 160Hz, y si fuese de 10cm, su frecuencia seria de 40Hz.
+Estas frecuencias están en el rango de trabajo del proyecto por lo tanto las laminas obtenidas son aptas para la construcción del prototipo.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap4/cortes}  
+        \caption{Diferentes láminas obtenidas.}
+        \label{fig:cap4:cortes}
+\end{figure}
+\FloatBarrier
 %-------------------------------------------------------------------
 \subsection{Bobina}
 %-------------------------------------------------------------------
 
 
-Para fabricar la bobina es necesario conocer sus dumensiones optimas y como su construccion afecta a la produccion de energia.
+Para fabricar la bobina es necesario conocer sus dimensiones óptimas y como su construcción afecta a la producción de energía.
 
 \begin{figure}[!h]
         \centering
@@ -170,38 +179,205 @@ Para fabricar la bobina es necesario conocer sus dumensiones optimas y como su c
         \label{fig:cap4:imanes}
 \end{figure}
 
+Siendo:
+\\
+$R_{i}=$ Radio interno.
+$R_{o}=$ Radio externo.
+$H_{c}=$ Ancho de la bobina.
+\\
 De \cite{beeby} se obtienen las siguientes ecuaciones que determinan los parámetros de la bobina:
-$$ V_{T}= \pi (R_{o}^{2}-R_{i}^{2})h_{c}$$
-$$ L_{w}=\frac{4fV_{T}}{\pi w_{d}^{2}}$$
+\\
+\\
+Volumen ocupado por la bobina:
+$$V_{T}= \pi (R_{o}^{2}-R_{i}^{2})h_{c}$$
+Longitud del hilo:
+$$L_{w}=\frac{4fV_{T}}{\pi w_{d}^{2}}$$
+Resistencia de la bobina:
+$$R_{c}=\frac{\rho L_{w}4}{\pi w_{d}^{2}}$$
+Numero de espiras:
 $$N=\frac{L_{w}}{R_{i}+\frac{(R_{o}-R_{i})}{2}}$$
+Factor de llenado de la bobina:
 $$f=\frac{A_{w}N}{A_{c}}$$
 
 
 
+El resto de parámetros son:
+
+\medskip
+$A_{w}=$ Área del cable.
+
+$A_{c}=$Área de un corte transversal de la bobina.
+
+$\rho =$Resistividad del cobre.
+
+$w_{d}=$Diámetro del hilo.
+\medskip
+
+Con estos parámetros se procede a construir varias bobinas. Sus características son:
 
 
 
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{|l | c | c | c | c | r|}
+\hline
+\hline
+Bobinas & $R_{i}$(cm) & $R_{o}$(cm) & $H_{c}$(cm) & $w_{d}$(mm) & $L_{w}$(m)\\
+\hline
+Bobina 1 & 0.5 & 1 & 0.9 & 0.5 & 5.4\\
+\hline
+Bobina 2 & 0.5 & 1 & 0.3 & 0.2 & 10.5\\
+\hline
+Bobina 3 & 0.3 & 1 & 0.3 & 0.2 & 12.7\\
+\hline
+
+\end{tabular}
+\caption{Bobinas construidas.}
+\label{tab:cap4:materiales}
+\end{center}
+\end{table}
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/bobinas2}  
+        \caption{Bobinas construidas.}
+        \label{fig:cap4:bobinaconstru}
+\end{figure}
+\FloatBarrier
 
 
 
+%-------------------------------------------------------------------
+\subsection{Imanes}
+%-------------------------------------------------------------------
+
+Para la realización de este proyecto se han adquirido varios imanes de neodimio de reducido tamaño.
+En concreto se dispone de:
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{|l | c | c | c | r|}
+\hline
+\hline
+Imanes & Lado1(mm) & Lado2(mm) & Grosor(mm) & Peso(g) \\
+\hline
+Imán 1 & 10 & 10 & 0.2 & 1.5\\
+\hline
+Imán 2 & 10 & 10 & 0.3 & 2.3\\
+\hline
+Imán 3 & 10 & 10 & 0.5 & 3.8\\
+\hline
+Imán 4 & 0.8 & 0.8 & 0.4 & 1.9\\
+\hline
+\end{tabular}
+\caption{Imanes disponibles.}
+\label{tab:cap4:materiales}
+\end{center}
+\end{table}
+
+\FloatBarrier
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/imanes_neodimio2}  
+        \caption{Imán de 10xmm10mmx0.3mm}
+        \label{fig:cap4:imanes}
+\end{figure}
+
+
+Estos imanes van a ir montados sobre unos soportes, que hacen que intercambiarlos para las pruebas sea fácil como se puede ver en la figura \ref{fig:cap4:Soporteiman}. El material de estos soportes  es aluminio de 1mm de grosor. Este material es ligero y a la vez resistente ya que tiene que soportar las tensiones que producen estos imanes que a las distancias a las que van colocados pueden llegar a ser muy importantes.
+
+\begin{figure}[!h]
+        \centering
+        \subfloat[Diseño de los soportes.]{\label{fig:cap4:sopdis}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/soporte_imanes}} 
+        \qquad
+		\subfloat[Soportes reales.]{\label{fig:cap4:sopreal}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/soporte_imanes2}}
+\caption{Soporte de los imanes.}
+        \label{fig:cap4:Soporteiman}
+\end{figure}
+\FloatBarrier
+
+%-------------------------------------------------------------------
+\section{Calculo de la resistencia óptima de carga y elección de arquitectura.}
+%-------------------------------------------------------------------
+\label{cap4:sec:arquitectura}
+%-------------------------------------------------------------------
+
+\subsubsection{Resistencia óptima de carga}
+
+Puesto que la bobina va a tener asociada una impedancia, para lograr una máxima transferencia de energía hace falta adaptarla a la carga que se coloque a la salida.
+Para esto se ha seguido un procedimiento expuesto en \cite{beeby} y en \cite{arquitecturas1}.
+
+
+Cuando el generador está limitado por los acoplos parásitos, la potencia máxima se puede hallar igualando el acoplo electromagnético al acoplo parásito y despejando la resistencia de carga:
+$$ R_{l}=R_{c}+\frac{N^{2}(\frac{d\theta}{dx})^{2}}{D_{p}}$$
+Donde $D_{p}$ es el acoplo parásito, N el número de espiras de la bobina, $R_{c}$ la resistencia de la bobina, $R_{l}$ la resistencia óptima de carga y $(d\theta /dx)$ el gradiente de flujo electromagnético.
+
+Como se puede apreciar, la resistencia óptima de carga varía en función del acoplo magnético, por lo tanto para distintos tipos de arquitectura (posición relativa de los imanes respecto a la bobina), la resistencia óptima de carga va a variar, aunque la bobina empleada sea siempre la misma. Esto se va a estudiar a continuación.
+
+Cuando el acoplo parásito es mucho mayor que el acoplo electromagnético, la resistencia óptima de carga es igual a la resistencia de la bobina.
+
+Coeficientes de amortiguación
+En el caso del generador electromagnético el coeficiente de amortiguamiento se puede escribir como
+$$c_{e}=\frac{(NlB)^2}{R_{load}R_{coil}+jwL_{coil}}$$
+l es la longitud lateral de la bobina (suponiéndola cuadrada). B es la densidad de flujo a través de la bobina.
+
+Esta fórmula es solo una aproximación, válida si la bobina pasa de un campo intenso de flujo B, a una zona con flujo nulo. Se puede conseguir una fórmula más precisa mediante análisis numérico de elementos finitos pero para este proyecto este caso no se contempla.
+
+Se puede ajustar $R_{load}$ para hacer coincidir $c_{e}$ y $c_{p}$ y por lo tanto como ya se ha visto, maximizar la potencia teniendo en cuenta las limitaciones de la bobina (resistividad, diámetro del cable y geometría). Según \cite{stephen} la resistencia óptima de carga puede ser obtenida según:
+$$R_{load}=R_{coil}+\frac{(NlB)^2}{c_{p}}$$
+Y por lo tanto la máxima potencia en este caso se puede ver como:
+$$P_{loadMax}=\frac{mA^2}{16\zeta _{p}w_{n}}(1-\frac{R_{coil}}{R_{load}})$$
+
+Este estudio es válido si a la salida se la bobina se conecta una carga resistiva.
+En capítulos posteriores se estudiará este caso y otros en mayor profundidad.
+
+\subsubsection{Elección de la arquitectura}
+
+A la hora de construir un generador un factor importante a tener en cuenta es su arquitectura. En función de la posición de la bobina respecto a los imanes se obtendrán unas características u otras como puede ser la tensión generada, o la potencia generada.
+
+Las posibles arquitecturas, obtenidas de \cite{arquitecturas1}, son las que se muestran en la figura \ref{fig:cap4:arqu}.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/posiblesarquitecturas}  
+        \caption{Posibles arquitecturas}
+        \label{fig:cap4:arqu}
+\end{figure}
+%\FloatBarrier
+
+Cada arquitectura tiene una resistencia de carga óptima. En función de esta, se han obtenido los resultados mostrados en la figura \ref{fig:cap4:resultados}.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/result}  
+        \caption{Resultados de las diferentes arquitecturas}
+        \label{fig:cap4:resultados}
+\end{figure}
+  
+Como se puede ver en la gráfica, la arquitectura II produce más tensión que el resto de arquitecturas para su resistencia óptima de carga y la arquitectura IV produce más potencia a la salida que el resto de arquitecturas para su resistencia óptima de carga.
+
+A la vista de estos resultados, la arquitectura II y la IV son candidatas para la construcción del generador.
 
 
 
+%-------------------------------------------------------------------
+\section{Fabricación de prototipos}
+%-------------------------------------------------------------------
+\label{cap4:sec:fabricacion}
+%-------------------------------------------------------------------
 
+%-------------------------------------------------------------------
+\subsection{Prototipo 1}
+%-------------------------------------------------------------------
 
+Para el primer prototipo se va a emplear \ac{PVC} tanto para la base como para el soporte.
+Para la lámina se va a emplear un corte de 1cm de ancho. De esta manera se construye el primer prototipo:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/proto1}  
+        \caption{Primer prototipo}
+        \label{fig:cap4:imanes}
+\end{figure}
 
-
-
-
-
-
-
-
-
-
-
-
-
+Este prototipo fue construido para observar los efectos de las vibraciones sobre la lámina, y como se comporta esta con los imanes montados.
 
 
 The chosen firmware for our platform gives support for MRF49XA modules over 434 MHz and 868 MHz bands. Specifically, the modules used during the firmware development were the MRF49XA PICtail$^{TM}$ Daughter Board \cite{daughterb}. This board is a demonstration and development daughter board for the MRF49XA ISM band sub-GHz RF transceiver. The board can be plugged into a suitable header, which makes it unsuitable for a reduced size and robust \ac{WSN} design. It either accepts connection to external antennas, which is a desirable requirement.
