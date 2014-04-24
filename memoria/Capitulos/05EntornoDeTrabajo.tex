@@ -10,98 +10,42 @@
 
 
 \begin{resumen}
-Los generadores kinéticos basan su funcionamiento en captar las vibraciones y movimientos del ambiente y transformarlos en energía eléctrica. Por esto de cara a las pruebas de funcionamiento hay que simular un entorno en el que se puedan generar vibraciones, controlar su frecuencia y amplitud y ser capaces de varias estos parámetros de manera estable, controlada y repetible. 
+Para estudiar el funcionamiento de cualquier prototipo o dispositivo es necesario disponer de un banco de trabajo que permita probar sus características.
+En concreto, para los generadores kinéticos que basan su funcionamiento en captar las vibraciones y movimientos del ambiente y transformarlos en energía eléctrica. Es necesario simular un entorno en el que se puedan generar vibraciones, controlar su frecuencia y amplitud y ser capaces de variar estos parámetros de manera estable, controlada y repetible. 
 Para la realización de este entorno es por tanto necesario, una señal de frecuencia controlable y un dispositivo que transforme esa señal en vibraciones mecánicas. 
-La señal se obtendrá de un generador de funciones y la vibración de uno de vibraciones. Además será necesario tomar algunas medidas adicionales para que esto funcione.  
+
 \end{resumen}
 
 
 
-%-------------------------------------------------------------------
-\section{Generador de señales}
-%-------------------------------------------------------------------
-\label{cap5:sec:introduction}
-%------------------------------------------------------------------
-A la hora de construir y probar un \ac{EHG} que produce energía eléctrica a partir de vibraciones, es necesario poder reproducir estas vibraciones en un entorno controlado. Además dado que el \ac{EHG} es muy sensible a la frecuencia de estas vibraciones dada su alta \ac{Q} se hace imprescindible poder controlarla de forma precisa.
-
-Por otro lado, el \ac{EHG} posee una frecuencia de resonancia, y si la frecuencia del entorno no coincide con esta, se dice que el generador esta desintonizado. 
-Para causar esta situación también es necesario poder controlar la frecuencia a la que se esta excitando el sistema. 
-
-De esta manera variando la frecuencia se puede estudiar completamente como reacciona el \ac{EHG}.
-
-Para poder tener control sobre la frecuencia de trabajo se va a emplear un generador de señales \textbf{Tektronix CFG250.}
-\begin{figure}[h!]
-        \centering
-		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap5/gen-func2}  
-        \caption{Generador Tektronix CFG250.}
-        \label{fig:cap5:mtrans3dmodel}
-\end{figure}
-
-\FloatBarrier
-
-En este generador se podrá seleccionar la frecuencia y la amplitud de la señal además de estudiar el comportamiento del \ac{EHG} con los diferentes tipos de señales que puede producir.
-Sus características son:
-
-\begin{itemize}
-\item Formas de onda: Sinusoidal, triangular y cuadrada
-\item Rango de frecuencias: 0.2Hz - 2MHz
-\item Voltaje máximo a la salida: 20Vpp
-\item Impedancia de salida: 50$\Omega$
-\end{itemize}
-
-\begin{figure}[h!]
-        \centering
-		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/gen-func3}  
-        \caption{Funciones del generador}
-        \label{fig:cap5:mtrans3dmodel}
-\end{figure}
-
-\begin{enumerate}
-  \item Botón de encendido.
-  \item Led de encendido.
-  \item Selector deforma de onda.
-  \item Selector de escala de frecuencia.
-  \item Selector fino de frecuencia.
-  \item Selector de amplitud.
-  \item Selector del nivel de salida (0,2Vpp-20Vpp).
-  \item Inversor de señal.
-  \item Ciclo de trabajo.
-  \item Ajuste del offset.
-  \item Barrido.
-  \item Tasa de barrido.
-  \item Ancho del barrido.
-  \item Salida principal BNC.
-  \item Salida BNC de TTL.
-  \end{enumerate}
-
-
-%-------------------------------------------------------------------
-\subsection{Resultados}
-%-------------------------------------------------------------------
-Los resultados obtenidos tras probar este generador has sido satisfactorios. Produce señales con gran precision y su control es sencillo. La seleccion en frecuencia es medianamente precisa y las primeras pruebas indican que se puede emplear para producir señales para el \ac{EHG}.
-
-Asimismo se disponía de un generador de funciones Promax GF1000. 
-Tras probar este último generador se han hallado problemas con las señales de salida, mas inestables de lo recomendado.
-
-Por lo tanto el generador que se empleará a partir de ahora va a ser el Textronix.
-
-\begin{figure}[h!]
-        \centering
-		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/Promax}  
-        \caption{Generador Promax}
-        \label{fig:cap5:mtrans3dmodel}
-\end{figure}
 
 
 %-------------------------------------------------------------------
 \section{Generador de vibraciones}
 %-------------------------------------------------------------------
 \label{cap5:sec:transceivers}
-%------------------------------------------------------------------
-Una vez obtenida una manera generar una señal y controlar su frecuencia, hace falta generar las vibraciones. Para esto existen dispositivos que mediante una señal de cierta frecuencia en su entrada, son capaces de producir una vibración mecánica de la misma frecuencia. Para probar el diseño del \ac{EHG} es necesario contar con uno de estos dispositivos.
-Por otro lado, los generadores de vibraciones también son controlables en amplitud aunque en este sentido tienen ciertas limitaciones como se verá mas adelante.
+%-------------------------------------------------------------------
+Como primer paso se va adquirir el elemento principal, un generador de vibraciones que va a ser el encargado de generar el movimiento para el generador de energía.
 
-El generador empleado es el modelo \textbf{2185.00 de Frederiksen.} 
+De esta manera el banco de trabajo quedaría así:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/esq1}  
+        \caption{Primera aproximanción del banco de trabajo.}
+        \label{fig:cap5:workb1}
+\end{figure}
+\FloatBarrier
+En este punto se necesitaba un medio de producir vibraciones mecánicas. Tras una búsqueda, se descubre un tipo de dispositivo llamado generador de vibraciones que mediante una señal de una cierta frecuencia a su entrada, es capaz de reproducirla mecánicamente.
+
+A la hora de comprarlo surgen varios problemas.
+Ante la imposibilidad de comprarlo en España, se barajan distintas opciones como el mercado chino de importación o el mercado europeo cuyo principal proveedor esta en Reino Unido.
+En primer lugar se recurre al mercado chino donde se consigue localizar en la pagina \ac{Alibaba}. La ventaja de adquirirlo aquí es que el precio es muy bajo comparado con los de los proveedores europeos. Por otro lado el problema es que siendo una pagina de compras al por mayor no se consigue mas que un proveedor dispuesto a enviar dos generadores de vibraciones y además con instrucciones y serigrafía en chino.
+
+Este hecho hace que se decida intentar conseguirlo en otro lugar aunque sea a un precio mayor.
+En el mercado europeo, este dispositivo se puede adquirir en tiendas online de Reino Unido \cite{dbj}. El modelo elegido es el \textbf{2185.00 de Frederiksen.} 
+
+Tras un envío con cierto retraso llega el generador de Reino Unido.
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/vibgen2}  
@@ -109,17 +53,9 @@ El generador empleado es el modelo \textbf{2185.00 de Frederiksen.}
         \label{fig:cap5:mtrans3dmodel}
 \end{figure}
 
-Sus especificaciones técnicas son:
 
-
-\begin{itemize}
-\item Rango de frecuencias: 0.1Hz-5kHz
-\item Amplitud: 7 mm a 1 Hz, reduciéndose al aumentar la frecuencia.
-\item Impedancia de entrada: 8 $\Omega$.
-\item Corriente máxima: 1A, limitada por fusible.
-\end{itemize}
-
-
+Una vez llegado hay que comprobar su estado. Según la hoja de características del fabricante este generador es capaz de transformar una señal de 0.1Hz hasta 5KHz en vibraciones mecánicas.
+Por otro lado, la entrada esta limitada por un fusible de 1A.
 
 %-------------------------------------------------------------------
 \subsection{Descripción}
@@ -148,19 +84,129 @@ El segundo se refiere a la mecánica. Es posible bloquear el sistema móvil median
   \item Pletina de bloqueo del vástago.
   \item Conectores de la señal de excitación.
   \end{enumerate}
+
+%-------------------------------------------------------------------
+\subsubsection{Generador de funciones}
+%-------------------------------------------------------------------
+\label{cap5:sec:introduction}
+%------------------------------------------------------------------
+A la hora de construir y probar un \ac{EHG} que produce energía eléctrica a partir de vibraciones, es necesario poder reproducir estas vibraciones en un entorno controlado. 
+
+Como se ha visto, el generador de vibraciones necesita una señal a su entrada para transformarla en vibración. 
+
+Esta señal va a ser proporcionada por un generador de funciones.
+
+Además dado que el \ac{EHG} es muy sensible a la frecuencia de estas vibraciones dada su alta \ac{Q} se hace imprescindible poder controlarla de forma precisa puesto que el \ac{EHG} posee una frecuencia de resonancia propia, y si la frecuencia del entorno no coincide con esta, se dice que el generador esta desintonizado. 
+
+De esta manera variando la frecuencia se puede estudiar completamente como reacciona el \ac{EHG}.
+
+Para poder tener control sobre la frecuencia de trabajo se va a emplear un generador de señales \textbf{Tektronix CFG250.}
+\begin{figure}[h!]
+        \centering
+		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap5/gen-func2}  
+        \caption{Generador Tektronix CFG250.}
+        \label{fig:cap5:mtrans3dmodel}
+\end{figure}
+
+\FloatBarrier
+
+En este generador se podrá seleccionar la frecuencia y la amplitud de la señal además de estudiar el comportamiento del \ac{EHG} con los diferentes tipos de señales que puede producir.
+%Sus características son:
+
+%\begin{itemize}
+%\item Formas de onda: Sinusoidal, triangular y cuadrada
+%\item Rango de frecuencias: 0.2Hz - 2MHz
+%\item Voltaje máximo a la salida: 20Vpp
+%\item Impedancia de salida: 50$\Omega$
+%\end{itemize}
+%
+%\begin{figure}[h!]
+%        \centering
+%		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/gen-func3}  
+%        \caption{Funciones del generador}
+%        \label{fig:cap5:mtrans3dmodel}
+%\end{figure}
+%
+%\begin{enumerate}
+%  \item Botón de encendido.
+%  \item Led de encendido.
+%  \item Selector deforma de onda.
+%  \item Selector de escala de frecuencia.
+%  \item Selector fino de frecuencia.
+%  \item Selector de amplitud.
+%  \item Selector del nivel de salida (0,2Vpp-20Vpp).
+%  \item Inversor de señal.
+%  \item Ciclo de trabajo.
+%  \item Ajuste del offset.
+%  \item Barrido.
+%  \item Tasa de barrido.
+%  \item Ancho del barrido.
+%  \item Salida principal BNC.
+%  \item Salida BNC de TTL.
+%  \end{enumerate}
+
+
+%-------------------------------------------------------------------
+%\subsection{Resultados}
+%-------------------------------------------------------------------
+Los resultados obtenidos tras probar este generador has sido satisfactorios. Produce señales con gran precision y su control es sencillo. La seleccion en frecuencia es medianamente precisa y las primeras pruebas indican que se puede emplear para producir señales para el \ac{EHG}.
+
+Asimismo se disponía de un generador de funciones Promax GF1000. 
+Tras probar este último generador se han hallado problemas con las señales de salida, mas inestables de lo recomendado.
+
+Por lo tanto el generador que se empleará a partir de ahora va a ser el Tektronix.
+
+%\begin{figure}[h!]
+%        \centering
+%		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/Promax}  
+%        \caption{Generador Promax}
+%        \label{fig:cap5:mtrans3dmodel}
+%\end{figure}
+
+En esta etapa del diseño del banco de trabajo, este quedaría así:
+  \begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/esq2}  
+        \caption{Inclusión del generador de funciones.}
+        \label{fig:cap5:workb2}
+\end{figure}
+\FloatBarrier
+%-------------------------------------------------------------------
+\subsection{Pruebas y Utilización}
+%-------------------------------------------------------------------
+
+Para usar probar el generador de vibraciones, bastaría con conectar directamente a su entrada una señal sinusoidal proporcionada por un generador de funciones según indica la hoja de características del fabricante. 
+Tras una primera prueba se comprueba que es capaz de producir vibraciones cuando se le conecta un generador de funciones. Por lo tanto el generador recibido es apto para su utilización en este proyecto.
+
+El siguiente paso es montar el \ac{EHG} sobre el generador de vibraciones y se tendría así el sistema completo. 
+Se realiza el montaje y se halla que con esta configuración el generador de vibraciones no es capaz de producir movimiento.
+
+Este comportamiento puede ser debido a dos problemas.
+
+\begin{itemize}
+  \item Que el generador de vibraciones no funcione correctamente.
+  \item Que el generador de funciones no entregue la suficiente potencia.
+\end{itemize}
+
+ Para eliminar la opción del mal funcionamiento, se prueba a amplificar la señal del generador de funciones con un amplificador del \ac{LSI}. De esta manera, tras realizar la prueba se ve que el generador de vibraciones si es capaz de mover y transmitir las vibraciones al \ac{EHG}.
+ 
+ El siguiente paso será acondicionar la señal mediante la inclusión de un amplificador en el sistema.
   
-  
-%-------------------------------------------------------------------
-\subsection{Utilización}
-%-------------------------------------------------------------------
 
-Para usar este generador de vibraciones, bastaría con conectar directamente a su entrada una señal sinusoidal proporcionada por un generador de funciones según la hoja de características del fabricante. 
-Tras una prueba con esta configuración se comprueba que de los dos generadores disponibles en el \ac{LSI} ninguno es capaz de conseguir movimiento dada su baja potencia de salida.
-Es por esto que se decide implementar un amplificador que adapte la señal de excitación al uso que se le quiere dar.
+En esta etapa del diseño del banco de trabajo, este quedaría así:
+  \begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/esq3}  
+        \caption{Inclusión de acondicionador de señal.}
+        \label{fig:cap5:workb3}
+\end{figure}
+\FloatBarrier
+
+
 
 
 %-------------------------------------------------------------------
-\section{Amplificadores de señal}
+\section{Acondicionador de señal}
 %-------------------------------------------------------------------
 \label{cap5:sec:currentDevices}
 %-------------------------------------------------------------------
@@ -168,10 +214,10 @@ Es por esto que se decide implementar un amplificador que adapte la señal de exc
 
 
 
-Como ya se ha comentado los generadores de funciones disponibles no son capaces de proporcionar toda la potencia necesaria.
+Como ya se ha comentado los generadores de funciones disponibles no son capaces de proporcionar toda la potencia necesaria para que el generador de vibraciones mueva el \ac{EHG}.
 
-Conociendo por el fabricante que la impedancia interna son 8$\Omega$ y que la corriente maxima es 1A, es trivial hallar la potencia máxima admisible por el generador de vibraciones: 8W.
-Con esta limitación se pasa a desarrollar diferentes amplificadores.
+Conociendo por el fabricante que la impedancia interna  del generador de vibraciones son 8$\Omega$ y que la corriente máxima es 1A, es trivial hallar la potencia máxima admisible por el generador de vibraciones: 8W.
+Con esta limitación se pasa a desarrollar diferentes amplificadores que consigan acondicionar la señal del generador de funciones para que el generador de vibraciones se excite con la suficiente potencia.
 
 Puesto que el generador de funciones Tektronix es capaz de dar a su salida una señal de hasta 20Vpp no habría problema en que moviese por si solo al generador de vibraciones. El problema surge porque no es capaz de entregar toda la corriente necesaria.
 Por ello como primera solución se contempla el uso de dos transistores de potencia en configuración de colector común.
@@ -213,7 +259,11 @@ Finalmente el amplificador queda asi:
 
 \FloatBarrier
 
-Tras diversas pruebas se obtiene que este amplificador no es capaz de entregar suficiente potencia a su salida, descartándose inmediatamente.
+Tras diversas pruebas se obtiene que este amplificador no es capaz de entregar suficiente potencia a su salida.
+Repasando la hoja de características del fabricante se calcula que la potencia máxima de este integrado esta entorno a  2W.
+Por lo tanto ahora se sabe que la potencia de excitación del generador de vibraciones va a estar entre 2W y 8W.
+
+El siguiente amplificador que se implemente va a ser de una potencia situada en este rango.
 
 %-------------------------------------------------------------------
 \subsection{Amplificador de potencia LM384}
@@ -238,7 +288,8 @@ Este circuito está adaptado para una carga de 8$\Omega$ y en teoría es capaz de 
 \FloatBarrier
 
 Una vez montado se prueba y se encuentra que el integrado sufre un excesivo calentamiento, además de esto, produce una distorsión importante de la señal de salida, lo que hace que el generador de vibraciones no se excite con una sinusoidal pura.
-Se prueban distintos integrados obteniéndose el mismo resultado con todos ellos.
+Este problema puede estar causado por un integrado defectuoso por lo que se prueban distintos obteniéndose el mismo resultado con todos ellos.
+Se realizan además varios montajes por si fuese problema de la placa de montaje. El resultado sigue siendo el mismo.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/lm384_distorsion}  
@@ -246,7 +297,7 @@ Se prueban distintos integrados obteniéndose el mismo resultado con todos ellos.
         \label{fig:cap5:mtrans3dmodel}
 \end{figure}
 
-Recurriendo a las gráficas de la hoja de características se comprueba que el fabricante no contempla el uso para frecuencias tan bajas, e incluso que la distorsión armónica en estos rangos se dispara lo que puede explicar la salida que se obtiene.
+Otra búsqueda por las gráficas de la hoja de características se comprueba que el fabricante no contempla el uso para frecuencias tan bajas, e incluso que la distorsión armónica en estos rangos se dispara lo que puede explicar la salida que se obtiene.
 Otros parámetros como la máxima corriente de salida, la ganancia o la potencia de salida son correctos para el uso que se está haciendo del circuito.
 
 A partir de este momento se decide como parámetro de diseño, no exigir la potencia al circuito integrado y delegar esta función en un par de transistores de potencia en configuración de colector común, añadiendo otra etapa para darles estabilidad mediante un amplificador operacional realimentado.
@@ -323,6 +374,16 @@ De esta manera el circuito final queda así:
 %-------------------------------------------------------------------
 
 Los resultados obtenidos del amplificador basado en el LME49710 indican que es apto para alimentar el generador de vibraciones.
+
+La primera etapa amplifica tensión correctamente a las frecuencias a las cuales se esta trabajando.
+La segunda proporciona la corriente hasta 1,5A.
+
+En total este amplificador en dos etapas alimentado entre +12v y -12v es capaz de suministrar hasta 12W.
+$$P_{max}=V_{eff}I_{max}=\frac{V_{p}}{\sqrt{2}}I_{max}=\frac{12}{\sqrt{2}}1,5$$
+$$P_{max}=12W$$
+
+A continuación se muestran las gráficas con los resultados obtenidos tras las pruebas realizadas sobre este amplificador.
+
 \begin{figure}[!h]
         \centering
         \subfloat[Amplificador sin carga a la salida.]{\label{fig:cap5:cngdheader}\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap5/salida-LME49710}} 
@@ -333,16 +394,34 @@ Los resultados obtenidos del amplificador basado en el LME49710 indican que es a
 \end{figure}
 \FloatBarrier
 
-Como se puede ver en las capturas, al conectar la carga se produce una distorsión de la señal. Esto es producido porque la carga no es resistiva pura, y por lo tanto produce una inadaptación importante, aun así la frecuencia de la señal de salida respecto a la entrada se mantiene claramente por lo que sería suficiente para atacar el generador de vibraciones de esta manera.
-De todas formas, se estudiará el implementar una red de adaptación de impedancia previa caracterización de la inductancia de la bobina.
+Como se puede ver en las capturas, al conectar la carga se produce una distorsión de la señal. Esto es producido porque la carga no es resistiva pura, y por lo tanto produce una des-adaptación importante, aun así la frecuencia de la señal de salida respecto a la entrada se mantiene claramente por lo que sería suficiente para atacar el generador de vibraciones de esta manera.
+De todas formas, en la siguiente sección se estudiará la implementación de una red de adaptación de impedancias por si en un futuro se quiere profundizar en generar una señal mas pura.
+
 
 %-------------------------------------------------------------------
-\section{Caracterización y adaptación del generador.}
+\section{Caracterización y adaptación de la impedancia del generador}
 %-------------------------------------------------------------------
 \label{cap5:sec:adaptacion}
 %-------------------------------------------------------------------
 
-Para una optima transferencia de la potencia del amplificador es necesario apartar las impedancias.
+Con la inclusión de una red de adaptación, el sistema completo quedaría:
+
+  \begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/esq4}  
+        \caption{Sistemas con red de adaptación.}
+        \label{fig:cap5:workb4}
+\end{figure}
+\FloatBarrier
+\subsection{Caracterización de la inductancia del generador de vibraciones}
+Para una óptima transferencia de la potencia del amplificador sería necesario apartar las impedancias.
+
+El principal problema al adaptar impedancias reactivas es que esto solo es posible a una frecuencia determinada. La frecuencia para la que se diseña la red de adaptación.
+
+Por lo tanto este estudio solo sería empleado en el caso de que se quiera adaptar el generador para una serie de frecuencias discretas en las cuales estudiar en profundidad el comportamiento del \ac{EHG} con tonos puros de excitación.
+
+
+
 Como primer paso hay que caracterizar la inductancia de la bobina.
 Se diseña un filtro paso bajo de primer orden RL con la bobina y una resistencia de R=6.5$\Omega$.
 \begin{figure}[!h]
@@ -371,8 +450,10 @@ $$L=\frac{6.5+8}{2\pi 29*10^3}=79\mu H$$
 Por lo tanto la impedancia de la bobina del generador queda:
 $$Zl=(8+jw79\mu )\Omega$$
 
-Sin embargo, este estudio serviría si la frecuencia de trabajo fuese constante ya que la adaptación de cargas reactivas solo se puede conseguir para una frecuencia fija. Dado que uno de los objetivos del proyecto es variar la frecuencia, no se podría adaptar la carga siempre.
 
+\subsection{Cálculo de la impedancia del salida del amplificador}
+
+\subsection{Diseño de la red de adaptación}
 A la vista de los resultados, el sistema amplificador-generador de vibraciones va a mantenerse sin cambios.
 
 %------------------------------------------------------------------

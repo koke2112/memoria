@@ -347,17 +347,48 @@ Las posibles arquitecturas, obtenidas de \cite{arquitecturas1}, son las que se m
 Cada arquitectura tiene una resistencia de carga óptima. En función de esta, se han obtenido los resultados mostrados en la figura \ref{fig:cap4:resultados}.
 \begin{figure}[!h]
         \centering
-		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/result}  
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap4/result}  
         \caption{Resultados de las diferentes arquitecturas}
         \label{fig:cap4:resultados}
 \end{figure}
+\FloatBarrier
+\begin{enumerate}[label=(\alph*)]
+\item Máxima tensión de salida.
+\item Potencia a la máxima tension de salida.
+\item Máxima potencia de salida.
+\item Tensión a la máxima potencia de salida.
+\end{enumerate}
   
 Como se puede ver en la gráfica, la arquitectura II produce más tensión que el resto de arquitecturas para su resistencia óptima de carga y la arquitectura IV produce más potencia a la salida que el resto de arquitecturas para su resistencia óptima de carga.
 
 A la vista de estos resultados, la arquitectura II y la IV son candidatas para la construcción del generador.
 
+A continuación se muestran los distintos resultados que ofrecen estas dos arquitecturas a igualdad de condiciones de entorno.
+\begin{figure}[!h]
+        \centering
+        \subfloat[Resultados de la arquitectura II.]{\label{fig:cap4:resII}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/resultII}} 
+        \qquad
+		\subfloat[Resultados de la arquitectura IV.]{\label{fig:cap4:resIV}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/resultIV}}
+\caption{Comparativa de arquitecturas.}
+        \label{fig:cap4:resArq}
+\end{figure}
 
+\FloatBarrier
 
+\begin{enumerate}[label=(\alph*)]
+\item Gradiente de flujo magnético a través de la bobina ($K=\frac{d\theta}{dx}$).
+\item Resistencia óptima de carga.
+\item Tensión a la salida.
+\item Potencia a la salida.
+\end{enumerate}
+
+Con estos resultados, el prototipo que se construye sobre la arquitectura IV por diversos motivos.
+
+La potencia maxima es mayor.
+La resistencia optima de carga es menor.
+Se obtienen mayores valores para una dimension de bobina menor.
+
+Aunque este proyecto se va a desarrollar en condiciones diferentes a las de este estudio (\citep{arquitecturas1}), los resultados son aplicables.
 %-------------------------------------------------------------------
 \section{Fabricación de prototipos}
 %-------------------------------------------------------------------
