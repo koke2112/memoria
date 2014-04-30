@@ -423,7 +423,7 @@ Por lo tanto este estudio solo sería empleado en el caso de que se quiera adapta
 
 
 Como primer paso hay que caracterizar la inductancia de la bobina.
-Se diseña un filtro paso bajo de primer orden RL con la bobina y una resistencia de R=6.5$\Omega$.
+Para esto se diseña un filtro paso bajo de primer orden RL con la bobina y una resistencia de R=6.5$\Omega$.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/filtros1}  
@@ -449,6 +449,9 @@ Volviendo a la frecuencia de corte de 29KHz y a los demás datos conocidos:
 $$L=\frac{6.5+8}{2\pi 29*10^3}=79\mu H$$
 Por lo tanto la impedancia de la bobina del generador queda:
 $$Zl=(8+jw79\mu )\Omega$$
+
+Para dejarlo en función de la frecuencia:
+$$Zl=(8+j\frac{f}{2\pi}79\mu )\Omega$$
 
 
 \subsection{Cálculo de la impedancia del salida del amplificador}
