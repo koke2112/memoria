@@ -100,17 +100,70 @@ Siendo
 A=w_{n}^{2}Y
 \end{equation}
 
-Como se puede ver en \ref{eq:cap3:pot} , la potencia tendería a infinito cuando la relación de amortiguación tiende a 0. Esto no ocurre puesto que existen acoplos parásitos. Quedando la relación total de amortiguación compuesta por la relación de amortiguación del transductor y la relación de amortiguación parásita.
+Como se puede ver en \ref{eq:cap3:pot} , la potencia tendería a infinito cuando la relación de amortiguación tiende a 0. Esto no ocurre puesto que el valor optimo de $\zeta_{T}$ es siempre mayor que cero lo que produce que la potencia obtenida sea siempre un valor finito. 
 
+Este efecto se ve en que reduciendo el factor de amortiguación, aumentaría el desplazamiento de la masa oscilante, pero esta distancia esta limitada por las características físicas del generador, por lo tanto el factor de amortiguación debe ser lo suficientemente grande para evitar que el desplazamiento de la masa supere la limitación. Entonces la mayor potencia posible es:
 \begin{equation}
-\zeta_{T}=\zeta _{e}+\zeta _{p}
+P_{max}=m\zeta_{T}w_{n}^3Z_{max}^2
+\end{equation}
+Donde $Z_{max}$ es el máximo desplazamiento de la masa.
+
+Además el generador esta sujeto a la acción acoplos parásitos como puede ser el rozamiento con el aire. Por lo tanto la relación de amortiguación queda compuesta por la relación de amortiguación del transductor y la relación de amortiguación parásita.
+
+
+Y la potencia según la ecuación \ref{eq:cap3:pot} queda:
+\begin{equation}
+P_{e}=\frac{m\zeta_{e}A^2}{4w_{n}(\zeta_{e}+\zeta_{p})^2}
 \end{equation}
 
+Cuando $\zeta_{e}=\zeta_{p}$ la potencia obtenida se maximiza.
+
+%-------------------------------------------------------------------
+\section{Transductores}
+%-------------------------------------------------------------------
+\label{cap3:sec:transDuc}
+%-------------------------------------------------------------------
 
 
 
+Un generador se compone entre otras cosas de un transductor, este se encarga de transformar la energía del movimiento, en energía eléctrica
+Hay tres tipos de transductores: Piezoeléctricos, electromagnéticos y electrostáticos. 
 
+\subsection{Generadores piezoeléctricos:} 
 
+Un material piezoeléctrico es aquel que se polariza cuando se le somete a una fuerza mecánica, de esta manera, cuanta más fuerza se ejerza sobre sus caras, más energía transforman. De la misma manera, si se le aplica una corriente eléctrica, los polos del material se reorganizan produciéndose deformaciones.
+Esta propiedad los hace muy útiles para la generación de energía a partir de movimiento.
+\subsection{Generadores electromagnéticos:}
+
+Se basan en el movimiento relativo entre un imán y una bobina. Mediante la variación del flujo magnético a través de la bobina se genera una corriente en la bobina. Si esta bobina se conecta a una resistencia de carga, la corriente a través de la bobina genera su propio campo magnético que se opone al campo magnético de los imanes. Esto produce una fuerza (Fem) que se opone al movimiento del generador. Actuando contra esta fuerza es como se transforma la energía mecánica en energía eléctrica.
+\subsection{Generadores electrostáticos:}
+
+Constan de un condensador de placas paralelas aisladas una de otra por vacío, aire u otro aislante. Las vibraciones mecánicas causan que la distancia entre las placas varíe. Las placas se cargan, esto produce una fuerza entre ellas, y es mediante la oposición a esta fuerza por el movimiento lo que produce la energía. 
+\\
+\\
+Para este proyecto el generador empleado va a ser electromagnético por lo que será necesario estudiar en profundidad el funcionamiento de estos generadores.
+\section{Generadores electromagnéticos}
+Estos generadores se componen de boinas e imanes, y es mediante su desplazamiento relativo cuando se transforma la energía del movimiento en energía eléctrica.
+La generación de energía de estos generadores se basan en los principios electromagnéticos de Faraday.
+El voltaje inducido en la bobina es proporcional a la variación del flujo magnético que la atraviesa y a su numero de espiras.
+\begin{equation}
+V=-N\frac{d\theta}{dt}
+\end{equation}
+Donde $\theta$ es el flujo magnético y N el numero de espiras.
+Como ya se ha comentado la energía se produce mediante oposición al movimiento. Y la fuerza que se opone a este es la fuerza electromotriz:
+\begin{equation}
+Fem=Dem\frac{dx}{dt}
+\end{equation}
+Para maximizar la potencia de salida hay que maximizar la fuerza electromotriz y para ello hay que maximizar \ac{Dem} y la velocidad del movimiento de la bobina respecto a los imanes (dx/dt).
+\begin{equation}
+Dem=\frac{1}{R_{l}+R_{c}+jwL_{c}}(\frac{d\theta}{dt})^2
+\end{equation}
+Donde R_{l} es la resistencia de la carga puesta a la salida de la bobina, R_{c} es la resistencia de la bobina y L_{c} es la inductancia de la bobina. 
+Como se puede ver para maximizar \ac{Dem} hay que reducir la resistencias y la inductancia de la bobina.
+
+Como se verá un poco mas adelante, el termino de la inductancia es despreciable a las frecuencias de trabajo de este proyecto. 
+
+Para el termino de la resistencia una impedancia baja requiere un diámetro de hilo grande, lo que reduciría para un volumen dado el numero de espiras de la bobina. Por lo tanto hay que buscar un compromiso entre resistencia de la bobina y numero de espiras.
 %-------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------
