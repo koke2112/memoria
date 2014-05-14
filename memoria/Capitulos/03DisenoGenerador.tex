@@ -21,7 +21,8 @@
 \begin{resumen}
 El objeto de este proyecto es la construcción de un generador inercial de energía eléctrica sintonizable. 
 Pero lo primero es ver como funciona uno de estos generadores.
-Esto se verá mediante una introducción teórica al funcionamiento de los generadores inerciales para posteriormente centrarse en los generadores electromagnéticos y sus características.
+Estos se dividen en dos partes. Por un lado la componente inercial y por otro el transductor. La primera se encarga de transmitir la vibración del entorno al segundo.
+Esto se verá en detalle mediante una introducción teórica al funcionamiento de los generadores inerciales para posteriormente centrarse en los transductores electromagnéticos y sus características.
 \end{resumen}
 
 %-------------------------------------------------------------------
@@ -29,7 +30,9 @@ Esto se verá mediante una introducción teórica al funcionamiento de los generado
 %-------------------------------------------------------------------
 \label{cap3:sec:nodeModel}
 %-------------------------------------------------------------------
-El modelo de este tipo de generadores se basa en dos componentes. Un marco sobre el que se aplica una vibración denominado marco inercial y una masa suspendida de él, denominada masa inercial que captura esas vibraciones transmitidas por el marco, produciendose un desplazamiento relativo entre estos dos componentes.
+Este es el primer componente del generador final. Es la parte que se encarga de transmitir la máxima energía de las vibraciones del entorno al transductor.
+
+El modelo que se ve en este tipo de generadores se basa en dos componentes. Un marco sobre el que se aplica una vibración denominado marco inercial y una masa suspendida de él, denominada masa inercial que captura esas vibraciones transmitidas por el marco, produciéndose un desplazamiento relativo entre estos dos componentes.
 Este sistema, que tiene una frecuencia de resonancia asociada, se puede diseñar para que esta coincida con la frecuencia de la vibración, de este modo, el efecto de movimiento relativo se magnifica en función del factor de calidad del sistema resonante.
 Estos generadores se modelan como un sistema de resorte-masa de segundo orden. 
 \begin{figure}[!h]
@@ -40,6 +43,8 @@ Estos generadores se modelan como un sistema de resorte-masa de segundo orden.
 \end{figure}
 
 Donde \textbf{K} es la constante elástica del resorte, m la masa, \textbf{y(t)} la vibración externa, \textbf{z(t)} el desplazamiento de la masa, \textbf{f(t)} la fuerza de amortiguamiento que se opone al movimiento de la masa y $\boldsymbol{Z_{l}}$ el desplazamiento máximo de la masa.
+
+El estudio siguiente ha sido obtenido de \cite{stephen} \cite{beeby2} y \cite{yates}.
 
 El estimulo externo se modela como una vibración sinusoidal de la forma:
 $$y(t)=Y\sin(wt)$$
@@ -119,6 +124,23 @@ P_{e}=\frac{m\zeta_{e}A^2}{4w_{n}(\zeta_{e}+\zeta_{p})^2}
 Cuando $\zeta_{e}=\zeta_{p}$ la potencia obtenida se maximiza.
 
 %-------------------------------------------------------------------
+\subsection{Frecuencia de resonancia de estos generadores}
+%-------------------------------------------------------------------
+Este tipo de generadores tienen una frecuencia de vibración característica o frecuencia de resonancia. Además tienen un factor \ac{Q} muy alto lo que hace que al ancho de banda que presentan sea muy estrecho.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap3/factorQ}  
+        \caption{Ejemplo de frecuencia de resonancia y factor Q.}
+        \label{fig:cap3:frecreso}
+\end{figure}
+
+Esto quiere decir que si la frecuencia de resonancia y la frecuencia de vibración del entorno coinciden, se estaría transformando casi toda la potencia, pero en cuanto estas frecuencias difieran un poco, no se estaría transformando nada de energía. 
+
+Es por esto que las estrategias mas empleadas para optimizar la energía producida han sido entre otras fijar bien la frecuencia de resonancia del generador para que coincida con la del entorno o incluso colocar varios generadores juntos con distintas frecuencias de resonancia.
+
+Estos métodos no son los únicos, y el objeto de este proyecto es investigar otro de ellos que consiste en modificar la frecuencia de resonancia durante el funcionamiento del generador.
+Esto de estudia en profundidad en el capitulo [REFERENCIA AL CAPITULO 6]
+%-------------------------------------------------------------------
 \section{Transductores}
 %-------------------------------------------------------------------
 \label{cap3:sec:transDuc}
@@ -148,6 +170,7 @@ La generación de energía de estos generadores se basan en los principios electro
 El voltaje inducido en la bobina es proporcional a la variación del flujo magnético que la atraviesa y a su numero de espiras.
 \begin{equation}
 V=-N\frac{d\theta}{dt}
+\label{faraday}
 \end{equation}
 Donde $\theta$ es el flujo magnético y N el numero de espiras.
 Como ya se ha comentado la energía se produce mediante oposición al movimiento. Y la fuerza que se opone a este es la fuerza electromotriz:
@@ -158,12 +181,51 @@ Para maximizar la potencia de salida hay que maximizar la fuerza electromotriz y
 \begin{equation}
 Dem=\frac{1}{R_{l}+R_{c}+jwL_{c}}(\frac{d\theta}{dt})^2
 \end{equation}
-Donde R_{l} es la resistencia de la carga puesta a la salida de la bobina, R_{c} es la resistencia de la bobina y L_{c} es la inductancia de la bobina. 
+Donde $R_{l}$ es la resistencia de la carga puesta a la salida de la bobina, $R_{c}$ es la resistencia de la bobina y $L_{c}$ es la inductancia de la bobina. 
 Como se puede ver para maximizar \ac{Dem} hay que reducir la resistencias y la inductancia de la bobina.
 
-Como se verá un poco mas adelante, el termino de la inductancia es despreciable a las frecuencias de trabajo de este proyecto. 
+Como se verá un poco mas adelante, el termino de la inductancia es despreciable a las frecuencias de trabajo de este proyecto que son muy bajas. 
 
-Para el termino de la resistencia una impedancia baja requiere un diámetro de hilo grande, lo que reduciría para un volumen dado el numero de espiras de la bobina. Por lo tanto hay que buscar un compromiso entre resistencia de la bobina y numero de espiras.
+Para el termino de la resistencia de la bobina, una impedancia baja requiere un diámetro de hilo grande, lo que reduciría, para un volumen dado, el numero de espiras de la bobina. Pero según se ve en \ref{faraday}, un menor numero de espiras, proporciona menor voltaje. Por lo tanto hay que buscar un compromiso entre resistencia de la bobina y numero de espiras para maximizar la potencia obtenida.
+El tercer parámetro que tiene que ser optimizado y sobre el que se tiene mas libertad es la resistencia de carga $R_{l}$.
+ 
+
+\subsubsection{Resistencia óptima de carga}
+
+Puesto que la bobina va a tener asociada una impedancia, para lograr una máxima transferencia de energía hace falta adaptarla a la carga que se coloque a la salida.
+Para esto se ha seguido un procedimiento expuesto en \cite{beeby}.
+
+
+Cuando el generador está limitado por los acoplos parásitos, la potencia máxima se puede hallar igualando el acoplo electromagnético al acoplo parásito y despejando la resistencia de carga:
+$$ R_{l}=R_{c}+\frac{N^{2}(\frac{d\theta}{dx})^{2}}{D_{p}}$$
+Donde $D_{p}$ es el acoplo parásito, N el número de espiras de la bobina, $R_{c}$ la resistencia de la bobina, $R_{l}$ la resistencia óptima de carga y $(d\theta /dx)$ el gradiente de flujo electromagnético.
+
+Como se puede apreciar, la resistencia óptima de carga varía en función del acoplo magnético, por lo tanto para distintos tipos de arquitectura (posición relativa de los imanes respecto a la bobina), la resistencia óptima de carga va a variar, aunque la bobina empleada sea siempre la misma. Esto se va a estudiar a continuación.
+
+Cuando el acoplo parásito es mucho mayor que el acoplo electromagnético, la resistencia óptima de carga es igual a la resistencia de la bobina.
+
+Coeficientes de amortiguación
+En el caso del generador electromagnético el coeficiente de amortiguamiento se puede escribir como
+$$c_{e}=\frac{(NlB)^2}{R_{load}R_{coil}+jwL_{coil}}$$
+l es la longitud lateral de la bobina (suponiéndola cuadrada). B es la densidad de flujo a través de la bobina.
+
+Esta fórmula es solo una aproximación, válida si la bobina pasa de un campo intenso de flujo B, a una zona con flujo nulo. Se puede conseguir una fórmula más precisa mediante análisis numérico de elementos finitos pero para este proyecto este caso no se contempla.
+
+Se puede ajustar $R_{load}$ para hacer coincidir $c_{e}$ y $c_{p}$ y por lo tanto como ya se ha visto, maximizar la potencia teniendo en cuenta las limitaciones de la bobina (resistividad, diámetro del cable y geometría). Según \cite{stephen} la resistencia óptima de carga puede ser obtenida según:
+$$R_{load}=R_{coil}+\frac{(NlB)^2}{c_{p}}$$
+Y por lo tanto la máxima potencia en este caso se puede ver como:
+$$P_{loadMax}=\frac{mA^2}{16\zeta _{p}w_{n}}(1-\frac{R_{coil}}{R_{load}})$$
+
+Este estudio es válido si a la salida se la bobina se conecta una carga resistiva.
+En capítulos posteriores se estudiará este caso y otros en mayor profundidad.
+
+\section{Conclusiones}
+Por lo tanto estos generadores se pueden dividir en dos partes, parte inercial y transductor.
+La parte inercial consta se un amortiguador y una masa.
+
+Para este proyecto, el amortiguador va a ser una lámina de un material con un alto modulo de Young y la masa son los imanes que componen el transductor. Por lo que la otra parte del transductor será la bobina.
+
+Los presentado aquí corresponde con el modelado teórico de este tipo de generadores, en el próximo capítulo se mostrara como ha sido la construcción, el tipo de materiales empleados y su funcionamiento.
 %-------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------

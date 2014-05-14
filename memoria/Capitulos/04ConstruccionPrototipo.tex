@@ -376,39 +376,10 @@ Los imanes son fijados a estos soportes con pegamento a base de cianocrilato (su
 
 
 %-------------------------------------------------------------------
-\section{Calculo de la resistencia óptima de carga y elección de arquitectura.}
+\section{Elección de arquitectura.}
 %-------------------------------------------------------------------
 \label{cap4:sec:arquitectura}
 %-------------------------------------------------------------------
-
-\subsubsection{Resistencia óptima de carga}
-
-Puesto que la bobina va a tener asociada una impedancia, para lograr una máxima transferencia de energía hace falta adaptarla a la carga que se coloque a la salida.
-Para esto se ha seguido un procedimiento expuesto en \cite{beeby} y en \cite{arquitecturas1}.
-
-
-Cuando el generador está limitado por los acoplos parásitos, la potencia máxima se puede hallar igualando el acoplo electromagnético al acoplo parásito y despejando la resistencia de carga:
-$$ R_{l}=R_{c}+\frac{N^{2}(\frac{d\theta}{dx})^{2}}{D_{p}}$$
-Donde $D_{p}$ es el acoplo parásito, N el número de espiras de la bobina, $R_{c}$ la resistencia de la bobina, $R_{l}$ la resistencia óptima de carga y $(d\theta /dx)$ el gradiente de flujo electromagnético.
-
-Como se puede apreciar, la resistencia óptima de carga varía en función del acoplo magnético, por lo tanto para distintos tipos de arquitectura (posición relativa de los imanes respecto a la bobina), la resistencia óptima de carga va a variar, aunque la bobina empleada sea siempre la misma. Esto se va a estudiar a continuación.
-
-Cuando el acoplo parásito es mucho mayor que el acoplo electromagnético, la resistencia óptima de carga es igual a la resistencia de la bobina.
-
-Coeficientes de amortiguación
-En el caso del generador electromagnético el coeficiente de amortiguamiento se puede escribir como
-$$c_{e}=\frac{(NlB)^2}{R_{load}R_{coil}+jwL_{coil}}$$
-l es la longitud lateral de la bobina (suponiéndola cuadrada). B es la densidad de flujo a través de la bobina.
-
-Esta fórmula es solo una aproximación, válida si la bobina pasa de un campo intenso de flujo B, a una zona con flujo nulo. Se puede conseguir una fórmula más precisa mediante análisis numérico de elementos finitos pero para este proyecto este caso no se contempla.
-
-Se puede ajustar $R_{load}$ para hacer coincidir $c_{e}$ y $c_{p}$ y por lo tanto como ya se ha visto, maximizar la potencia teniendo en cuenta las limitaciones de la bobina (resistividad, diámetro del cable y geometría). Según \cite{stephen} la resistencia óptima de carga puede ser obtenida según:
-$$R_{load}=R_{coil}+\frac{(NlB)^2}{c_{p}}$$
-Y por lo tanto la máxima potencia en este caso se puede ver como:
-$$P_{loadMax}=\frac{mA^2}{16\zeta _{p}w_{n}}(1-\frac{R_{coil}}{R_{load}})$$
-
-Este estudio es válido si a la salida se la bobina se conecta una carga resistiva.
-En capítulos posteriores se estudiará este caso y otros en mayor profundidad.
 
 \subsubsection{Elección de la arquitectura}
 
@@ -464,8 +435,8 @@ A continuación se muestran los distintos resultados que ofrecen estas dos arquit
 
 Con estos resultados, el prototipo que se construye sobre la arquitectura IV por diversos motivos.
 
-La potencia maxima es mayor.
-La resistencia optima de carga es menor.
+La potencia máxima es mayor.
+La resistencia óptima de carga es menor.
 Se obtienen mayores valores para una dimension de bobina menor.
 
 Aunque este proyecto se va a desarrollar en condiciones diferentes a las de este estudio (\citep{arquitecturas1}), los resultados son aplicables.
@@ -477,6 +448,25 @@ Aunque este proyecto se va a desarrollar en condiciones diferentes a las de este
 \end{figure}
 
 \FloatBarrier
+Como continuación de \cite{arquitecturas1} existe otro estudio \cite{arquitecturas2} donde se presentan dos nuevas arquitecturas llamadas VI y VII. La peculiaridad de estas nuevas arquitecturas es que las bobinas están construidas entorno a un núcleo de ferrita para concentrar las lineas de campo magnético.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/posiblesarquitecturas2}  
+        \caption{Dos nuevas arquitecturas}
+        \label{fig:cap4:arqu2}
+\end{figure}
+%\FloatBarrier
+
+Los resultados de este estudio indican que estas nuevas arquitecturas son capaz de entregar más potencia que la ya seleccionada arquitectura IV, sin embargo según se ve en la figura \ref{fig:cap4:resultados2}, la potencia para la máxima tension de salida sigue siendo más alta en la arquitectura IV. A esto hay que añadirle que la fabricación de las bobinas en este laboratorio, para estas nuevas arquitecturas entraña significativamente mayor dificultad que el modelo ya propuesto, dado que habría que obtener anillos de ferrita de tamaños específicos y para una primera aproximación, el incremento en dificultad y costes no compensa el pequeño incremento en potencia. Sin embargo de cara a un producto final previamente optimizado, este sería uno de los campos a estudiar.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap4/result2}  
+        \caption{Resultados comparativos de todas las arquitecturas}
+        \label{fig:cap4:resultados2}
+\end{figure}
+\FloatBarrier
+
 %-------------------------------------------------------------------
 \section{Fabricación de prototipos}
 %-------------------------------------------------------------------
