@@ -19,9 +19,10 @@
 %\end{FraseCelebre}
 
 \begin{resumen}
-El objeto de este proyecto es la construcción de un generador inercial de energía eléctrica sintonizable. 
-Pero lo primero es ver como funciona uno de estos generadores.
-Estos se dividen en dos partes. Por un lado la componente inercial y por otro el transductor. La primera se encarga de transmitir la vibración del entorno al segundo.
+El objeto de este proyecto es la construcción de un generador inercial de energía eléctrica. Estos generadores aprovechan la energía de las vibraciones del entorno donde estén colocados y la transforman en energía eléctrica. Una vez construido el generador el siguiente paso será hacerlo sintonizable, es decir que sea capaz de adaptarse a la frecuencia de las vibraciones  para de esta manera transformar el máximo de energía.
+
+Pero antes de empezar a construirlo, lo primero es conocer sus principios básicos.
+Se pude considerar a efectos teóricos que estos se dividen en dos partes. Por un lado la componente inercial compuesta por un amortiguador que conduzca las vibraciones y por otro el transductor electromagnético compuesto por imanes y bobinas. La primera se encarga de transmitir la vibración del entorno y el segundo de transformar las vibraciones que recibe en energía eléctrica.
 Esto se verá en detalle mediante una introducción teórica al funcionamiento de los generadores inerciales para posteriormente centrarse en los transductores electromagnéticos y sus características.
 \end{resumen}
 
@@ -155,12 +156,18 @@ Hay tres tipos de transductores: Piezoeléctricos, electromagnéticos y electrostá
 
 Un material piezoeléctrico es aquel que se polariza cuando se le somete a una fuerza mecánica, de esta manera, cuanta más fuerza se ejerza sobre sus caras, más energía transforman. De la misma manera, si se le aplica una corriente eléctrica, los polos del material se reorganizan produciéndose deformaciones.
 Esta propiedad los hace muy útiles para la generación de energía a partir de movimiento.
+
+La principal ventaja que presentan es que permiten una construcción en un tamaño muy reducido, pudiéndose construir generadores de hasta $5mm^{3}$ \cite{piezo}, pero por el contrario los materiales piezoeléctricos son mas difíciles de manipular y encontrar, tienen poca resistencia a la fatiga, lo que quiere decir que se degradan con el uso en un periodo de tiempo relativamente corto y no funcionan bien a temperaturas altas, que provocan que se despolaricen.
 \subsection{Generadores electromagnéticos:}
 
 Se basan en el movimiento relativo entre un imán y una bobina. Mediante la variación del flujo magnético a través de la bobina se genera una corriente en la bobina. Si esta bobina se conecta a una resistencia de carga, la corriente a través de la bobina genera su propio campo magnético que se opone al campo magnético de los imanes. Esto produce una fuerza (Fem) que se opone al movimiento del generador. Actuando contra esta fuerza es como se transforma la energía mecánica en energía eléctrica.
+
+La ventaja de estos generadores es su facilidad de construcción. Esta fue una de las razones que que desde el principio se decidiese construir el generador de tipo electromagnético, dado que la prioridad del proyecto era que se pudiese sintonizar, no que sea eficiente ni de reducido tamaño.
 \subsection{Generadores electrostáticos:}
 
 Constan de un condensador de placas paralelas aisladas una de otra por vacío, aire u otro aislante. Las vibraciones mecánicas causan que la distancia entre las placas varíe. Las placas se cargan, esto produce una fuerza entre ellas, y es mediante la oposición a esta fuerza por el movimiento lo que produce la energía. 
+
+Estos generadores son complicados de construir y la energia que transforman es mucho menor que la de los dos tipos anteriores.
 \\
 \\
 Para este proyecto el generador empleado va a ser electromagnético por lo que será necesario estudiar en profundidad el funcionamiento de estos generadores.
