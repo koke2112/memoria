@@ -21,19 +21,34 @@
 \begin{resumen}
 El objeto de este proyecto es la construcción de un generador inercial de energía eléctrica. Estos generadores aprovechan la energía de las vibraciones del entorno donde estén colocados y la transforman en energía eléctrica. Una vez construido el generador el siguiente paso será hacerlo sintonizable, es decir que sea capaz de adaptarse a la frecuencia de las vibraciones  para de esta manera transformar el máximo de energía.
 
-Pero antes de empezar a construirlo, lo primero es conocer sus principios básicos.
-Se pude considerar a efectos teóricos que estos se dividen en dos partes. Por un lado la componente inercial compuesta por un amortiguador que conduzca las vibraciones y por otro el transductor electromagnético compuesto por imanes y bobinas. La primera se encarga de transmitir la vibración del entorno y el segundo de transformar las vibraciones que recibe en energía eléctrica.
-Esto se verá en detalle mediante una introducción teórica al funcionamiento de los generadores inerciales para posteriormente centrarse en los transductores electromagnéticos y sus características.
+
 \end{resumen}
+%-------------------------------------------------------------------
+\section{Introducción}
+\label{cap3:sec:intro}
+%-------------------------------------------------------------------
+Antes de empezar a construir el generador, lo primero es conocer sus principios básicos.
+
+Se pude considerar a efectos teóricos que estos generadores se dividen en dos partes. Por un lado la componente inercial (conductor inercial) compuesta por un modelo marco-resorte-masa que conduce las vibraciones y por otro lado el transductor electromagnético compuesto por imanes y bobinas. La primera se encarga de transmitir la vibración del entorno y el segundo de transformar las vibraciones que recibe en energía eléctrica.
+
+Esto se verá en detalle a continuación mediante una introducción teórica al funcionamiento de los conductores inerciales para posteriormente centrarse en los transductores electromagnéticos y sus características.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap3/generador1}  
+        \caption{Componentes del generador.}
+        \label{fig:cap3:modelo}
+\end{figure}
+
 
 %-------------------------------------------------------------------
-\section{Modelo teórico de generador inercial}
+\section{Conductor inercial}
 %-------------------------------------------------------------------
 \label{cap3:sec:nodeModel}
 %-------------------------------------------------------------------
 Este es el primer componente del generador final. Es la parte que se encarga de transmitir la máxima energía de las vibraciones del entorno al transductor.
 
-El modelo que se ve en este tipo de generadores se basa en dos componentes. Un marco sobre el que se aplica una vibración denominado marco inercial y una masa suspendida de él, denominada masa inercial que captura esas vibraciones transmitidas por el marco, produciéndose un desplazamiento relativo entre estos dos componentes.
+El modelo del conductor inercial se divide a su vez en dos componentes. Un marco sobre el que se aplica una vibración denominado marco inercial y una masa suspendida de él, denominada masa inercial que captura esas vibraciones transmitidas por el marco, produciéndose un desplazamiento relativo entre estos dos componentes a través de un resorte.
 Este sistema, que tiene una frecuencia de resonancia asociada, se puede diseñar para que esta coincida con la frecuencia de la vibración, de este modo, el efecto de movimiento relativo se magnifica en función del factor de calidad del sistema resonante.
 Estos generadores se modelan como un sistema de resorte-masa de segundo orden. 
 \begin{figure}[!h]
@@ -227,12 +242,36 @@ Este estudio es válido si a la salida se la bobina se conecta una carga resistiv
 En capítulos posteriores se estudiará este caso y otros en mayor profundidad.
 
 \section{Conclusiones}
-Por lo tanto estos generadores se pueden dividir en dos partes, parte inercial y transductor.
-La parte inercial consta se un amortiguador y una masa.
+Como se ha visto estos generadores se pueden dividir en dos partes, parte inercial y transductor.
+La parte inercial consta de un amortiguador y una masa, que transfieren vibraciones a la segunda etapa que es un transductor electromagnético compuesto por una bobina y unos imanes.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap3/generador}  
+        \caption{Componentes del generador en detalle.}
+        \label{fig:cap3:componentedetalle}
+\end{figure}
 
+
+
+Como parámetro de diseño y para mejorar la eficiencia de espacio, se aprovecha la masa de los imanes del transductor, y se usan como la masa de la parte inercial, de esta manera la separación en dos partes no es tan evidente, pero es mas eficiente.
+
+En la figura \ref{fig:cap3:componentedetalle} la base se corresponde con el marco, la lámina con el resorte y la masa del imán con la masa oscilante.
+El transductor se compone del flujo magnético, que proporciona el imán, y la bobina.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap3/generador2}  
+        \caption{Componentes del generador en detalle con imán descompuesto.}
+        \label{fig:cap3:componentedetalle2}
+\end{figure}
+
+*+*
 Para este proyecto, el amortiguador va a ser una lámina de un material con un alto modulo de Young y la masa son los imanes que componen el transductor. Por lo que la otra parte del transductor será la bobina.
 
 Los presentado aquí corresponde con el modelado teórico de este tipo de generadores, en el próximo capítulo se mostrara como ha sido la construcción, el tipo de materiales empleados y su funcionamiento.
+*-*
+
+//CORRECCION*
+Lo aquí presentado se corresponde con los fundamentos teóricos en los que se basa cualquier generador inercial. Pero también hay que tener en cuenta los materiales de su construcción y estudiar sus características. En el próximo capitulo se trata la construcción de los distintos prototipos así como una estudio de los materiales empleados para ello.
 %-------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------

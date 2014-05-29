@@ -32,6 +32,12 @@ Será necesario por tanto construir este dispositivo buscando los materiales mas 
 Un generador electromagnético inercial se compone teóricamente de un captador de vibraciones (componente inercial) que conduce las vibraciones y un transductor (bobinas e imanes) que recibe las vibraciones y las transforma en energía eléctrica.
 En este capitulo se va a dividir el generador en cuatro componentes físicos de los cuales se estudiaran las diferentes opciones en cuanto a materiales se refiere.
 Estos componentes son base y lamina (captador de vibraciones) y bobina e imanes (transductor electromagnético).
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap3/generador2}  
+        \caption{Componentes del generador.}
+        \label{fig:cap4:paleta1}
+\end{figure}
 
 A lo largo de este capítulo se presenta el estudio que se realizó de los materiales necesarios para la construcción de las distintas partes, y de las posibles arquitecturas para maximizar los resultados obtenidos. 
 
@@ -43,7 +49,7 @@ A lo largo de este capítulo se presenta el estudio que se realizó de los materia
 %-------------------------------------------------------------------
 
 La elección de los materiales de fabricación es crítica en la construcción de un dispositivo como este.
-Las distintas partes del prototipo tienen que características especiales en cuando a su rigidez, dureza, resistencia, etc, y tienen que ser optimizadas teniendo en cuenta la limitación de materiales.
+Las distintas partes del prototipo tienen que tener características especiales en cuando a su rigidez, dureza, resistencia, etc, y tienen que ser optimizadas teniendo en cuenta la limitación de materiales.
 
 %-------------------------------------------------------------------
 \subsection{Lámina}
@@ -124,7 +130,7 @@ Las posibilidades que ofrece la impresión 3D para prototipado rápido son incalcu
         \label{fig:cap4:pla}
 \end{figure}
 Este termoplástico tiene una temperatura de fusión de 160º sin embargo su temperatura óptima de extrusión para impresión ronda los 200º.
-Su densidad es de $1.2g/cm^3$ lo que lo convierte en un material mas ligero que el \ac{PVC} e igual al metacrilato. La principal ventaja de usar \ac{PLA} frente al \ac{PVC} o el metacrilato además de la facilidad para hacer piezas mas precisas, es la capacidad de variar la densidad interna de la pieza (cantidad de material empleado). De esta manera dos piezas de las mismas dimensiones de metacrilato y \ac{PLA}, pueden pesar distinto aunque la densidad del material sea la misma. Esto es útil a la hora de fabricar piezas de las que no se requiera grandes esfuerzos como se verá mas adelante.
+Su densidad es de $1.2g/cm^3$ lo que lo convierte en un material mas ligero que el \ac{PVC} ($1.4g/cm^3$)e igual al metacrilato ($1.18g/cm^3$). La principal ventaja de usar \ac{PLA} frente al \ac{PVC} o el metacrilato además de la facilidad para hacer piezas mas precisas, es la capacidad de variar la densidad interna de la pieza (cantidad de material empleado). De esta manera dos piezas de las mismas dimensiones de metacrilato y \ac{PLA}, pueden pesar distinto aunque la densidad del material sea la misma. Esto es útil a la hora de fabricar piezas de las que no se requiera grandes esfuerzos como se verá mas adelante.
 
 %-------------------------------------------------------------------
 \subsection{Bobina}
@@ -181,7 +187,7 @@ Estas frecuencias están en el rango de trabajo del proyecto por lo tanto las lam
 %-------------------------------------------------------------------
 
 Las láminas han sido obtenidas mediante una cortadora de cizalla situada en el taller de la \ac{ETSIT}.
-Este proceso de corte dobla ligeramente los bordes y produce rebabas, que pueden causar que la frecuencia de resonancia no sea calculable mediante el modelo del que se dispone, puesto que el modelo proporciona la frecuencia de resonancia para una lamina lisa. Por lo que antes de montar cualquier lamina en el generador hay que limar los bordes.
+Este proceso de corte dobla ligeramente los bordes y produce rebabas, lo que puede causar que la frecuencia de resonancia no sea calculable mediante el modelo del que se dispone, puesto que el modelo proporciona la frecuencia de resonancia para una lamina lisa. Por lo que antes de montar cualquier lamina en el generador hay que limar los bordes.
 
 \begin{figure}[!h]
         \centering
@@ -195,7 +201,7 @@ Este proceso de corte dobla ligeramente los bordes y produce rebabas, que pueden
 \subsection{Bobina}
 %-------------------------------------------------------------------
 
-Dependiendo de las dimensiones de la bobina como pueden ser el radio del núcleo, el diámetro del hilo, el factor de llenado, el numero de espiras, etc, se consiguen unos resultados u otros para un tamaño dado de la bobina por eso para fabricarla es necesario conocer previamente sus dimensiones óptimas para el uso que se va a hacer de ella y como su construcción afecta a la producción de energía.
+Dependiendo de las dimensiones de la bobina como pueden ser el radio del núcleo, el diámetro del hilo, el factor de llenado, el numero de espiras, etc, se consiguen unos resultados u otros para un volumen dado de la bobina por eso, para fabricarla es necesario conocer previamente sus dimensiones óptimas, que son aquellas para las que dado un volumen fijo son capaces de hacer que se genere la máxima potencia, y como su construcción afecta a la producción de energía.
 
 \begin{figure}[!h]
         \centering
@@ -274,7 +280,7 @@ Bobina 3 & 0.3 & 1 & 0.3 & 0.2 & 12.7\\
 %-------------------------------------------------------------------
 
 Para los primeros prototipos el núcleo fue construido a partir de piezas planas de plástico que mediante un mecanizado a base de lija se les dio una forma circular. Para unirlas se usó un trozo de tubo de \ac{PVC} de 1cm de diámetro como se puede apreciar en la imagen.
-Este plástico da la suficiente rigidez para poder formar la bobina y a la vez es lo suficiente fino para que no ocupe un volumen considerable respecto a lo que tiene que ser hilo de cobre.
+Este plástico, con módulo de elasticidad $31*10^{3}Kg/cm^{2}$, da la suficiente rigidez para poder formar la bobina y a la vez es lo suficiente fino para que no ocupe un volumen considerable respecto a lo que tiene que ser hilo de cobre.
 
 \begin{figure}[!h]
         \centering
@@ -306,14 +312,22 @@ Una vez construidas se les aplica una capa de pegamento para mantener las espira
 
 Pero una bobina construida con este hilo presenta un problema y es que el hilo esmaltado no se puede soldar. Es necesario retirar la capa de esmalte de las puntas para que se fije el estaño.
 
-Para retirar el esmalte se probó con varios métodos y al final una combinación de estos resultó la mejor opción.
-Lo que se probó primero fue una serie de disolventes , papel de lija o quemar con el soldador.
+Para ello se dispone de varios posibles métodos.
 
-Entre los disolventes utilizados se encontraban acetona, tolueno o alcohol. 
-No se consiguió una disminución significativa de la capa de esmalte con ninguno de ellos.
+El primer método fue usar un disolvente con base de tolueno, con resultados insatisfactorios. El esmalte no se quita con este tipo de disolvente.
 
-El papel de lija aunque es una solución menos elegante, es mas inmediata y con paciencia y pericia se puede retirar la mayor parte de la capa de esmalte.
-Tras usar la lija, el soldador retira el esmalte sobrante pudiendo de esta manera soldar los extremos del hilo.
+El segundo método incluía quita esmalte cosmético comercial. Con este método se aprecia una leve disminución de la capa que recubre el cobre pero no es lo suficientemente efectivo como para ser utilizado.
+
+Ante el agotamiento de las soluciones químicas de las que se dispone en el laboratorio, se recurre a las físicas.
+
+La primera de estas es el empleo del soldador para quemar el esmalte que siendo tan fino, debería quemarse, sin embargo la temperatura del soldador ($340^{0}C$) no es suficiente para retirarlo.
+
+La ultima solución que queda y la menos sofisticada, es el papel de lija. Las pruebas realizadas con este, demuestran que, con la suficiente paciencia, es capaz de retirar el esmalte siempre y cuando se tenga en cuenta que con un hilo tan fino, un movimiento brusco es suficiente para partirlo.
+Para facilitar el empleo de este método, se realiza, previamente al lijado, un baño en quita esmalte que como se vio anteriormente afecta ligeramente a la capa de esmalte.
+
+Tras estos pasos nos queda un hilo con la mayor parte del esmalte retirado. Es ahora cuando se puede pre-estañar para poder soldarlo y para esto se usa flux y estaño.
+
+La aplicación del calor del soldador junto con el flux, hace que desaparezca el poco esmalte que pudiera quedar, y en ese momento, el estaño pasa a unirse con el cobre en la totalidad del área despejada, quedando así un hilo de cobre perfectamente soldable.
 
 %-------------------------------------------------------------------
 \subsubsection{Problemas y observaciones}
@@ -377,7 +391,13 @@ Estos imanes van a ir montados sobre unos soportes, que hacen que intercambiarlo
 \caption{Soporte de los imanes.}
         \label{fig:cap4:Soporteiman}
 \end{figure}
-Los imanes son fijados a estos soportes con pegamento a base de cianocrilato (superglue), pegamento de gran resistencia que ha demostrado ser el mejor para conseguir una buena fijación. Aun así, si el soporte recibe un golpe fuerte (caída o un imán suelto es atraído y golpea) los imanes se pueden desprender, por lo que hay que manejar este montaje con cuidado.
+
+Para fijar los imanes a su soporte se tiene que usar un método no destructivo (tornillo, remache),   puesto que los imanes de este material son frágiles y se podrían partir lo que nos deja con la única alternativa del pegamento.
+Los imanes de neodimio, debido a la gran fuerza que ejercen unos sobre otros estando a una distancia tan cercana tienen que ser fijados con el pegamento mas fuerte del que se disponga. Los pegamentos mas fuertes son los que están fabricados a base de cianocrilato (superglue), pegamento de gran resistencia ($ 260 Kg/cm^{2}$) que ha demostrado ser el mejor para conseguir una buena fijación.
+
+La parte negativa del uso de este pegamento es que una vez seco, es frágil, por lo que un golpe en el soporte, unido a la gran fuerza de atracción a la que están sometidos los imanes, hace que estos se desprendan del soporte.
+
+Por lo que una vez montados en el soporte, se requiere un manejo cuidadoso.
 
 
 
@@ -479,13 +499,23 @@ Los resultados de este estudio indican que estas nuevas arquitecturas son capaz 
 %-------------------------------------------------------------------
 \label{cap4:sec:fabricacion}
 %-------------------------------------------------------------------
-
+Tras haber presentado y estudiado los fundamentos de los generadores inerciales llega el momento de construir un prototipo sobre el que se realizarán las pruebas de sintonización. A continuación se muestran los prototipos construidos y como se han ido descartando a medida que se iban descubriendo mejoras necesarias.
 %-------------------------------------------------------------------
 \subsection{Prototipo 1}
 %-------------------------------------------------------------------
+\subsubsection{Objetivos}
+Este prototipo es el encargado de llevar al mundo real un generador inercial que hasta ahora solo habíamos visto como modelo teórico.
 
-Para el primer prototipo se va a emplear \ac{PVC} tanto para la base como para el soporte.
-Para la lámina se va a emplear un corte de 1cm de ancho. De esta manera se construye el primer prototipo:
+Se construye pensando mas en una prueba de construcción que en hacer un prototipo funcional, y como tal sus objetivos son:
+\begin{itemize}
+\item Probar los materiales propuestos y ver como se comportan en un generador real.
+\item Probar la capacidad del banco de trabajo presentado en el capítulo 5.
+\end{itemize}
+
+
+
+
+\subsubsection{Construcción}
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/proto1}  
@@ -493,44 +523,82 @@ Para la lámina se va a emplear un corte de 1cm de ancho. De esta manera se const
         \label{fig:cap4:prot1}
 \end{figure}
 
+Como se ha visto en el modelo teórico del capitulo 3 (\ref{cap3:sec:intro}) un generador inercial se compone de marco (base), resorte (lamina), masa (imanes), y transductor electromagnético (imanes y bobina).
 
+Para la base de este primer prototipo se va a emplear \ac{PVC}.
+
+Para la lámina se va a emplear un corte de 1cm de ancho de la plancha de acero.
+
+Con esta configuración, de momento, se construye el primer prototipo:
 
 La base y el soporte se mecanizaron a mano con una sierra para metal.
 
 La lamina se fijó al soporte mediante un tornillo pasante que también fijaba la base, de esta manera un solo tornillo sujetaba todo el conjunto.
+\subsubsection{Resultados}
 
-Este prototipo no deja de ser mas que una mera prueba, fue construido para observar los efectos de las vibraciones sobre la lámina, y como se comporta esta con los imanes montados.
-Así mismo sirvió para probar la potencia del banco de trabajo y hacerse una idea general de como se quería enfocar el diseño final. 
 
-No se llegó a montar la bobina para producción de energía, aunque se diseñaron varios tipos de soporte para ella, uno de los cuales se puede apreciar en la imagen \ref{fig:cap4:prot1}.
 
-Por otro lado también se construyó para probar los materiales, viendo que el \ac{PVC} no es un buen material puesto que es bastante pesado y absorbe gran cantidad de vibraciones, cosa poco conveniente porque el interés del proyecto es que se transmitan las máximas vibraciones a la lámina. Aun así si que se probó el acero inoxidable de la lamina como el material adecuado respondiendo bien a la frecuencia del entrono y alcanzando gran amplitud de vibración para su frecuencia de resonancia.
+Respecto a los materiales, se ha visto que el \ac{PVC} no es un buen material para la fabricación de la base,  puesto que es bastante pesado y absorbe gran cantidad de vibraciones, cosa poco conveniente puesto que una de las claves del proyecto es que se transmitan las máximas vibraciones a la lámina. 
 
-Respecto al comportamiento con los imanes, este prototipo sirvió para ver algo que en los modelos teóricos para el calculo de frecuencia de resonancia no se contempla y es el efecto del peso de los imanes.
-No solo hay que elegir las dimensiones de la lámina en función del rango de frecuencias de resonancia deseado sino también en función del peso de los imanes que hacen que la lámina se curve.
-Otro uso que se le dio a este prototipo fue para el diseño del sistema de anclaje al banco de trabajo.
+Por otro lado, el acero empleado para la fabricación de la lámina resulto ser un material idóneo para esta clase de uso, respondiendo bien a la frecuencia del entrono y alcanzando gran amplitud de vibración para su frecuencia de resonancia.
+\\
+\\
+En cuanto a la potencia del banco de trabajo, es en este punto donde se vió la necesidad de acondicionar la señal que entrega el generador de vibraciones puesto que no era suficiente para mover el generador inercial debido a su peso como se ve en \ref{cap5:sec:amplis}.
+\\
+\\
+Como resultado extra, este prototipo sirvió para ver algo que en los modelos teóricos para el calculo de frecuencia de resonancia no se contempla y es el efecto del peso de los imanes sobre la lámina.
 
+No solo hay que elegir las dimensiones de la lámina en función del rango de frecuencias de resonancia deseado sino también en función del peso de los imanes que hacen que la lámina se curve. De esta manera a partir de este momento se trabajara con laminas de 2 y 2.5 cm de anchura que son capaces de mantener el peso de los imanes sin deformarse, lo que nos permite asegurarnos que la frecuencia de resonancia calculada con el modelo teórico, coincidirá con la real.
+\\
+\\
 Las dimensiones del generador de la imagen son 13cm de largo, 4cm de alto y 2cm de ancho.
 La lámina es de 1cm de ancho y 12cm de largo.
+
+\subsubsection{Conclusiones}
+Este generador no se llegó a poner en funcionamiento por dos razones:
+\begin{itemize}
+\item Material de la base no apto para este uso.
+\item Lámina demasiado estrecha para soportar los imanes y el soporte de estos.
+\end{itemize}
+Estas son las causas por las que se decidió descartar este prototipo y construir el siguiente, en el que se emplearía una lamina ancha, sobre una base apta para transmitir las vibraciones.
+\\
+\\
+Puesto que tras verse estos problemas no se siguió con la construcción de este prototipo, no se llegó a montar la bobina, pero aun así se diseñaron varios tipos de soporte para ella, uno de los cuales se puede apreciar en la imagen \ref{fig:cap4:prot1}.
+\\
+º\
+La construcción de este prototipo proporcionó una buena experiencia de cara a la fabricación mecánica, lo que supuso una buena base para construir los siguientes.
 %-------------------------------------------------------------------
 \subsection{Prototipo 2}
 %-------------------------------------------------------------------
 \label{cap4:sec:prot2}
 %-------------------------------------------------------------------
+Este prototipo se construye para solucionar los problemas que presentaba el anterior y con él se quieren alcanzar nuevos objetivos.
+\subsubsection{Objetivos}
 
-Una vez que se obtuvieron todos los resultados del prototipo anterior era hora de construir otro con las mejoras propuestas.
+Tras los problemas que presentaba el anterior prototipo, los objetivos para este son:
+\begin{itemize}
+\item Fabricar la base de un material mas ligero que el \ac{PVC} y que transfiera mejor las vibraciones.
+\item Encontrar las dimensiones de la lámina que hacen que esta se comporte de acuerdo al modelo teórico de frecuencia de resonancia sin verse afectada por el peso de los imanes.
+\item Diseñar e implementar el soporte para los imanes.
+\item Montar una bobina y empezar a generar energía.
+\end{itemize}
+
+\subsubsection{Construcción}
+Para cumplir con los objetivos propuestos se procede a la construcción del prototipo 2.
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/proto2}  
         \caption{Segundo prototipo}
         \label{fig:cap4:prot2}
 \end{figure}
-Como primera decisión se cambió el material de la base. Se empleó metacrilato que proporciona mayor rigidez que el \ac{PVC} (absorbe menos vibraciones del entorno) y menor densidad (menor peso por volumen).
-En concreto con este nuevo material, el grosor de la base se redujo a la mitad (0.5cm) y también fue mecanizada a mano.
 
-El ancho de la lámina se aumentó a 1,5cm que permite soportar el peso de los imanes y del soporte de estos, una mejora añadida en este punto.
+Como primera decisión se cambia el material de la base. Se emplea metacrilato que proporciona mayor rigidez que el \ac{PVC} (absorbe menos vibraciones del entorno) y menor densidad (menor peso por volumen).
+En concreto con este nuevo material, el grosor de la base se pudo reducir a la mitad respecto a la anterior (0.5cm) y también fue mecanizada a mano.
 
-Este soporte es consecuencia del diseño de la arquitectura IV. Se trata de un soporte en $"U"$ invertida que sostiene los imanes para que se desplacen en los laterales de la bobina.
+Respecto a la lamina, el ancho se aumentó a 1,5cm que permite soportar el peso de los imanes y del soporte de estos.
+
+Respecto al diseño del soporte de los imanes, a partir de la disposición que estos tienen en la arquitectura IV, se desarrolla un soporte en $"U"$ invertida que logra que queden suspendidos de la lamina y con las vibraciones se desplacen en los laterales de la bobina.
 
 La fabricación de esta pieza se realizó mediante doblaje a mano con un torno, y posteriormente lijando las imperfecciones de los bordes para conseguir equilibrarla.
 \begin{figure}[!h]
