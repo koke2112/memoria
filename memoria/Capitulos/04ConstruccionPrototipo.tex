@@ -595,12 +595,14 @@ Para cumplir con los objetivos propuestos se procede a la construcción del proto
 
 Como primera decisión se cambia el material de la base. Se emplea metacrilato que proporciona mayor rigidez que el \ac{PVC} (absorbe menos vibraciones del entorno) y menor densidad (menor peso por volumen).
 En concreto con este nuevo material, el grosor de la base se pudo reducir a la mitad respecto a la anterior (0.5cm) y también fue mecanizada a mano.
-
-Respecto a la lamina, el ancho se aumentó a 1,5cm que permite soportar el peso de los imanes y del soporte de estos.
-
+\\
+\\
+Para la lamina, se aumentó el ancho a 1,5cm que permite soportar el peso de los imanes y del soporte de estos.
+\\
+\\
 Respecto al diseño del soporte de los imanes, a partir de la disposición que estos tienen en la arquitectura IV, se desarrolla un soporte en $"U"$ invertida que logra que queden suspendidos de la lamina y con las vibraciones se desplacen en los laterales de la bobina.
 
-La fabricación de esta pieza se realizó mediante doblaje a mano con un torno, y posteriormente lijando las imperfecciones de los bordes para conseguir equilibrarla.
+La fabricación de esta pieza se realizó mediante doblaje a mano con un torno, y posteriormente lijando las imperfecciones de los bordes para conseguir equilibrarla. 
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/sop_iman}  
@@ -609,15 +611,6 @@ La fabricación de esta pieza se realizó mediante doblaje a mano con un torno, y 
 \end{figure}
 \FloatBarrier
 
-La inclusión de este soporte produjo un problema, y es que cuando el generador se sintonizaba, la amplitud de la oscilación era tan grande que los extremos del soporte golpeaban en la base.
-Para evitar esto en un primer momento se mecanizó la base para dejar paso libre al soporte.
-\begin{figure}[!h]
-        \centering
-		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap4/diente_base}  
-        \caption{Detalle del hueco para el soporte de imanes en la base}
-        \label{fig:cap4:hueco}
-\end{figure}
-\FloatBarrier
 Por otro lado este montaje permitió estudiar diferentes sistemas de anclaje de la lámina a la base. Finalmente se implementó un clip de aluminio, que mediante presión, no solo fijaba la lamina sino que además evitaba que esta se desplazase lateralmente descentrado los imanes.
 \begin{figure}[!h]
         \centering
@@ -626,21 +619,55 @@ Por otro lado este montaje permitió estudiar diferentes sistemas de anclaje de l
         \label{fig:cap4:clip}
 \end{figure}
 \FloatBarrier
-Con todo este prototipo montado con sus mejoras, se pasó a realizar las primeras pruebas de funcionamiento de todo el conjunto.
 
-Se probaron las primeras bobinas viéndose que se producía energía, en concreto una señal de 200mVpp sobre una impedancia de 8$\Omega$ con una bobina de 7$\Omega$ lo que significa 625$\mu W$ de potencia. 
-Como punto negativo, la señal producida no era sinusoidal ni parecida y estaba atenuada. El problema estaba generado por el soporte de los imanes. Cuando entraba en resonancia, ya no golpeaba contra la base, pero sí golpeaba contra la bobina, y este choque, no amortiguado, producía picos en la señal de salida que le restaban amplitud puesto que el flujo magnético de los imanes no barría toda la bobina. 
+\subsubsection{Resultados}
+La inclusión del soporte de los imanes produjo un problema, y es que cuando el generador se sintonizaba, la amplitud de la oscilación era tan grande que los extremos del soporte golpeaban en la base.
+Para evitar esto en un primer momento se mecanizó la base para dejar paso libre al soporte.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap4/diente_base}  
+        \caption{Detalle del hueco para el soporte de imanes en la base}
+        \label{fig:cap4:hueco}
+\end{figure}
+\FloatBarrier
+Aun así, para vibraciones muy amplias, la parte superior de este soporte golpeaba en la bobina, limitándose su rango de movimiento lo que produce picos de alta frecuencia en la señal entregada por la bobina. Por lo que se requiere un cambio en el diseño del soporte.
+\\
+\\
+Se probaron las primeras bobinas viéndose que se producía energía, en concreto una señal de 200mVpp sobre una impedancia de 8$\Omega$ con una bobina de 7$\Omega$ lo que significa 625$\mu W$ de potencia.
+ 
 
-La solución a este problema requería un cambio en el diseño del generador puesto que la pieza que sustituiría a este soporte no podía ser construida ni implementada con ese prototipo, por lo que este se dejó a un lado para construir el siguiente.
+\subsubsection{Conclusiones}
+De la construcción de este prototipo se deriva:
+\begin{itemize}
+\item El material de la base es adecuado sin embargo requiere una gran cantidad de trabajo manual, y aun así no se pueden conseguir ciertas características, como simetría o variación de la posición de agujeros de tornillos.
+\item La lamina tiene el ancho adecuado para soportar los imanes y seguir comportándose según el modelo teórico para el calculo de la frecuencia de resonancia.
+\item El soporte de los imanes provoca varios problemas, y aunque se han intentado arreglar con el prototipo actual, el ultimo problema encontrado, (choque con la parte superior de la bobina), requiere un cambio en la disposición de este componente. 
+\item En cuanto la producción de energía, las pruebas preliminares realizadas sobre este prototipo demuestran que las boinas fabricadas son aptas para este uso.
+
+\end{itemize}
+
+
+
+
+
 %-------------------------------------------------------------------
 \subsection{Prototipo 3}
 %-------------------------------------------------------------------
+
 Este prototipo surgió de la necesidad de cambiar el diseño del prototipo 2 para la sujeción de los imanes.
 
-Por otro lado para cuando se planteó su construcción, BQ puso a disposición sus impresoras 3D por lo que el nuevo diseño se imprimió completamente en 3D. Este nuevo método permitía además diseñar la pieza necesaria para que el soporte de lo imanes no golpease la bobina.
+Por otro lado para cuando se planteó su construcción, se pudo acceder a impresoras 3D por lo que el nuevo diseño se imprimió completamente en 3D. Este nuevo método permitía además diseñar la pieza necesaria para que el soporte de lo imanes no golpease la bobina.
 
 Gracias a la potencia de la impresora 3D y el diseño por ordenador se pueden fabricar piezas mucho mas precisas que si se hiciesen a mano como los dos primeros prototipos.
-Cabe además destacar que piezas de este tamaño son relativamente rápidas de imprimir y si por alguna causa la pieza no es valida se puede imprimir otra de inmediato, lo que permite ajustar unas a otras con gran precisión.
+Cabe además destacar que piezas de este tamaño son relativamente rápidas de imprimir y si por alguna causa la pieza no es valida se puede imprimir otra de inmediato, lo que permite ajustar sus características con gran precisión.
+\subsubsection{Objetivos}
+
+\begin{itemize}
+\item Fabricar la base y las piezas que lo requieran mediante impresión 3D.
+\item Rediseñar el soporte de los imanes.
+\end{itemize}
+
+\subsubsection{Construcción}
 
 En la imagen \ref{fig:cap4:base3D} se ve la base del generador que anteriormente fue construida en \ac{PVC} y metacrilato, impresa en 3D con \ac{PLA}.
 
@@ -650,7 +677,7 @@ En la imagen \ref{fig:cap4:base3D} se ve la base del generador que anteriormente
         \caption{Base impresa en 3D}
         \label{fig:cap4:base3D}
 \end{figure}
-La cuna para insertar la bobina fue añadida a la base para facilitar el montaje posterior del sistema completo, así como el soporte de la lamina. De esta manera se reduce al mínimo el numero de piezas del generador.
+La cuna para insertar la bobina fue añadida a la base para facilitar el montaje posterior del sistema completo. De esta manera se reduce al mínimo el numero de piezas del generador.
 \FloatBarrier
 
 
@@ -667,10 +694,9 @@ La primera pieza se dividió en tres módulos, que se montaban, fijando la lámina 
         \label{fig:cap4:Soporteiman1}
 \end{figure}
 
-Los problemas de esta pieza fueron dos.
-Era difícil de montar y difícil de mantener unida. Aunque la idea es buena, las impresión 3D no es perfecta y las piezas no son exactamente iguales al modelo 3D por lo que para esta en concreto, que encajasen perfectamente unas partes con otras era prácticamente imposible, lo que llevó a replantear la pieza entera.
 
-Como requisitos para el nuevo soporte se fijó que no tuviese partes separadas que encajasen unas con otras construyéndose entero de una sola pieza como se ve en la imagen \ref{fig:cap4:Soporteiman2}.
+
+La segunda opción para el soporte se fabricó de una sola pieza como se ve en la imagen \ref{fig:cap4:Soporteiman2}.
 \begin{figure}[!h]
         \centering
         \subfloat[Soporte.]{\label{fig:cap4:sopdis}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/sop_iman3D2}} 
@@ -679,31 +705,80 @@ Como requisitos para el nuevo soporte se fijó que no tuviese partes separadas qu
 \caption{Segunda pieza para soportar imanes.}
         \label{fig:cap4:Soporteiman2}
 \end{figure}
-\\
-Aunque el nuevo diseño es mas simple, con el tiempo se ha demostrado que es indudablemente mejor.
+
+\subsubsection{Resultados}
+La primera opción para el soporte presenta dos problemas
+Es difícil de montar y difícil de mantener unido. Aunque la idea es buena, las impresión 3D no es perfecta y las piezas no son exactamente iguales al modelo 3D por lo que para esta en concreto, que encajasen perfectamente unas partes con otras era prácticamente imposible.
+
+Por otro lado la segunda opción no presenta estos problemas, en cambio al tener menos material que la primera, ofrece menos resistencia a la fuerza de atracción que ejercen los imanes.
 \FloatBarrier
+\subsubsection{Conclusiones}
+Con este prototipo se ha llegado a las siguientes conclusiones:
+\begin{itemize}
+\item La impresión 3D se perfila como la mejor opción para la fabricación de este generador, puesto que permite un grado de libertad a la hora de cambiar cualquier característica del diseño que no permiten los métodos empleados para los dos primeros prototipos.
+\item El soporte de los imanes aquí presentado es el mejor hasta el momento, y con él se va a llevar a cabo la construcción del prototipo final, con la mejora en su impresión. Se imprimirá con un mallado denso para mejorar su resistencia.
+\end{itemize}
+
+Si el objetivo de este proyecto fuese la construcción de un generador de energy harvesting, este habría sido el prototipo final. Pero lo que se busca con el proyecto es la construcción y pruebas de un generador \textbf{sintonizable}. 
+
+Con el prototipo 3 se ha conseguido generar energía, y experimentar como, cambios en la frecuencia del entorno, hacen variar la potencia producida por el generador sin embargo como parte final queda la implementación del sistema que hace que el generador pueda ser sintonizado.
+
 %-------------------------------------------------------------------
 \subsection{Prototipo final}
 %-------------------------------------------------------------------
 
-En esta sección se va a mostrar el prototipo final del generador. Muchos de sus componentes aun no han sido explicados, pero serán referenciados a sus respectivos capítulos cuando aparezcan para una mejor comprensión del conjunto. Aun así se recomienda volver a esta sección una vez se haya leído todo el documento. 
+En esta sección se va a mostrar el prototipo final del generador. Puesto que en este punto se introduce el sistema de sintonización muchos de sus componentes aun no han sido explicados, pero serán referenciados a sus respectivos capítulos cuando aparezcan para una mejor comprensión del conjunto. Aun así se recomienda volver a esta sección una vez se haya leído todo el documento. 
 
-En el prototipo 3 se vio que ya estaba impreso en 3D y que era funcional. Pero el objetivo de este proyecto no es generar energía eléctrica, sino que el generador pueda ser sintonizado. [REFERENCIAR AL CAPITULO 6, SINTONIZACIÓN]
+\subsubsection{Objetivos}
+El prototipo 3 se vio que ya estaba impreso en 3D y que era funcional. Pero el objetivo de este proyecto no es generar energía eléctrica, sino que el generador pueda ser sintonizado.
+ 
 Por esto se tiene que implementar un sintonizador, que no es mas que una pieza móvil que varía la longitud efectiva de la lámina modificando su frecuencia de resonancia.
-Esta pieza debe desplazarse sobre la base por lo que se diseña con unos dientes que agarren la base por los dos lados. Por otro lado también se le diseña una ranura para que se desplace por ella la lámina.
+
+Por otro lado, puesto que es el prototipo final también se van a implementar los sistemas restantes necesarios para el completo funcionamiento como pueden ser, la fijación de la lamina a la base o la fijación de la base al banco de trabajo, 
+\begin{itemize}
+\item Diseñar el sintonizador
+\item Diseñar el sistema que desplaza el sintonizador, acortando o alargando la lámina.
+\item Implementar los sistemas restantes para conseguir el pleno funcionamiento.
+\item Conseguir un sistema plenamente funcional.
+\end{itemize}
+
+\subsubsection{Construcción}
+\textbf{\underline{Sintonizador:}}
+
+Consultar capitulo [[REFERENCIAR AL CAPITULO 6, SINTONIZACIÓN]
+Sus características deben ser:
+\begin{itemize}
+\item Poder desplazarse por la lámina.
+\item Poder desplazarse por la base.
+\item Facilitar un medio para que pueda ser desplazable (punto de apoyo).
+\end{itemize}
+
+Para el desplazamiento a lo largo de la base esta pieza se diseña con unos dientes en la parte inferior, que agarran los laterales de la base.
+
+Para el desplazamiento a lo largo de la lamina, se dota a la pieza de una ranura superior.
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap4/sinto1}  
         \caption{Primer diseño de sintonizador}
         \label{fig:cap4:sinto1}
 \end{figure}
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap4/detalle_rail}  
         \caption{Detalle del raíl del sintonizador}
         \label{fig:cap4:sintorail}
 \end{figure}
-El sintonizador tiene que poderse desplazar a lo largo de la lamina de manera autónoma (sin intervención humana), por lo que hay que buscar un punto de apoyo para que pueda ser desplazado. Esto se conseguirá mediante un tornillo sinfín como se ve en el capitulo [REFERENCIAR AL DONDE ESTE LO DEL TORNILLO SIN FIN]
+En la figura \ref{fig:cap4:sinto1} se puede ver tanto la ranura superior como los dientes inferiores, sin embargo este modelo no cumple con el tercer requisito, no puede ser desplazado (no tiene punto de apoyo).
+
+En la figura \ref{fig:cap4:sintorail} se ven los raíles que tiene la base para que el sintonizador sea desplazado.
+
+\FloatBarrier
+
+\textbf{\underline{Sistema de desplazamiento del sintonizador:}}
+
+Para cumplir el tercer requisito, el sintonizador tiene que poderse desplazar a lo largo de la lamina de manera autónoma (sin intervención humana), por lo que hay que buscar un punto de apoyo para tal fin. Esto se conseguirá mediante un tornillo sinfín como se ve en el capitulo [REFERENCIAR AL DONDE ESTE LO DEL TORNILLO SIN FIN]
 
 Para esto se diseña una cuna con forma hexagonal el la que va a ir fijada una tuerca. El tornillo al girar, desplaza linealmente la tuerca y esta mediante su fijación, desplaza el sintonizador.
 \begin{figure}[!h]
@@ -712,18 +787,28 @@ Para esto se diseña una cuna con forma hexagonal el la que va a ir fijada una tu
         \caption{Sintonizador con soporte para tuerca}
         \label{fig:cap4:sinto2}
 \end{figure}
+\FloatBarrier
 
-Otra característica de este generador son las cunas hexagonales de la base. Se buscaron diferentes métodos para fijar el generador al banco de trabajo, y finalmente se implementó un sistema mediante el cual un tornillo sujeto al banco de trabajo se atornillaba a una tuerca incrustada en la base del generador. 
-[REFERENCIAR EL CAPITULO 5 SECCION DEL GENERADOR DE VIBRACIONES]
-
-A continuación se buscó un lugar donde situar el motor [REFERENCIAR EL CAP6 SECCION DEL MOTOR]que mueve el sintonizador. Con la base que se tenia, no había espacio para él. Por esto se añadió un trozo a la base en la parte de atrás.
+Para que el tornillo sinfín se mueva y desplace el sintonizador, hace falta un motor, por lo que a continuación se buscó un lugar donde situarlo [REFERENCIAR EL CAP6 SECCION DEL MOTOR]. Con la base que se tenia, no había espacio para él. Por esto se añadió un trozo a la base en la parte trasera del generador, lo que obliga a que el tornillo pase a través del soporte de la lamina.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap4/base_motor3D}  
         \caption{Soporte trasero para albergar el motor}
         \label{fig:cap4:base_motor}
 \end{figure}
-Esto a su vez provoca que el tornillo sin fin del que antes se hablaba tenga que atravesar el soporte de la lamina por su centro (figura \ref{fig:cap4:sinfin}). Como ya se ha visto, el soporte era atravesado por el tornillo que sujeta la lamina (figura \ref{fig:cap4:tornillofijador}), por lo que estos dos tornillos se cruzarían perpendicularmente en el mismo punto. Cosa por otro lado imposible (figura \ref{fig:cap4:colision}).
+
+\textbf{\underline{Fijación al banco de trabajo:}}
+
+Otro de los objetivos del prototipo es diseñar el medio de fijación al banco de trabajo.
+Esto se va a conseguir gracias a la inclusión de unas cunas hexagonales en la base. 
+
+En estas cunas se incrusta una tuerca, que será la encargada de acoplar el generador al tornillo del banco de trabajo.
+ 
+[REFERENCIAR EL CAPITULO 5 SECCION DEL GENERADOR DE VIBRACIONES]
+
+\textbf{\underline{Fijación de la lámina a la base:}}
+
+La inclusión del motor y el tornillo sinfín (figura \ref{fig:cap4:sinfin}) provoca que ya no se pueda fijar la lamina de la manera que se uso en el prototipo 1 (figura \ref{fig:cap4:tornillofijador}) porque estos dos tornillos se cruzarían en el mismo punto (figura \ref{fig:cap4:colision}).
 \begin{figure}[!h]
         \centering
         \subfloat[Tornillo sinfin del sintonizador.]{\label{fig:cap4:sinfin}\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap4/sinfin}} 
@@ -735,10 +820,10 @@ Esto a su vez provoca que el tornillo sin fin del que antes se hablaba tenga que
 \caption{Problema con el fijador.}
         \label{fig:cap4:Problemafijador}
 \end{figure}
-En este punto y dando prioridad al tornillo del sintonizador se decide buscar otro modo de sujetar la lámina al soporte de esta.
-Es en este punto donde entra en juego la ultima pieza diseñada.
+\FloatBarrier
+Llegados a este punto y dando prioridad al tornillo del sintonizador se decide buscar otro modo de sujetar la lámina al soporte de esta.
 
-Esta es un fijador provisto de dientes inferiores similares a los del sintonizador. De hecho la pieza es una adaptación del sintonizador, pero mas grande y con un agujero superior para introducir un pequeño tornillo que dé solidez al conjunto.
+La solución mas inmediata es una pieza que abrace por fuera a la lámina. En la figura \ref{fig:cap4:fijador} se ve la pieza construida. Esta es un fijador provisto de dientes inferiores similares a los del sintonizador. De hecho la pieza es una adaptación del sintonizador, pero mas grande y con un agujero superior para introducir un pequeño tornillo que dé solidez al conjunto.
 \begin{figure}[!h]
         \centering
         \subfloat[Vista frontal del fijador.]{\label{fig:cap4:fijador1}\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap4/fijador1}} 
@@ -748,7 +833,7 @@ Esta es un fijador provisto de dientes inferiores similares a los del sintonizad
         \label{fig:cap4:fijador}
 \end{figure}
 Su funcionamiento se basa en aprovechar el alto coeficiente de rozamiento que presenta el \ac{PLA} para mediante encaje a presión conseguir que la lámina no se mueva de su sitio. De esta manera ya no es necesario fijarla con tornillos. Aun así, y en aras de conseguir un agarre óptimo se ha empleado un pequeño tornillo que minimiza los posibles movimientos longitudinales de la lámina.
-
+\subsubsection{Resultados}
 Con todo lo visto el prototipo final de generador queda como se ve en la figura \ref{fig:cap4:protfinal}
 
 \begin{figure}[!h]
