@@ -27,7 +27,9 @@
 %-------------------------------------------------------------------
 \label{cap6:sec:testModel}
 %-------------------------------------------------------------------
-   
+En este capitulo se va a tratar la parte más importante del proyecto, la parte donde se diferencia de otros generadores ya construidos. El hecho de que el propio generador sea capaz de modificar sus características físicas para adaptarse a su entorno y obtener de él el máximo de energía posible le confiere unas propiedades únicas.
+
+En concreto para este generador la mejor opción de sintonización pasa por modificar la longitud efectiva de la lámina como se verá a continuación, aun así se estudiaran diferentes alternativas que existen para obtener el máximo de energía del entorno en cada momento.
 
 %-------------------------------------------------------------------
 \section{Sintonización}
@@ -36,10 +38,115 @@
 %-------------------------------------------------------------------
 
 
+El objetivo que se quiere cumplir cuando se construye un generador de ''Energy Harvesting'' es la máxima extracción de energía del entorno. Dependiendo del tipo de generador existen distintas formas de maximizar esta energía. A continuación se trataran las que existen para los generadores a partir de vibraciones como el que nos ocupa.
+
+\subsection{Medios para maximizar la recolección} 
+
+Partiendo del hecho de que los generadores a partir de vibraciones tienen un factor de calidad (Q) muy alto, es decir un ancho de banda muy reducido, se han propuesto diferentes estudios que han resultado en dos modos de maximizar la energía extraída, los cuales son, aumentar el ancho de banda del sistema, y \textbf{sintonizar} el sistema.
+
+\subsubsection{Aumentar el ancho de banda} 
+
+La primera opción es construir un sistema con varios generadores de alta Q en paralelo, cada uno diseñado para trabajar a una frecuencia de resonancia distinta del resto. Este tipo de configuración produciría energía siempre y cuando la frecuencia de vibración del entorno coincida con alguna de las frecuencias de resonancia de los generadores, si esto no sucediese, no se podría obtener energía del medio puesto que las frecuencias de resonancia son fijas, a esto hay que añadirle el coste de fabricación y espacio que supondría el uso de varios generadores en un mismo sistema.
+En \citep{filterband} se desarrolló un dispositivo que consistía en varios de estos generadores, diseñados de tal manera que actuaban como un filtro paso banda en vibraciones.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap6/genarray}  
+        \caption{Ejemplo de función de transferencia de este sistema multigenerador.}
+        \label{fig:cap5:villardreal}
+\end{figure}
+
+-Otra estrategia para aumentar el ancho de banda es fabricar generadores no lineales.
+Esto se consigue mediante la introducción de imanes que alteran el movimiento de la masa en el extremo (otro imán). De esta manera el movimiento no es lineal estando sobreamortiguado.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/nolineal}  
+        \caption{Generador no lineal con masa magnética suspendida en un campo magnético.}
+        \label{fig:cap5:villardreal}
+\end{figure}
+\FloatBarrier
+Estos generadores no se basan en el modelo de segundo orden visto hasta ahora sino en las ecuaciones de Duffing.
+$$m\frac{d^{2}Z(t)}{dt^{2}}+b\frac{dZ(t)}{dt}+KZ(t)+K_{n}[Z(t)]^{3}=-m\frac{d^{2}y(t)}{dt^{2}}$$
+
+Donde la fuerza ejercida sobre la masa es la combinación de la fuerza lineal $kz(t)$ y la fuerza no lineal $kn[z(t)]^{3}$.
+
+Esta componente no lineal viene producida por los imanes fijos que repelen el imán móvil, de esta manera éste tiende a la posición de equilibrio por la suma de estas dos fuerzas.
+\\
+\\
+-Otros dos métodos para aumentar el ancho de banda son \textbf{limitar la amplitud} o \textbf{acoplar osciladores.}
+
+Para limitar la amplitud se coloca un tope en uno de los lados de la lámina produciendo una sobre-deformación al limitar el tome el movimiento completo de la lámina \cite{soliman}. 
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/limitar_amplitud}  
+        \caption{Limitación de amplitud con tope superior.}
+        \label{fig:cap5:limita}
+\end{figure}
+\FloatBarrier
+
+La técnica de osciladores acoplados se basa en un modelo de resorte con masa como ya se habia visto y a su vez otro resorte con masa acoplado al primero \cite{acoplados}.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/oscaco}  
+        \caption{Osciladores acoplados.}
+        \label{fig:cap5:limita}
+\end{figure}
+\FloatBarrier
+
+Estos dos últimos métodos si bien es cierto que aumentan el ancho de banda, también disminuyen mucho la potencia producida respecto a la situación de trabajo normal.
+Puesto que el objeto de este proyecto es diseñar, fabricar y sintonizar un generador, no se va a contemplar la opción de modificar el ancho de banda, delegando la tarea de obtener la máxima energía en la sintonización.
+
+
+\subsubsection{Sintonización}
+
+
+La RAE define sintonizar como: Ajustar la frecuencia de resonancia de un circuito a una frecuencia determinada.
+En esta caso, el circuito es el generador, en concreto la lámina, que como ya hemos visto tiene una frecuencia de resonancia asociada que varía tanto en función de sus características físicas como de la masa que tenga en su extremo.
+Y la frecuencia a la que hay que llegar es la frecuencia de vibración del entorno en el que se encuentre el generador.
+
+\textbf{\underline{Calculo teórico de la frecuencia de resonancia de la lámina.}}
+$$f_{r}=\frac{1}{2\pi}\sqrt{\frac{K}{m}}$$
+
+$f_{r}:$Frecuencia de resonancia.[Hz]
+
+$K:$Constante de amortiguamiento.[N/m]
+
+$m:$ Masa de extremo del resorte.[g]
+
+La constante K puede escribirse como:
+
+$$K=\frac{Ywh^{3}m}{4L^{3}(m+0.24m_{c})}$$
+
+$h:$Grosor de la lámina.
+
+$w:$Anchura de la lámina.
+
+$L:$Largo de la lámina.
+
+$m_{c}:whL\rho$
+
+$\rho:$ Densidad del material de la lámina.
+
+$Y:$Módulo de Young del material de la lámina.
+\\
+\\
+Por lo tanto la ecuación para el cálculo de la frecuencia de resonancia queda:
+
+$$f_{r}=\frac{1}{2\pi}\sqrt{\frac{Ywh^{3}}{4L^{3}(m+0.24m_{c})}} $$
+
+
+Estudiando esta formula se hallan tres posibles maneras de variar a frecuencia de resonancia:
+\begin{itemize}
+\item Cambiar el centro de gravedad de la masa del extremo. Parámetro m.
+\item Variar la rigidez de la lámina. Parámetro Y.
+\item Cambiar las dimensiones físicas de la lámina. Parámetros w, h, y L.
+\end{itemize}
+
+Aunque en teoría es posible varias la frecuencia de resonancia de las dos primeras formas, es preacticamente inviable. Es por esto que en este proyecto nos vamos a centrar en la actuacion sobre un parámetro de la lámina para sintonizar el generador.
+
 %-------------------------------------------------------------------
-\section{Spectrum sensing test}
+\section{Sintonizador}
 %-------------------------------------------------------------------
-\label{cap6:sec:spectrum}
+\label{cap6:sec:sintonizador}
 %-------------------------------------------------------------------
 
 

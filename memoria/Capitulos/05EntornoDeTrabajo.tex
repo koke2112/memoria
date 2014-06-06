@@ -20,7 +20,12 @@ Para finalizar el banco de trabajo se incluirá al final un pre-estudio del siste
 \section{Introducción}
 La siguiente figura ilustra de manera esquemática la composición del banco de trabajo.
 
-
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/banco}  
+        \caption{Esquema general del sistema. En naranja los componentes del banco.}
+        \label{fig:cap5:workb1}
+\end{figure}
 %-------------------------------------------------------------------
 \section{Generador de vibraciones}
 %-------------------------------------------------------------------
@@ -519,34 +524,49 @@ Los primeros montajes no fueron satisfactorios, no se multiplicaba la tensión.
 Estos montajes fueron realizados con condensadores del orden de 100nF y diodos normales 1N4148.
 Tras un estudio del problema, se encontró la causa del problema.
 
-El nivel de señal producida por la bobina es tan bajo, del orden de 200mVpp, que cae por completo en los diodos (0.7V), y no llega a multiplicarse.
+El nivel de señal producida por la bobina es bajo, del orden de 1,5Vpp (0,7Vp), y los diodos tienen una tensión de conducción de 0.8V. Dado que los diodos no conducen en inversa, la parte negativa de la señal no se transmitirá, y la tensión positiva por ser menor que la tensión de conducción de los diodos tampoco.
+
+La solución es buscar diodos con tensión de conducción menor que la tensión de pico a la salida de la bobina.
 
 \textbf{\underline{Modificación de los diodos:}}
 
 Se sustituyeron los diodos normales por diodos Schottky 1N5817 con tensión umbral de 0,4V.
 
-Se vuelven a lanzar pruebas, y se obtiene que se rectifica algo de señal, pero aun así la salida es muy pequeña para la señal que entra. No se obtiene lo que indica el modelo del multiplicador de Villard. 
-Tras otro análisis de la situación, se halla que a la frecuencia de trabajo (En torno a 10Hz) los condensadores empleados ofrecen una impedancia demasiado grande para que la señal se transmita por el  multiplicador.
+Se vuelven a lanzar pruebas, y se obtiene que se rectifica algo de señal, pero aun así la salida es muy pequeña para la señal que entra. No se obtiene lo que indica el modelo del multiplicador de Villard. Hay algo más que debe estar fallando.
+Tras otro análisis de la situación, se halla que a la frecuencia de trabajo (En torno a 10Hz) los condensadores empleados ofrecen una impedancia demasiado grande para que la señal se transmita por el  multiplicador, realizando una función indeseada de filtro paso bajo.
+
+Para comprobar que es esta causa, se ataca el montaje con una señal de la misma amplitud que la señal producida por la bobina pero de una frecuencia mayor (1KHz, 100KHz y 1MHZ). Los resultados de este experimento demuestran que a frecuencias altas, el multiplicador se comporta según lo esperado, elevando la tensión de la entrada de forma proporcional a su numero de etapas.
+\\
+La impedancia de uno de estos condensadores a la frecuencia de trabajo es de:
 $$Z=\frac{1}{jwC}=\frac{1}{j2\pi 10*100^{-9}}$$
 $$|Z|=160K\Omega$$
 
 \textbf{\underline{Búsqueda de condensadores adecuados:}}
 
-Se va a intentar disminuir la impedancia de los condensadores para que no filtren las frecuencias bajas, y a la vez adaptar la impedancia de la bobina (Del orden de $7\Omega$).
+Se va a intentar disminuir la impedancia de los condensadores para que no filtren las frecuencias bajas, y a la vez se intentará adaptar la impedancia de la bobina (Del orden de $7\Omega$).
 
-Tras probar con varios condensadores se van a emplear de $1000\mu F$.
+Tras probar con varios condensadores ($220\mu F, 330\mu F, 470\mu F y 1000\mu F$)se van a emplear de $1000\mu F$.
 $$|Z|=|\frac{1}{j2\pi 10*1000^{-6}}|=16\Omega$$
 
 \textbf{\underline{Conclusión:}}
 
 Puesto que ya se dispone de los diodos y condensadores adecuados para montar el multiplicador de Villard, se van a realizar a partir de este las pruebas de captación de energía.
 
+En la figura \ref{fig:cap5:Villard} se puede ver la salida de la bobina (\ref{fig:cap5:villardin}) y la del multiplicador de Villard (\ref{fig:cap5:villardout}).
+\begin{figure}[!h]
+        \centering
+        \subfloat[Salida de la bobina.]{\label{fig:cap5:villardin}\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap5/bobina_raw}} 
+        \qquad
+		\subfloat[Salida del multiplicador de Villard.]{\label{fig:cap5:villardout}\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap5/multX8}}
+\caption{Entrada y salida del multiplicador de Villard.}
+        \label{fig:cap5:Villard}
+\end{figure}
+\FloatBarrier
 
-6.1.1 Tratamiento de la energía extraída
-//montar el generador y exponer los primeros resultados con las condiciones de trabajo (frecuencia, amplitud de la señal de entrada, señal de salida) todo con imágenes.
-	Mult de villard, análisis de condensadores y pruebas
-6.1.2 Almacenamiento de energia
-Pruebas con supercapacitores
+\subsubsection{Conclusiones}
+Como se ha visto, el multiplicador de Villard (adaptado al uso que se va a hacer de él), transforma la señal producida por el generador, en una tensión apta para alimentar electrónica digital, en nuestro caso un nodo de una red.
+
+Por lo tanto será de donde se tomen las muestras de la energía producida cuando se necesite y de donde, como se verá en el capitulo \ref{cap7}, se extraerá la energía para el estudio de los diferentes métodos de almacenamiento.
 %------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------
