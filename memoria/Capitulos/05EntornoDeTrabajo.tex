@@ -11,13 +11,14 @@
 
 \begin{resumen}
 Para estudiar el funcionamiento de cualquier prototipo o dispositivo es necesario disponer de un banco de trabajo que permita probar sus características.
-En concreto, para los generadores kinéticos que basan su funcionamiento en captar las vibraciones y movimientos del ambiente y transformarlos en energía eléctrica. Es necesario simular un entorno en el que se puedan generar vibraciones, controlar su frecuencia y amplitud y ser capaces de variar estos parámetros de manera estable, controlada y repetible. 
-Para la realización de este entorno es por tanto necesario, una señal de frecuencia controlable y un dispositivo que transforme esa señal en vibraciones mecánicas. 
+En concreto, para los generadores kinéticos, que basan su funcionamiento en captar las vibraciones y movimientos del ambiente y transformarlos en energía eléctrica, es necesario simular un entorno en el que se puedan generar vibraciones, controlar su frecuencia y amplitud y ser capaces de variar estos parámetros de manera estable, controlada y repetible. 
+Para la realización de este entorno es por tanto necesario, un dispositivo que proporcione vibraciones de frecuencia controlable.
+Para finalizar el banco de trabajo se incluirá al final un pre-estudio del sistema de acondicionamiento de la energía producida y su medida.
 
 \end{resumen}
 
-
-
+\section{Introducción}
+La siguiente figura ilustra de manera esquemática la composición del banco de trabajo.
 
 
 %-------------------------------------------------------------------
@@ -459,6 +460,93 @@ $$Zl=(8+j\frac{f}{2\pi}79\mu )\Omega$$
 \subsection{Diseño de la red de adaptación}
 A la vista de los resultados, el sistema amplificador-generador de vibraciones va a mantenerse sin cambios.
 
+\section{Tratamiento y medición de la energía producida}
+El objetivo de todo generador es extraer o convertir la máxima energía con la máxima eficiencia.
+
+Como parte final del entrono de trabajo, queda desarrollar el sistema que adapta la energía producida al uso que se quiere hacer de ella.
+
+Aquí se van a tratar las diferentes formas de extraer la máxima energía para este tipo de generadores, además de los diferentes tipos de tratamiento que se le da a esta energía, (acondicionamiento, almacenamiento, etc..) puesto que su naturaleza (vibraciones), hace que su procesamiento sea crítico, en aras de perder la mínima en el proceso.
+
+El objetivo final de este proyecto es generar energía para alimentar un nodo inalámbrico, por lo que lo que se obtenga tiene que ser capaz de cumplir ese objetivo. Sin entrar en detalles y especificaciones de ningún nodo en concreto, todos tienen en común una alimentación mediante una tensión continua de entre 3 y 5V.
+
+Finalmente hay que estudiar la viabilidad de implementar un sistema de almacenamiento por si es necesario almacenar la energía y utilizarla en momentos puntuales.
+\subsection{Medición a la salida de la bobina:}
+El primer punto donde se puede medir la energía producida es en los polos de la bobina.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/bobina_raw}  
+        \caption{Salida de la bobina.}
+        \label{fig:cap5:bobina_out}
+\end{figure}
+
+\subsubsection{Resultados:}
+
+La primeras pruebas midiendo con el osciloscopio a la salida de la bobina, revelan que la señal producida es alterna de la misma frecuencia que las vibraciones, y de una amplitud muy reducida (~100-200mVpp).
+Esta señal no es útil para nuestro propósito, puesto que necesitamos una tensión continua.
+
+\subsubsection{Conclusiones}
+
+Puesto que disponemos de una señal alterna, para conseguir una tensión continua habría que rectificarla y a la vez aumentar su nivel. 
+Si solamente se rectifica, dado el bajo nivel que tiene, no seria suficiente para alimentar un nodo.
+
+Del estudio del estado del arte, se deriva que para este tipo de generadores se emplea un circuito rectificador y multiplicador llamado multiplicador de Villard.
+\subsection{Multiplicador de Villard}
+Este circuito  es capaz de rectificar una señal alterna y multiplicarla hasta conseguir un nivel de tension continua que es múltiplo de la tension de pico de la señal original y del número de etapas del multiplicador.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/villard4}  
+        \caption{Multiplicador de Villard en 4 etapas.}
+        \label{fig:cap5:villard}
+\end{figure}
+
+Cada pareja de condensador y diodo forma una etapa.
+La tensión en continua a la salida es igual al numero de etapas multiplicado por la tensión de pico de la señal alterna en la entrada.
+$$V_{out}=N*V_{p}$$
+\subsubsection{Implementación}
+%\textbf{\underline{Implementación:}}
+Dado que es un circuito sencillo, se montó en una placa de inserción y tras comprobar que cumple su función fue soldado en placa de puntos como se ve en la imagen \ref{fig:cap5:villardreal}.
+
+El plan de construcción siguió la filosofía del banco de trabajo, que es un diseño modular, sobre el que se pueda experimentar. En total se han montado 8 etapas, pero con selectores de salida, por lo que se puede elegir el factor de multiplicación en función de donde se conecte el cable de la salida.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/villard_real}  
+        \caption{Montaje del multiplicador de Villard en 8 etapas.}
+        \label{fig:cap5:villardreal}
+\end{figure}
+\subsubsection{Resultados}
+%\textbf{\underline{Resultados:}}
+Los primeros montajes no fueron satisfactorios, no se multiplicaba la tensión.
+Estos montajes fueron realizados con condensadores del orden de 100nF y diodos normales 1N4148.
+Tras un estudio del problema, se encontró la causa del problema.
+
+El nivel de señal producida por la bobina es tan bajo, del orden de 200mVpp, que cae por completo en los diodos (0.7V), y no llega a multiplicarse.
+
+\textbf{\underline{Modificación de los diodos:}}
+
+Se sustituyeron los diodos normales por diodos Schottky 1N5817 con tensión umbral de 0,4V.
+
+Se vuelven a lanzar pruebas, y se obtiene que se rectifica algo de señal, pero aun así la salida es muy pequeña para la señal que entra. No se obtiene lo que indica el modelo del multiplicador de Villard. 
+Tras otro análisis de la situación, se halla que a la frecuencia de trabajo (En torno a 10Hz) los condensadores empleados ofrecen una impedancia demasiado grande para que la señal se transmita por el  multiplicador.
+$$Z=\frac{1}{jwC}=\frac{1}{j2\pi 10*100^{-9}}$$
+$$|Z|=160K\Omega$$
+
+\textbf{\underline{Búsqueda de condensadores adecuados:}}
+
+Se va a intentar disminuir la impedancia de los condensadores para que no filtren las frecuencias bajas, y a la vez adaptar la impedancia de la bobina (Del orden de $7\Omega$).
+
+Tras probar con varios condensadores se van a emplear de $1000\mu F$.
+$$|Z|=|\frac{1}{j2\pi 10*1000^{-6}}|=16\Omega$$
+
+\textbf{\underline{Conclusión:}}
+
+Puesto que ya se dispone de los diodos y condensadores adecuados para montar el multiplicador de Villard, se van a realizar a partir de este las pruebas de captación de energía.
+
+
+6.1.1 Tratamiento de la energía extraída
+//montar el generador y exponer los primeros resultados con las condiciones de trabajo (frecuencia, amplitud de la señal de entrada, señal de salida) todo con imágenes.
+	Mult de villard, análisis de condensadores y pruebas
+6.1.2 Almacenamiento de energia
+Pruebas con supercapacitores
 %------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------
