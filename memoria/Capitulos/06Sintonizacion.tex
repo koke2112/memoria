@@ -83,7 +83,7 @@ Para limitar la amplitud se coloca un tope en uno de los lados de la lámina prod
 \end{figure}
 \FloatBarrier
 
-La técnica de osciladores acoplados se basa en un modelo de resorte con masa como ya se habia visto y a su vez otro resorte con masa acoplado al primero \cite{acoplados}.
+La técnica de osciladores acoplados se basa en un modelo de resorte con masa como ya se había visto y a su vez otro resorte con masa acoplado al primero \cite{acoplados}.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/oscaco}  
@@ -141,20 +141,164 @@ Estudiando esta formula se hallan tres posibles maneras de variar a frecuencia d
 \item Cambiar las dimensiones físicas de la lámina. Parámetros w, h, y L.
 \end{itemize}
 
-Aunque en teoría es posible varias la frecuencia de resonancia de las dos primeras formas, es preacticamente inviable. Es por esto que en este proyecto nos vamos a centrar en la actuacion sobre un parámetro de la lámina para sintonizar el generador.
+\textbf{\underline{Modificación del centro de gravedad de la masa del extremo}}
+De la formula se extrae que actuando sobre el parámetro de masa, se puede modificar la frecuencia de resonancia. La variación se daría en función de $m^{2}$. 
+
+En el caso de este proyecto, la masa en el extremo de la lámina son los imanes del transductor. Pero como ya se ha visto si desplazásemos estos, se perdería el acoplo que tienen con la bobina. 
+
+Una posible solución sería añadir una masa extra que pueda ser desplazada sin que se pierda acoplo bobina-imanes. Aunque esta solución pueda parecer sencilla, la dificultad de su implementación radica en la forma de desplazar la masa en dos direcciones, puesto que iría montada sobre la lámina que está en constante movimiento.
+
+Por estas dos razones, esta no será la manera elegida para sintonizar el generador.
+
+//dibujo de masa extra desplazable.
+
+\textbf{\underline{Variación del coeficiente de elasticidad de la lámina}}
+
+El segundo parámetro sobre el que se puede actuar según la fórmula dada sería la constante de amortiguamiento de la lámina. 
+
+Puesto que una vez elegida una lámina determinada, su constante de amortiguamiento no puede ser modificada, se han propuesto dos opciones diferentes.
+\begin{itemize}
+\item Electroimanes.
+\item Láminas paralelas.
+\end{itemize}
+
+Mediante la técnica de electroimanes se puede conseguir cambiar la elasticidad de una lámina siempre y cuando esta sea ferromagnética. Regulando la atracción de los imanes que actúan sobre la lámina, se puede modificar su constante de amortiguamiento sintonizando el generador. Esta solución sin embargo no es viable ya que se requeriría un uso continuo de energía para mantener los electro-imanes funcionando.
+//dibujo de eletroimanes acutando
+Este efecto también se puede conseguir con imanes permanentes simplemente variando la distancia de estos a la lámina. Este método a diferencia del anterior no requiere de un gasto continuo de energía para alimentar imanes, sino que lo requeriría para desplazarlos.
+
+La técnica de láminas paralelas se basa en acoplar otras láminas a la principal, de esta manera la constante equivalente es la suma de las constantes de amortiguamiento de las dos. La manera de sintonizar mediante este método es ir desplazando una lamina sobre otra, de tal manera que se el coeficiente de amortiguamiento varíe en función del área compartida por las dos laminas.
+
+Este metodo requiere de gran precisión en el acoplo, puesto que aunque una de las láminas tiene que ser movil, tiene que tener una fijacion perfecta con la otra para que no haya variaciones indeseadas del coeficiente de amortiguamiento. Por esta causa se considera que este método es de una dificultad técnica considerable y no será empleado.
+
+//dibujo de laminas paralelas
+
+
+\textbf{\underline{Variación de los parámetros fisicos de la lámina}}
+
+Aunque variar el grosor y el ancho de la lámina es impracticable, modificar su longitud si es posible aunque no trivial. Por tanto la dimensión a variar será L que como se ha visto, hace que la frecuencia de resonancia (fr) cambie inversamente proporcional a L3/2.  Es decir, disminuyendo L, aumenta Fr.
+//imagen de sintonizacion_mecanica (grafica)
+Ahora queda estudiar la manera óptima de conseguir variar este parámetro.
+ La solución inmediata requeriría soltar la lámina de la base, desplazarla y volver a ajustarla, con el consiguiente gasto de energía y pérdida de eficiencia. Este método no es práctico para un sistema que tiene que sintonizarse de forma autónoma, por esto se hace necesaria la búsqueda de soluciones que puedan ser implementadas y ejecutadas de manera autónoma a la par que eficiente en cuanto al gasto de energía necesario para llevarlas a cabo.
+Otra posible solución que se pensó a la hora del diseño, pasaría por un sitema de engranages o ruedas dentadas que mediante un motor desplazasen la lamina. Esta solucion elimina el problema de soltarla y volver a ajustarla en una nueva posición, sin embargo aumenta considerablemente la dificultad de afianzarla a la base y del mecanismo en general por lo que se descartó.
+//meter un dibujo de los engranajes
+Estas soluciones presentadas además conllevan un problema del que no se ha hablado. Como se ha definido anteriormente, la arquitectura el generador requiere de una bobina fija en la base e imanes suspendidos de la lámina. Si se desplazase esta, los imanes se moverían respecto a la bobina perdiendo el máximo de flujo magnético necesario para generar energía.
+Para contrarrestar este efecto, se podría pensar en implementar otro mecanismo que moviese la bobina a la vez que la lámina para que siempre estuviesen enfrentados imanes y bobina algo que requeriría una complejidad desmedida que además iría asociada a una pérdida de eficiencia considerable. Es por esto que se introduce una nueva idea. La idea de longitud efectiva y el sintonizador.
+Longitud efectiva:
+Una solución basada en esta idea no requiere el desplazamiento de la lámina, por lo tanto no habría que preocuparse del anclaje de esta  a la base, ni del desacoplo respecto a los imanes.
+Esta idea se basa en un sintonizador, que mediante su desplazamiento a lo largo de la lámina va acortando o alargando la longitud vibrante de la misma.
+//dibujo del sintonizador.
+De esta manera la longitud total de la lámina, entendida como distancia de la masa al anclaje, es siempre la misma y solo varia la longitud vibrante, es decir, la sección de lámina que comprende desde los imanes al sintonizador.
+La misión de este, es fijar la lámina en distintas posiciones consiguiendo el efecto de variación de longitud de lamina que vibra sin modificar la longitud total, permitiendo una sintonización simple y efectiva.
+Esta solucion ofrece una manera sencilla, efectiva y eficiente de sintonizar el sistema.
+(Ver  pag 5 strategies for increasing the operating frecuency range of vibration energy harvesters.pdf)
+
+
+
 
 %-------------------------------------------------------------------
 \section{Sintonizador}
 %-------------------------------------------------------------------
 \label{cap6:sec:sintonizador}
 %-------------------------------------------------------------------
+De todos estos métodos presentados se va a implementar como primera aproximación la sintonización mecánica mediante la variación de la longitud efectiva a cargo de un sintonizador.
+
+//dibujo del sistema con sintonizador. Sin tornillo
+Llegados a este punto, el siguiente paso es encontrar una forma de mover el sintonizador a lo largo de la lámina de forma controlada.
+La primera opción que se plantea es el uso de micro-motores. Los distintos tipo de motores y actuadores serán discutidos mas adelante. 
+Estos motores proporcionan un movimiento rotatorio por lo que el siguiente paso es encontrar una forma de transformar este movimiento en un movimiento lineal.
+ Tras barajar varias opciones,  (correa pasadora,  engranages) la manera que se ha pensado que es mas efectiva es mediante  un tornillo sin fin conectado a la vez al motor y al sintonizador.
+De esta manera, mediante el giro del motor, gira el tornillo, y este a su vez, al pasar por una tuerca incrustada en el sintonizador hace que este se desplace transformando el movimiento circular en movimiento lineal. 
+Volviendo a la [la tabla de maneras de sintonizar] se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no es aplicable ?in situ?, es decir si el generador esta en funcionamiento, sin embargo mediante la técnica del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando este activo. Esta es una mejora conseguida con este proyecto.
 
 
 %-------------------------------------------------------------------
-\section{Radio interfaces agility test}
+\section{Algoritmos de funcionamiento}
 %-------------------------------------------------------------------
-\label{cap6:sec:radioagility}
+\label{cap6:sec:algoritmos}
 %-------------------------------------------------------------------
+Para maximizar la generación de energía hace falta implementar un sistema que sea capaz de decidir si la frecuencia de resonancia del sistema coincide con la del entorno y en función de esto tomar las medidas necesarias para sintonizarlo de forma eficiente. El núcleo de este sistema estará formado por un micro controlador PIC de microchip encargado de la ejecución de algoritmo que derivaran en el sintonizado del sistema.
+
+\subsection{Micro controlador}
+
+
+Siguiendo la línea del bajo consumo que se quiere alcanzar, este micro controlador tiene que tener unas características tales que maximicen su utilidad y minimicen el consumo.
+
+Su funcionamiento básico es como sigue:
+\begin{itemize}
+\item Mide la energía que se está produciendo en cada momento.
+\item Comprueba si es máxima, (generador sintonizado) o no.
+\item Si no está sintonizado ejecuta el algoritmo encargado de colocar el sintonizador en la posición de máxima producción de energía
+\end{itemize}
+
+Dado el uso tan específico que se va a hacer de estos controladores,  como primera decisión en esta parte del proyecto se opta por la familia de PICs de 8 bits de microchip.
+Dentro de esta familia hay varios controladores. Desde PIC10 hasta PIC16.
+
+\subsection{Medida de la señal producida}
+El generador sintonizado produce una tensión que puede ser fácilmente medida, de esta manera, se puede identificar una situación de desintonizado mediante la detección de la caída en la tensión que está generando.  Este método es trivial puesto que por la alta Q que presentan estos generadores, una mínima desviación en la frecuencia de vibración, produciría una súbita caída en la tensión generada.
+Por otro lado hay dos puntos de donde se puede extraer y medir esta señal. El primero es a la salida de la bobina y el segundo es a la salida del multiplicador de Villard.
+//representaciones de las tensiones a la salida de la bobina y del multiplicador
+Salida de la bobina: Como se ve en la figura (figura donde se ponga lo q genera la bobina) en este punto la señal , sinusoidal centrada en 0, presenta dificultades para su captura por dos razones:
+ La frecuencia de esta señal, es la frecuencia de resonancia del generador y por lo tanto variable. De esta manera no se sabe que tipo de señal se espera medir.
+El otro motivo es el poco nivel de tensión que presenta.
+Estas dos razones hacen que medir en este punto con un micro-controlador sea mas difícil que la otra alternativa.
+Salida del multiplicador: En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas.
+En la sección [microcontrolador el como] se discute esto en profundidad.
+
+\subsection{Algoritmos}
+
+Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir esto son los algoritmos.
+//insertar imagen algoritmo_ejemplo.jpg
+Llegados a este punto hay que diferenciar entre dos conceptos importantes, ambos asociados a unos algoritmos que les darán eficiencia.
+El primero de ellos son los algoritmos de captura de señal y su interpretación que darán lugar a la identificación de una situación de sintonización o su opuesta. Serán llamados algoritmos de captura.
+El segundo concepto es, una vez identificada una situación de desintonizado,  los algoritmos necesarios para maximizar la eficiencia a la hora de buscar la nueva frecuencia de resonancia. Serán llamados algoritmos de sintonización.
+
+En la imagen [algoritmo_ejemplo.jpg] estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
+Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos. De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del micro-controlador y precisión de los motores.
+//aquí van los algoritmos
+Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior [micro controlador al final] se estudiará la implementación.
+Algoritmos de captura:
+Algoritmo de captura 1: Medidas periódicas.
+Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una primera aproximación que puede ser implementada.
+// insertar imagen algoritmo_simple.jpg
+Este algoritmo permite tiempos en los que el micro-controlador esta dormido y por lo tanto no esta consumiendo. Sin embargo si este tiempo es muy grande puede ser que para cuando se mida la energia que se esta produciendo, el generador lleve tiempo desintonizado. Por otro lado, este algoritmo ofrece poca precisión a la hora de sintonizar.
+Esta filosofía es optima cuando el sistema pasa poco tiempo sintonizado y los cambios en la frecuencia del medio son frecuentes.
+Ventajas: Bajo consumo
+Desventajas: Poca capacidad de reacción ante cambios en la frecuencia de vibración y poca precision sintonizando.
+Algoritmo de captura 2: Dormido basado en interrupciones.
+En situación de sintonización el micro controlador está dormido. Cuando se detecta una caída en la entrada, salta una interrupción que le despierta para que inicie una rutina de sintonizado. Mientras esta desintonizando el micro controlador no se duerme hasta que encuentra la posición de sintonizado.
+De esta manera no hay que realizar medidas periódicas, lo que deriva en un mayor ahorro de energía. 
+Cuando salta la interrupción hay dos formas de proceder, la primera sería realizar una medida para comprobar que realmente la tensión a la entrada ha caído y no se trata de una falsa alarma, y la segunda sería llamar directamente al algoritmo de sintonizado.
+Esta filosofía es óptima cuando el sistema está la mayor parte del tiempo sintonizado.
+Ventajas: Maximo ahorro de energia y alta velocidad de reacción ante una caída en la entrada.
+Desventajas: Mayor complejidad en la programación.
+Estas propuestas sirven para tomar la decisión de si el generador debe ser sintonizado o no.
+Algoritmos de sintonización:
+Una vez que se sabe que el sistema no trabaja a la frecuencia del entorno hay que lanzar los algoritmos de sintonizado para reajustar la frecuencia de resonancia.
+Estos algoritmos no son más que la manera de mover el sintonizador para conseguir la sintonización en el menor tiempo posible y con el menor gasto de energía posible.
+Dado que el generador presenta una alta \ac{Q} y suponiendo un desconocimiento de los comportamientos del entorno, la única forma de encontrar la nueva frecuencia de resonancia es mediante un barrido a lo largo de la lámina. Si se conociesen las frecuencias mas usuales del entorno, se podría implementar un sistema predictivo para buscar primero en esas frecuencias. Esto es posible mediante la implementación del sistema antes mencionado, para que el micro conozca en todo momento la frecuencia a la que esta trabajando el generador y sea capaz de relacionar el desplazamiento del sintonizador con la variación en la frecuencia de resonancia que produce.
+Por lo tanto se va a trabajar sobre dos tipos de algoritmos.
+Algoritmos no predictivos: 
+Son los algoritmos en los que el controlador no conoce la frecuencia a la que se esta trabajando y simplemente realiza un barrido en toda la lámina buscando la frecuencia de resonancia.
+Se ha pensado en dos algoritmos.
+Barrido lineal: Empieza a mover el sintonizador desde la ultima posición de sintonización hasta llegar a un extremo. Si llega a ese extremo y no ha encontrado la nueva frecuencia de resonancia, vuelve hasta la posición inicial y realiza el barrido hacia el otro lado.
+//imagen algoritmo_lineal.jpg
+Barrido Alternante: La desventaja del anterior barrido es que si la frecuencia del entorno se desplaza por ejemplo hacia arriba, aunque solo sea un poco, y el sintonizador empieza el barrido hacia el otro lado, el sistema no se va a sintonizar hasta que se hayan recorrido todas las posiciones de la dirección incorrecta, y se empiece a barrer en la dirección correcta como se ilustra en la imagen:
+//insertar imagen algoritmo_lineal_mal.jpg
+Por esto otro algoritmo que se propone es el que alterne las posiciones de medida. Que realice una medida a cada lado de la posición de sintonización.
+El funcionamiento es el siguiente:
+Cuando detecte una situación de desintonizado, el sintonizador se moverá de tal manera que se disminuya la frecuencia de resonancia de la lámina. Si sigue sin estar sintonizado el sintonizador ira a una posición tal que aumente la frecuencia de resonancia más que la vez anterior.  Y si aún no se ha conseguido, se disminuirá la frecuencia de resonancia más que la vez anterior y así sucesivamente, alternándose entre frecuencias cada vez mayores y menores respecto de la inicial.
+ En la siguiente figura se puede ver un esquema del funcionamiento de este algoritmo.
+//imagen algoritmo_alter.jpg
+Este algoritmo es muy eficiente en el caso de que la frecuencia se haya desplazado poco entorno a la anterior situación de sintonizado.
+Sin embargo para desplazamientos grandes de frecuencia estos algoritmos pierden mucha eficiencia, ya que gastan mucho tiempo buscando la nueva frecuencia.
+Una posible manera planteada para solucionar este problema es la implementación de algoritmos predictivos. 
+Algoritmos predictivos:
+En estos, el microcontrolador conoce la frecuencia de resonancia y es capaz de relacionarla con los cambios en la posición del sintonizador.
+Con esta funcionalidad implementada, habría que establecer una condiciones iniciales, ya sea con sensores fin de carrera o manualmente, para que al iniciarse pueda ser calibrado indicándole la frecuencia de resonancia de ese punto.
+// imagen predictivo.jpg
+Además para aumentar la eficiencia, hay que caracterizar previamente el entorno. Encontrar las frecuencias que más se repiten y con qué asiduidad para asignarles probabilidades.
+De esta manera si se detecta una desintonizacion el microcontrolador desplazaría el sintonizador a la siguiente frecuencia con más probabilidad, y así sucesivamente hasta volver a estar sintonizado.
+Estos algoritmos son más eficientes que los no predictivos, sin embargo presentan mayor dificultad de implementación y requieren calibración periódica puesto que si se desvían sus parámetros iniciales, no conseguiría volver a sintonizarse.
 
 %-------------------------------------------------------------------
 \section{Effective rate test}
