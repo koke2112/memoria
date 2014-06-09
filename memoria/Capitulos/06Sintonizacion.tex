@@ -42,7 +42,7 @@ El objetivo que se quiere cumplir cuando se construye un generador de ''Energy H
 
 \subsection{Medios para maximizar la recolección} 
 
-Partiendo del hecho de que los generadores a partir de vibraciones tienen un factor de calidad (Q) muy alto, es decir un ancho de banda muy reducido, se han propuesto diferentes estudios que han resultado en dos modos de maximizar la energía extraída, los cuales son, aumentar el ancho de banda del sistema, y \textbf{sintonizar} el sistema.
+Partiendo del hecho de que los generadores a partir de vibraciones tienen un factor de calidad (Q) muy alto, es decir un ancho de banda muy reducido, se han propuesto diferentes estudios \cite{sintonization} que han resultado en dos modos de maximizar la energía extraída, los cuales son, aumentar el ancho de banda del sistema, y \textbf{sintonizar} el sistema.
 
 \subsubsection{Aumentar el ancho de banda} 
 
@@ -141,20 +141,34 @@ Estudiando esta formula se hallan tres posibles maneras de variar a frecuencia d
 \item Cambiar las dimensiones físicas de la lámina. Parámetros w, h, y L.
 \end{itemize}
 
-\textbf{Primer método \underline{Modificación del centro de gravedad de la masa del extremo}}
+\textbf{ \underline{Primer método:}} \textbf{ Modificación del centro de gravedad de la masa del extremo}
+
+\bigskip
 De la formula se extrae que actuando sobre el parámetro de masa, se puede modificar la frecuencia de resonancia. La variación se daría en función de $m^{2}$. 
 
-En el caso de este proyecto, la masa en el extremo de la lámina son los imanes del transductor. Pero como ya se ha visto si desplazásemos estos, se perdería el acoplo que tienen con la bobina. 
+En el caso de este proyecto, la masa en el extremo de la lámina son los imanes del transductor. Pero como ya se ha visto si desplazásemos estos, se perdería el acoplo que tienen con la bobina.
+ 
+\bigskip
 
 Una posible solución sería añadir una masa extra que pueda ser desplazada sin que se pierda acoplo bobina-imanes. Aunque esta solución pueda parecer sencilla, la dificultad de su implementación radica en la forma de desplazar la masa en dos direcciones, puesto que iría montada sobre la lámina que está en constante movimiento.
+\bigskip
 
 Por estas dos razones, esta no será la manera elegida para sintonizar el generador.
 
-//dibujo de masa extra desplazable.(en dropbox)
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/masa_extra}  
+        \caption{Esquema de como sería el sistema con masa extra.}
+        \label{fig:cap5:mextra}
+\end{figure}
+\FloatBarrier
+\bigskip
 
-\textbf{Segundo método \underline{Variación del coeficiente de elasticidad de la lámina}}
+\textbf{\underline{Segundo método:}} \textbf{ Variación del coeficiente de elasticidad de la lámina}
+\bigskip
 
 El segundo parámetro sobre el que se puede actuar según la fórmula dada sería la constante de amortiguamiento de la lámina. 
+\bigskip
 
 Puesto que una vez elegida una lámina determinada, su constante de amortiguamiento no puede ser modificada, se han propuesto dos opciones diferentes.
 \begin{itemize}
@@ -163,56 +177,101 @@ Puesto que una vez elegida una lámina determinada, su constante de amortiguamien
 \end{itemize}
 
 Mediante la técnica de electroimanes se puede conseguir cambiar la elasticidad de una lámina siempre y cuando esta sea ferromagnética. Regulando la atracción de los imanes que actúan sobre la lámina, se puede modificar su constante de amortiguamiento sintonizando el generador. Esta solución sin embargo no es viable ya que se requeriría un uso continuo de energía para mantener los electro-imanes funcionando.
-//dibujo de eletroimanes acutando (en dropbox)
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/electro_iman}  
+        \caption{Esquema de sintonización con electroimanes.}
+        \label{fig:cap5:eliman}
+\end{figure}
+\FloatBarrier
 Este efecto también se puede conseguir con imanes permanentes simplemente variando la distancia de estos a la lámina. Este método a diferencia del anterior no requiere de un gasto continuo de energía para alimentar imanes, sino que lo requeriría para desplazarlos.
+\bigskip
 
 La técnica de láminas paralelas se basa en acoplar otras láminas a la principal, de esta manera la constante equivalente es la suma de las constantes de amortiguamiento de las dos. La manera de sintonizar mediante este método es ir desplazando una lamina sobre otra, de tal manera que se el coeficiente de amortiguamiento varíe en función del área compartida por las dos laminas.
+\bigskip
 
-Este metodo requiere de gran precisión en el acoplo, puesto que aunque una de las láminas tiene que ser movil, tiene que tener una fijacion perfecta con la otra para que no haya variaciones indeseadas del coeficiente de amortiguamiento. Por esta causa se considera que este método es de una dificultad técnica considerable y no será empleado.
+Este método requiere de gran precisión en el acoplo, puesto que aunque una de las láminas tiene que ser móvil, tiene que tener una fijación perfecta con la otra para que no haya variaciones indeseadas del coeficiente de amortiguamiento. Por esta causa se considera que este método es de una dificultad técnica considerable y no será empleado.
 
-//dibujo de laminas paralelas (en dropbox)
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/lamina_aux}  
+        \caption{Esquema de como sería el sistema una lamina extra.}
+        \label{fig:cap5:lextra}
+\end{figure}
+\FloatBarrier
 
 
-\textbf{Tercer método \underline{Variación de los parámetros fisicos de la lámina}}
+\textbf{\underline{Tercer método:}} \textbf{Variación de los parámetros físicos de la lámina}
 
 Aunque variar el grosor y el ancho de la lámina es impracticable, modificar su longitud si es posible aunque no trivial. Por tanto \textbf{la dimensión a variar será L} (largo de la lámina) que como se ha visto, hace que la frecuencia de resonancia (fr) cambie inversamente proporcional a $L\frac{3}{2}$.  Es decir, disminuyendo L, aumenta Fr.
 
-//imagen de sintonizacion_mecanica (grafica) (en dropbox)
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/sintonizacion_mecanica}  
+        \caption{Modificación de la frecuencia de resonancia en función de la longitud.}
+        \label{fig:cap5:lextra}
+\end{figure}
+\FloatBarrier
 
 Ahora queda estudiar la manera óptima de conseguir variar este parámetro.
 
 \underline{Objetivo:}
+\bigskip
 
-\textbf{Variar de forma eficiente la longitud de la lámina.}
+Variar de forma eficiente la longitud de la lámina.
+\bigskip
 
 \underline{Soluciones:}
+\bigskip
 
-La  primera solución es inmediata, requeriría soltar la lámina de la base, desplazarla y volver a ajustarla, con el consiguiente gasto de energía y pérdida de eficiencia. \textbf{Este método no es práctico} para un sistema que tiene que sintonizarse de forma autónoma, y por eso será descartado.
+La  \textbf{primera solución} es inmediata, requeriría soltar la lámina de la base, desplazarla y volver a ajustarla, con el consiguiente gasto de energía y pérdida de eficiencia. \textbf{Este método no es práctico} para un sistema que tiene que sintonizarse de forma autónoma, y por eso será descartado.
+\bigskip
  
- 
-La segunda solución que se pensó, pasaría por un sistema de engranajes o ruedas dentadas que mediante un motor desplazasen la lamina. Esta solución elimina el problema de soltarla y volver a ajustarla en una nueva posición, sin embargo \textbf{aumenta considerablemente la dificultad de fijarla a la base} y del mecanismo en general por lo que también se descartó.
+La \textbf{segunda solución} que se pensó, pasaría por un sistema de engranajes o ruedas dentadas que mediante un motor desplazasen la lamina. Esta solución elimina el problema de soltarla y volver a ajustarla en una nueva posición, sin embargo \textbf{aumenta considerablemente la dificultad de fijarla a la base} y del mecanismo en general por lo que también se descartó.
 
-//meter un dibujo de los engranajes (en dropbox)
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/dentada}  
+        \caption{Lámina dentada con rueda dentada que la desplaza.}
+        \label{fig:cap5:lextra}
+\end{figure}
+\FloatBarrier
+
 
 Estas soluciones presentadas además conllevan un problema que no se ha mencionado. Como se ha definido anteriormente, la arquitectura del generador requiere de una bobina fija en la base e imanes suspendidos de la lámina. Si se desplazase esta, los imanes se moverían respecto a la bobina perdiendo el máximo de flujo magnético necesario para generar energía.
 Para contrarrestar este efecto, se podría pensar en implementar otro mecanismo que moviese la bobina a la vez que la lámina para que siempre estuviesen enfrentados imanes y bobina algo que requeriría una complejidad desmedida que además iría asociada a una pérdida de eficiencia considerable. Este problema nos lleva a la tercera solución donde se implementa la idea de longitud efectiva y el sintonizador.
+\bigskip
 
-Tercera solución:
-
+\textbf{Tercera solución:}
+\bigskip
 
 Una solución basada en la idea de longitud efectiva no requiere el desplazamiento de la lámina, por lo tanto no habría que preocuparse del anclaje de esta a la base, ni del desacoplo de la bobina respecto a los imanes.
 Esta idea se basa en la inclusión de un sintonizador, que \textbf{mediante su desplazamiento a lo largo de la lámina va acortando o alargando la longitud \underline{vibrante} de la misma.}
 
-//dibujo del sintonizador.
+\bigskip
 
 De esta manera la longitud total de la lámina, entendida como distancia de la masa al anclaje, es siempre la misma y solo varia la longitud vibrante, es decir, la sección de lámina que comprende desde los imanes al sintonizador.
 
 
 Esta solución ofrece una manera sencilla, efectiva y eficiente de sintonizar el sistema.
 
-//imagen long eff.jpg (dropbox)
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/long_eff}  
+        \caption{Esquema del sistema con sintonizador y longitud efectiva.}
+        \label{fig:cap5:lextra}
+\end{figure}
+\FloatBarrier
 
-
+De \citep{sintonization} se extrae la siguiente tabla donde se muestran las diferentes manera de maximizar la energía recolectada, ya sea sintonizando o aumentando el ancho de banda:
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=1\textwidth]{Imagenes/imagenes/cap6/tabla_sintonia}  
+        \caption{Maneras de maximizar la extracción de energía.}
+        \label{fig:cap5:maneras}
+\end{figure}
+\FloatBarrier
 
 %-------------------------------------------------------------------
 \section{Sintonizador}
@@ -233,9 +292,10 @@ El problema que se presenta es que con los micro-motores se consigue producir mo
 
 Tras barajar varias opciones,  (correa pasadora,  engranajes) la manera que se ha pensado que es mas efectiva es mediante  un tornillo sin fin conectado a la vez al motor y al sintonizador.
 De esta manera, mediante el giro del motor, gira el tornillo, y este a su vez, convierte el movimiento circular en lineal al pasar por una tuerca incrustada en el sintonizador.
+\bigskip
 
-Volviendo a la tabla [//la tabla de maneras de sintonizar] se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no es aplicable mientras el generador esta funcionando, sin embargo mediante la técnica aquí presentada del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando este activo. Esta es la mejora principal conseguida con este proyecto.
-
+Volviendo a la tabla \ref{fig:cap5:maneras} se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no son aplicables mientras el generador esta funcionando, sin embargo mediante la técnica aquí presentada del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando esta activo. Esta es la mejora principal conseguida con este proyecto.
+\bigskip
 
 %-------------------------------------------------------------------
 \section{Algoritmos de funcionamiento}
@@ -257,35 +317,46 @@ Su funcionamiento básico es como sigue:
 \end{itemize}
 
 Dado el uso tan específico que se va a hacer de estos controladores,  como primera decisión en esta parte del proyecto se opta por la familia de PICs de 8 bits de microchip.
-Dentro de esta familia hay varios controladores. Desde PIC10 hasta PIC16.
+
+La mayoría de controladores de esta familia disponen de ADC, comparadores, señales PWM y distinto numero de pines digitales de entrada/salida, lo que va a ser suficiente para el control del dispositivo. Como ventaja añadida, esta familia de 8 bits proporciona unas características de bajo consumo que van a ser muy útiles para aumentar la eficiencia del sistema.
+
 
 \subsection{Medida de la señal producida}
 El generador sintonizado produce una tensión que puede ser fácilmente medida, de esta manera, se puede identificar una situación de desintonizado mediante la detección de la caída en la tensión que está generando.  Este método es trivial puesto que por la alta Q que presentan estos generadores, una mínima desviación en la frecuencia de vibración, produciría una súbita caída en la tensión generada.
-Por otro lado hay dos puntos de donde se puede extraer y medir esta señal. El primero es a la salida de la bobina y el segundo es a la salida del multiplicador de Villard.
-//representaciones de las tensiones a la salida de la bobina y del multiplicador
-Salida de la bobina: Como se ve en la figura (figura donde se ponga lo q genera la bobina) en este punto la señal , sinusoidal centrada en 0, presenta dificultades para su captura por dos razones:
- La frecuencia de esta señal, es la frecuencia de resonancia del generador y por lo tanto variable. De esta manera no se sabe que tipo de señal se espera medir.
+Por otro lado hay dos puntos de donde se puede extraer y medir esta señal. El primero es a la salida de la bobina (figura \ref{fig:cap5:villardin}) y el segundo es a la salida del multiplicador de Villard (figura \ref{fig:cap5:villardout}).
+\bigskip
+
+\underline{Salida de la bobina:} Como se ve en la figura \ref{fig:cap5:villardin}, en este punto la señal , alterna centrada en 0, presenta dificultades para su captura por dos razones:
+\bigskip
+
+La frecuencia de esta señal, es la frecuencia de resonancia del generador y por lo tanto variable. De esta manera no se sabe que tipo de señal se espera medir.
+
+\bigskip
+
 El otro motivo es el poco nivel de tensión que presenta.
+
 Estas dos razones hacen que medir en este punto con un micro-controlador sea mas difícil que la otra alternativa.
-Salida del multiplicador: En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas.
+\bigskip
+
+\underline{Salida del multiplicador:} En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas.
 En la sección [microcontrolador el como] se discute esto en profundidad.
 
 \subsection{Algoritmos}
 
 Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir esto son los algoritmos.
-//insertar imagen algoritmo_ejemplo.jpg
+//insertar imagen algoritmoejemplo.jpg
 Llegados a este punto hay que diferenciar entre dos conceptos importantes, ambos asociados a unos algoritmos que les darán eficiencia.
 El primero de ellos son los algoritmos de captura de señal y su interpretación que darán lugar a la identificación de una situación de sintonización o su opuesta. Serán llamados algoritmos de captura.
 El segundo concepto es, una vez identificada una situación de desintonizado,  los algoritmos necesarios para maximizar la eficiencia a la hora de buscar la nueva frecuencia de resonancia. Serán llamados algoritmos de sintonización.
 
-En la imagen [algoritmo_ejemplo.jpg] estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
+En la imagen [algoritmoejemplo.jpg] estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
 Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos. De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del micro-controlador y precisión de los motores.
 //aquí van los algoritmos
 Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior [micro controlador al final] se estudiará la implementación.
 Algoritmos de captura:
 Algoritmo de captura 1: Medidas periódicas.
 Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una primera aproximación que puede ser implementada.
-// insertar imagen algoritmo_simple.jpg
+// insertar imagen algoritmosimple.jpg
 Este algoritmo permite tiempos en los que el micro-controlador esta dormido y por lo tanto no esta consumiendo. Sin embargo si este tiempo es muy grande puede ser que para cuando se mida la energia que se esta produciendo, el generador lleve tiempo desintonizado. Por otro lado, este algoritmo ofrece poca precisión a la hora de sintonizar.
 Esta filosofía es optima cuando el sistema pasa poco tiempo sintonizado y los cambios en la frecuencia del medio son frecuentes.
 Ventajas: Bajo consumo
@@ -307,14 +378,14 @@ Algoritmos no predictivos:
 Son los algoritmos en los que el controlador no conoce la frecuencia a la que se esta trabajando y simplemente realiza un barrido en toda la lámina buscando la frecuencia de resonancia.
 Se ha pensado en dos algoritmos.
 Barrido lineal: Empieza a mover el sintonizador desde la ultima posición de sintonización hasta llegar a un extremo. Si llega a ese extremo y no ha encontrado la nueva frecuencia de resonancia, vuelve hasta la posición inicial y realiza el barrido hacia el otro lado.
-//imagen algoritmo_lineal.jpg
+//imagen algoritmolineal.jpg
 Barrido Alternante: La desventaja del anterior barrido es que si la frecuencia del entorno se desplaza por ejemplo hacia arriba, aunque solo sea un poco, y el sintonizador empieza el barrido hacia el otro lado, el sistema no se va a sintonizar hasta que se hayan recorrido todas las posiciones de la dirección incorrecta, y se empiece a barrer en la dirección correcta como se ilustra en la imagen:
-//insertar imagen algoritmo_lineal_mal.jpg
+//insertar imagen algoritmolinealmal.jpg
 Por esto otro algoritmo que se propone es el que alterne las posiciones de medida. Que realice una medida a cada lado de la posición de sintonización.
 El funcionamiento es el siguiente:
 Cuando detecte una situación de desintonizado, el sintonizador se moverá de tal manera que se disminuya la frecuencia de resonancia de la lámina. Si sigue sin estar sintonizado el sintonizador ira a una posición tal que aumente la frecuencia de resonancia más que la vez anterior.  Y si aún no se ha conseguido, se disminuirá la frecuencia de resonancia más que la vez anterior y así sucesivamente, alternándose entre frecuencias cada vez mayores y menores respecto de la inicial.
  En la siguiente figura se puede ver un esquema del funcionamiento de este algoritmo.
-//imagen algoritmo_alter.jpg
+//imagen algoritmoalter.jpg
 Este algoritmo es muy eficiente en el caso de que la frecuencia se haya desplazado poco entorno a la anterior situación de sintonizado.
 Sin embargo para desplazamientos grandes de frecuencia estos algoritmos pierden mucha eficiencia, ya que gastan mucho tiempo buscando la nueva frecuencia.
 Una posible manera planteada para solucionar este problema es la implementación de algoritmos predictivos. 
