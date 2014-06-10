@@ -52,7 +52,7 @@ En \citep{filterband} se desarrolló un dispositivo que consistía en varios de es
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap6/genarray}  
         \caption{Ejemplo de función de transferencia de este sistema multigenerador.}
-        \label{fig:cap5:villardreal}
+        \label{fig:cap6:array}
 \end{figure}
 
 -Otra estrategia para aumentar el ancho de banda es fabricar generadores no lineales.
@@ -61,7 +61,7 @@ Esto se consigue mediante la introducción de imanes que alteran el movimiento de
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/nolineal}  
         \caption{Generador no lineal con masa magnética suspendida en un campo magnético.}
-        \label{fig:cap5:villardreal}
+        \label{fig:cap6:nolinea}
 \end{figure}
 \FloatBarrier
 Estos generadores no se basan en el modelo de segundo orden visto hasta ahora sino en las ecuaciones de Duffing.
@@ -79,7 +79,7 @@ Para limitar la amplitud se coloca un tope en uno de los lados de la lámina prod
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/limitar_amplitud}  
         \caption{Limitación de amplitud con tope superior.}
-        \label{fig:cap5:limita}
+        \label{fig:cap6:limita}
 \end{figure}
 \FloatBarrier
 
@@ -88,7 +88,7 @@ La técnica de osciladores acoplados se basa en un modelo de resorte con masa com
         \centering
 		\includegraphics[width=0.4\textwidth]{Imagenes/imagenes/cap6/oscaco}  
         \caption{Osciladores acoplados.}
-        \label{fig:cap5:limita}
+        \label{fig:cap6:limita}
 \end{figure}
 \FloatBarrier
 
@@ -159,7 +159,7 @@ Por estas dos razones, esta no será la manera elegida para sintonizar el generad
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/masa_extra}  
         \caption{Esquema de como sería el sistema con masa extra.}
-        \label{fig:cap5:mextra}
+        \label{fig:cap6:mextra}
 \end{figure}
 \FloatBarrier
 \bigskip
@@ -181,7 +181,7 @@ Mediante la técnica de electroimanes se puede conseguir cambiar la elasticidad d
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/electro_iman}  
         \caption{Esquema de sintonización con electroimanes.}
-        \label{fig:cap5:eliman}
+        \label{fig:cap6:eliman}
 \end{figure}
 \FloatBarrier
 Este efecto también se puede conseguir con imanes permanentes simplemente variando la distancia de estos a la lámina. Este método a diferencia del anterior no requiere de un gasto continuo de energía para alimentar imanes, sino que lo requeriría para desplazarlos.
@@ -196,7 +196,7 @@ Este método requiere de gran precisión en el acoplo, puesto que aunque una de la
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/lamina_aux}  
         \caption{Esquema de como sería el sistema una lamina extra.}
-        \label{fig:cap5:lextra}
+        \label{fig:cap6:lextra}
 \end{figure}
 \FloatBarrier
 
@@ -210,7 +210,7 @@ Aunque variar el grosor y el ancho de la lámina es impracticable, modificar su l
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/sintonizacion_mecanica}  
         \caption{Modificación de la frecuencia de resonancia en función de la longitud.}
-        \label{fig:cap5:lextra}
+        \label{fig:cap6:lextra}
 \end{figure}
 \FloatBarrier
 
@@ -234,7 +234,7 @@ La \textbf{segunda solución} que se pensó, pasaría por un sistema de engranajes 
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/dentada}  
         \caption{Lámina dentada con rueda dentada que la desplaza.}
-        \label{fig:cap5:lextra}
+        \label{fig:cap6:lextra}
 \end{figure}
 \FloatBarrier
 
@@ -260,7 +260,7 @@ Esta solución ofrece una manera sencilla, efectiva y eficiente de sintonizar el 
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/long_eff}  
         \caption{Esquema del sistema con sintonizador y longitud efectiva.}
-        \label{fig:cap5:lextra}
+        \label{fig:cap6:lextra}
 \end{figure}
 \FloatBarrier
 
@@ -269,7 +269,7 @@ De \citep{sintonization} se extrae la siguiente tabla donde se muestran las dife
         \centering
 		\includegraphics[width=1\textwidth]{Imagenes/imagenes/cap6/tabla_sintonia}  
         \caption{Maneras de maximizar la extracción de energía.}
-        \label{fig:cap5:maneras}
+        \label{fig:cap6:maneras}
 \end{figure}
 \FloatBarrier
 
@@ -294,7 +294,7 @@ Tras barajar varias opciones,  (correa pasadora,  engranajes) la manera que se h
 De esta manera, mediante el giro del motor, gira el tornillo, y este a su vez, convierte el movimiento circular en lineal al pasar por una tuerca incrustada en el sintonizador.
 \bigskip
 
-Volviendo a la tabla \ref{fig:cap5:maneras} se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no son aplicables mientras el generador esta funcionando, sin embargo mediante la técnica aquí presentada del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando esta activo. Esta es la mejora principal conseguida con este proyecto.
+Volviendo a la tabla \ref{fig:cap6:maneras} se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no son aplicables mientras el generador esta funcionando, sin embargo mediante la técnica aquí presentada del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando esta activo. Esta es la mejora principal conseguida con este proyecto.
 \bigskip
 
 %-------------------------------------------------------------------
@@ -344,70 +344,333 @@ En la sección [microcontrolador el como] se discute esto en profundidad.
 \subsection{Algoritmos}
 
 Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir esto son los algoritmos.
-//insertar imagen algoritmoejemplo.jpg
-Llegados a este punto hay que diferenciar entre dos conceptos importantes, ambos asociados a unos algoritmos que les darán eficiencia.
-El primero de ellos son los algoritmos de captura de señal y su interpretación que darán lugar a la identificación de una situación de sintonización o su opuesta. Serán llamados algoritmos de captura.
-El segundo concepto es, una vez identificada una situación de desintonizado,  los algoritmos necesarios para maximizar la eficiencia a la hora de buscar la nueva frecuencia de resonancia. Serán llamados algoritmos de sintonización.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/algoritmo_ejemplo}  
+        \caption{Algoritmo de ejemplo.}
+        \label{fig:cap6:algo_ejem}
+\end{figure}
+\FloatBarrier
 
-En la imagen [algoritmoejemplo.jpg] estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
-Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos. De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del micro-controlador y precisión de los motores.
-//aquí van los algoritmos
+Llegados a este punto hay que diferenciar entre dos conceptos importantes, ambos asociados a unos algoritmos que les darán eficiencia.
+\bigskip
+
+\textbf{El primero} de ellos son los algoritmos de captura de señal y su interpretación que darán lugar a la identificación de una situación de sintonización o su opuesta. Serán llamados algoritmos de captura.
+\bigskip
+
+\textbf{El segundo} concepto se da una vez identificada una situación de desintonizado. Trata los algoritmos necesarios para maximizar la eficiencia a la hora de buscar la nueva frecuencia de resonancia. Serán llamados algoritmos de sintonización.
+
+En la imagen \ref{fig:cap6:algo_ejem} estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
+
+Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos (tamaño del generador, amplitud de las vibraciones, variaciones en la frecuencia de las vibraciones). De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del micro-controlador y precisión de los motores.
+\bigskip
+
+
 Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior [micro controlador al final] se estudiará la implementación.
-Algoritmos de captura:
-Algoritmo de captura 1: Medidas periódicas.
+\subsection{Algoritmos de captura:}
+
+Aquí se exponen los modos que se han propuesto para detectar una situación de desintonzado lo mas eficientemente posible.
+
+\subsubsection{Algoritmo de captura 1: Medidas periódicas.}
 Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una primera aproximación que puede ser implementada.
-// insertar imagen algoritmosimple.jpg
-Este algoritmo permite tiempos en los que el micro-controlador esta dormido y por lo tanto no esta consumiendo. Sin embargo si este tiempo es muy grande puede ser que para cuando se mida la energia que se esta produciendo, el generador lleve tiempo desintonizado. Por otro lado, este algoritmo ofrece poca precisión a la hora de sintonizar.
-Esta filosofía es optima cuando el sistema pasa poco tiempo sintonizado y los cambios en la frecuencia del medio son frecuentes.
-Ventajas: Bajo consumo
-Desventajas: Poca capacidad de reacción ante cambios en la frecuencia de vibración y poca precision sintonizando.
-Algoritmo de captura 2: Dormido basado en interrupciones.
-En situación de sintonización el micro controlador está dormido. Cuando se detecta una caída en la entrada, salta una interrupción que le despierta para que inicie una rutina de sintonizado. Mientras esta desintonizando el micro controlador no se duerme hasta que encuentra la posición de sintonizado.
-De esta manera no hay que realizar medidas periódicas, lo que deriva en un mayor ahorro de energía. 
-Cuando salta la interrupción hay dos formas de proceder, la primera sería realizar una medida para comprobar que realmente la tensión a la entrada ha caído y no se trata de una falsa alarma, y la segunda sería llamar directamente al algoritmo de sintonizado.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/algoritmo_simple}  
+        \caption{Algoritmo simple implementable.}
+        \label{fig:cap6:algo_simple}
+\end{figure}
+\FloatBarrier
+
+Este algoritmo permite tiempos en los que el micro-controlador esta dormido y por lo tanto no está consumiendo. Sin embargo si este tiempo es muy grande puede ser que, para cuando se mida la energía que se esta produciendo, el generador lleve tiempo desintonizado.
+Esta filosofía es óptima cuando el sistema pasa poco tiempo sintonizado y los cambios en la frecuencia del medio son frecuentes.
+\bigskip
+
+\textbf{Ventajas:} Bajo consumo y facilidad de implementación.
+\bigskip
+
+\textbf{Desventajas:} Poca capacidad de reacción ante cambios en la frecuencia de vibración.
+\subsubsection{Algoritmo de captura 2: Basado en interrupciones.}
+En situación de sintonización el micro controlador está dormido. Cuando se detecta una caída en la entrada, se dispara una interrupción que le despierta para que inicie una rutina de sintonizado. Mientras esta desintonizado el micro controlador no se duerme hasta que encuentra la posición de sintonizado.
+
+De esta manera no hay que realizar medidas periódicas, lo que deriva en un mayor ahorro de energía.
+\bigskip
+ 
+Cuando salta la interrupción hay dos formas de proceder:
+
+La primera sería realizar una medida para comprobar que realmente la tensión a la entrada ha caído y no se trata de una falsa alarma, y la segunda sería llamar directamente al algoritmo de sintonizado.
 Esta filosofía es óptima cuando el sistema está la mayor parte del tiempo sintonizado.
-Ventajas: Maximo ahorro de energia y alta velocidad de reacción ante una caída en la entrada.
-Desventajas: Mayor complejidad en la programación.
-Estas propuestas sirven para tomar la decisión de si el generador debe ser sintonizado o no.
-Algoritmos de sintonización:
+\bigskip
+
+\textbf{Ventajas:} Máximo ahorro de energía y alta velocidad de reacción ante una caída en la entrada.
+\bigskip
+
+\textbf{Desventajas:} Mayor complejidad en la programación.
+
+
+\subsection{Algoritmos de sintonización:}
+
 Una vez que se sabe que el sistema no trabaja a la frecuencia del entorno hay que lanzar los algoritmos de sintonizado para reajustar la frecuencia de resonancia.
+
 Estos algoritmos no son más que la manera de mover el sintonizador para conseguir la sintonización en el menor tiempo posible y con el menor gasto de energía posible.
-Dado que el generador presenta una alta \ac{Q} y suponiendo un desconocimiento de los comportamientos del entorno, la única forma de encontrar la nueva frecuencia de resonancia es mediante un barrido a lo largo de la lámina. Si se conociesen las frecuencias mas usuales del entorno, se podría implementar un sistema predictivo para buscar primero en esas frecuencias. Esto es posible mediante la implementación del sistema antes mencionado, para que el micro conozca en todo momento la frecuencia a la que esta trabajando el generador y sea capaz de relacionar el desplazamiento del sintonizador con la variación en la frecuencia de resonancia que produce.
+
+Dado que el generador presenta una alta \ac{Q} y suponiendo un desconocimiento de los comportamientos del entorno, (frecuencias de resonancias mas frecuentes) la única forma de encontrar la nueva frecuencia de resonancia es mediante un barrido a lo largo de la lámina. 
+\bigskip
+
+Si se conociesen las frecuencias mas usuales del entorno, se podría implementar un sistema predictivo para buscar primero en esas frecuencias. Esto es posible mediante la implementación del sistema antes mencionado, para que el micro-controlador conozca en todo momento la frecuencia a la que esta trabajando el generador en función de la posición del sintonizador y sea capaz de calcular el desplazamiento necesario de este para fijar una determinada frecuencia.
+\bigskip
+
 Por lo tanto se va a trabajar sobre dos tipos de algoritmos.
-Algoritmos no predictivos: 
+
+
+\subsubsection{Algoritmos no predictivos: }
+
 Son los algoritmos en los que el controlador no conoce la frecuencia a la que se esta trabajando y simplemente realiza un barrido en toda la lámina buscando la frecuencia de resonancia.
 Se ha pensado en dos algoritmos.
-Barrido lineal: Empieza a mover el sintonizador desde la ultima posición de sintonización hasta llegar a un extremo. Si llega a ese extremo y no ha encontrado la nueva frecuencia de resonancia, vuelve hasta la posición inicial y realiza el barrido hacia el otro lado.
-//imagen algoritmolineal.jpg
-Barrido Alternante: La desventaja del anterior barrido es que si la frecuencia del entorno se desplaza por ejemplo hacia arriba, aunque solo sea un poco, y el sintonizador empieza el barrido hacia el otro lado, el sistema no se va a sintonizar hasta que se hayan recorrido todas las posiciones de la dirección incorrecta, y se empiece a barrer en la dirección correcta como se ilustra en la imagen:
-//insertar imagen algoritmolinealmal.jpg
-Por esto otro algoritmo que se propone es el que alterne las posiciones de medida. Que realice una medida a cada lado de la posición de sintonización.
+\bigskip
+
+\textbf{\underline{Barrido lineal:}}
+
+Empieza a mover el sintonizador desde la ultima posición de sintonización hasta llegar a un extremo. Si llega a ese extremo y no ha encontrado la nueva frecuencia de resonancia, vuelve hasta la posición inicial y realiza el barrido hacia el otro sentido.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/algoritmo_lineal}  
+        \caption{Algoritmo de barrido lineal.}
+        \label{fig:cap6:algo_lineal}
+\end{figure}
+\FloatBarrier
+
+Este algoritmo es el mas inmediato, es sencillo de implementar y no requiere muchos recursos del micro-controlador. La parte negativa es que en determinadas circunstancias el tiempo de sintonizado es muy grande, esto se da por ejemplo si la nueva frecuencia de resonancia se desplaza hacia el sentido opuesto al que el microcontrolador empieza a barrer. Si esto pasa, para encontrar la nueva situación de sintonización, el sintonizador primeramente tendrá que recorrer todo un lado de la lamina, para recorrer posteriormente la zona donde se halla el objetivo.
+\bigskip
+
+\textbf{Ventajas:}
+Facilidad en la implementación.
+
+\textbf{Desventajas:}
+Tiempos de sintonizado grandes si la frecuencia del entorno se desplaza hacia el sentido opuesto.
+\bigskip
+
+\textbf{\underline{Barrido Alternante:}}
+\label{cap6:subsec:altern}
+Este algoritmo ha sido desarrollado para suplir las deficiencias en la busqueda que presenta el algoritmo anterior como se puede ver en la imagen \ref{fig:cap6:algo_lineal_mal}.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/algoritmo_lineal_mal}  
+        \caption{Desventaja del algoritmo de barrido lineal.}
+        \label{fig:cap6:algo_lineal_mal}
+\end{figure}
+\FloatBarrier
+
+
+Por esto el nuevo algoritmo propuesto alterna las posiciones de medida. Realiza una medida a cada lado de la posición de sintonización incrementado en cada iteración una posición.
+\bigskip
+
 El funcionamiento es el siguiente:
-Cuando detecte una situación de desintonizado, el sintonizador se moverá de tal manera que se disminuya la frecuencia de resonancia de la lámina. Si sigue sin estar sintonizado el sintonizador ira a una posición tal que aumente la frecuencia de resonancia más que la vez anterior.  Y si aún no se ha conseguido, se disminuirá la frecuencia de resonancia más que la vez anterior y así sucesivamente, alternándose entre frecuencias cada vez mayores y menores respecto de la inicial.
+\bigskip
+
+Cuando detecte una situación de desintonizado, el sintonizador se moverá un paso hacia un sentido de búsqueda. Si no ha encontrado la situación de sintonizado, se desplazará dos posiciones hacia el otro sentido. Si aun no este sintonizado, se desplazará tres posiciones hacia el sentido inicial, y así sucesivamente, alternándose entre frecuencias cada vez mayores y menores (posiciones a un lado y el otro de la posición inicial)respecto de la frecuencia inicial.
+\bigskip
+
  En la siguiente figura se puede ver un esquema del funcionamiento de este algoritmo.
-//imagen algoritmoalter.jpg
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/algoritmo_alter}  
+        \caption{Funcionamiento del algoritmo alternante.}
+        \label{fig:cap6:algo_alter}
+\end{figure}
+\FloatBarrier
+
 Este algoritmo es muy eficiente en el caso de que la frecuencia se haya desplazado poco entorno a la anterior situación de sintonizado.
-Sin embargo para desplazamientos grandes de frecuencia estos algoritmos pierden mucha eficiencia, ya que gastan mucho tiempo buscando la nueva frecuencia.
-Una posible manera planteada para solucionar este problema es la implementación de algoritmos predictivos. 
-Algoritmos predictivos:
-En estos, el microcontrolador conoce la frecuencia de resonancia y es capaz de relacionarla con los cambios en la posición del sintonizador.
-Con esta funcionalidad implementada, habría que establecer una condiciones iniciales, ya sea con sensores fin de carrera o manualmente, para que al iniciarse pueda ser calibrado indicándole la frecuencia de resonancia de ese punto.
-// imagen predictivo.jpg
+\bigskip
+
+\textbf{Ventajas:}
+Poco tiempo y por lo tanto mas eficiencia en la búsqueda de frecuencias cercanas a la inicial.
+
+\textbf{Desventajas:}
+Si la nueva frecuencia del entorno esta muy separada del la inicial, llevaría mucho tiempo volver a sintonizar el generador. Este problema también lo presenta el algoritmo lineal. 
+
+Para intentar minimizar el efecto producido por grandes diferencias en las frecuencias, hay dos opciones:
+
+\begin{enumerate}
+\item Suponer que las variaciones de frecuencia serán pequeñas, por lo que el algoritmo alternante seria el adecuado.
+
+\item Implementación de algoritmos predictivos. 
+\end{enumerate}
+
+
+\subsubsection{Algoritmos predictivos:}
+En estos, el microcontrolador conoce la frecuencia de resonancia (frecuencia de trabajo actual del generador) y es capaz de relacionarla con los cambios en la posición del sintonizador.
+
+Con esta funcionalidad implementada, habría que establecer unas condiciones iniciales, ya sea con sensores fin de carrera o manualmente, para que al iniciarse pueda ser calibrado indicándole la frecuencia de resonancia de ese punto.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/predictivo}  
+        \caption{Funcionamiento del algoritmo predictivo.}
+        \label{fig:cap6:predictivo}
+\end{figure}
+\FloatBarrier
+
 Además para aumentar la eficiencia, hay que caracterizar previamente el entorno. Encontrar las frecuencias que más se repiten y con qué asiduidad para asignarles probabilidades.
-De esta manera si se detecta una desintonizacion el microcontrolador desplazaría el sintonizador a la siguiente frecuencia con más probabilidad, y así sucesivamente hasta volver a estar sintonizado.
+
+De esta manera si se detecta una desintonización el microcontrolador desplazaría el sintonizador a la siguiente frecuencia con más probabilidad, y así sucesivamente hasta volver a estar sintonizado.
+
 Estos algoritmos son más eficientes que los no predictivos, sin embargo presentan mayor dificultad de implementación y requieren calibración periódica puesto que si se desvían sus parámetros iniciales, no conseguiría volver a sintonizarse.
+\bigskip
+
+\textbf{Ventajas:}
+Si el entorno tiene un conjunto pequeño de frecuencias características que se repiten con bastante probabilidad, es posible desplazar primero a esos punto el sintonizador, ahorrando barridos completos que es lo que gasta mas tiempo y energía.
+
+\textbf{Desventajas:}
+Si las ventajas de estos algoritmos son importantes, también es cierto que tiene importantes desventajas.
+
+Dificultad de implementación.
+
+Calibración periódica.
+
+Electrónica extra en el generador (sensores fin de carrera).
+
+Si la nueva frecuencia no coincide con ninguna de las características, hay que lanzar un algoritmo de barrido, lo que lo convertiría en el algoritmo mas costoso.
 
 %-------------------------------------------------------------------
-\section{Effective rate test}
+\section{Electrónica implementada}
 %-------------------------------------------------------------------
-\label{cap6:sec:radiocommunication}
+\label{cap6:sec:electronica}
 %-------------------------------------------------------------------
+En esta sección se detalla la electrónica implementada y como se ha diseñado para que cumpla la función requerida, que es la de sintonizar el generador. 
+
+Se tratará:
+\begin{itemize}
+\item El estudio de los motores disponibles y sus ventajas/desventajas para su uso en este proyecto.
+\item El estudio de los microcontroladores disponibles y en detalle el elegido.
+\item El estudio de la electrónica adicional necesaria, como circuitos integrados
+\end{itemize} 
+
+
+\subsection{Motores}
+
+Llegados a este punto, ya esta diseñado el sintonizador, pero resta implementar el medio físico que lo desplace. El actuador más lógico seria un motor eléctrico y dado que se está generando una tensión continua, un motor eléctrico de corriente continua.
+
+
+Para elegir el motor idóneo hay que tener en cuenta varias características.
+
+\begin{itemize}
+\item Consumo
+\item Tamaño
+\item Par
+\item Velocidad
+\end{itemize}
+
+Con estas características en cuenta se pasa a realizar un estudio de los tipos de motores disponibles:
+Cada vuelta del motor y por lo tanto de la varilla corresponde a 1mm.
+El problema que aquí se presenta es estimar cuanto va a haber que mover el sintonizador para volver a sintonizar. Dado que el motor se va a alimentar de la propia generación nos interesa que sea de corriente continua y que haya que desplazar poco el sintonizador para volver a la frecuencia de resonancia. Aquí surgen varias opciones de motores:
+
+\subsubsection{Motores de corriente continua}
+Lo motores de corriente continua se pueden dividir en dos tipos. Con escobillas \cite{motor1} y sin ellas \cite{motor2}.
+ 
+\textbf{\underline{Con escobillas:}}
+
+Son motores muy sencillos de usar y gracias al modo PWM (modulación por anchura de pulso) se puede regular su velocidad. Constan de un sistema mecánico (escobillas) para controlar la posición en cada momento y excitar las bobinas en el instante preciso para hacer que el motor siga girando. En estos motores, las bobinas están sobre el rotor y los imanes permanentes en el estator.  La principal desventaja es que las escobillas generan rozamiento lo que conlleva perdida de eficiencia además de arcos eléctricos, produciendo ruido que puede interferir en sistemas cercanos.
+
+Para desplazar distancias cortas (algoritmo alternante: ver sección \ref{cap6:subsec:altern}) nos interesa que sea de poca velocidad para tener mejor precisión. Esto se consigue con motores de continua con reductora que además de ofrecer poca velocidad, producen un par mayor.
+Por otra parte la dificultad que presentan es que necesitan un puente H para poder invertir el giro.
+\bigskip
+
+\textbf{Conclusión:} Motores aptos para el proyecto.
+\bigskip
+
+\textbf{\underline{Motores sin escobillas o BLDC:}}
+
+Son motores de 3 hilos, con una alta eficiencia a altas revoluciones, pero con una mayor dificultad de manejo. Como no tienen un sistema mecánico de escobillas para determinar su posición, su sincronización se hace más compleja. Se necesita un micro-controlador junto con dos estrategias para determinar en cada momento la situación del rotor y en función de ella excitar una bobina u otra: sensores de efecto Hall y cálculo mediante el efecto de fuerza contra-electromotriz (back EMF).
+\bigskip
+
+\textit{Efecto Hall:} En un conductor por el que circula corriente, en presencia de un campo magnético perpendicular al movimiento de las cargas, aparece un campo eléctrico transversal a este movimiento. 
+
+Gracias a este efecto se pueden integrar sensores en el motor que determinen el estado en cada momento del rotor en función de los campos magnéticos inducidos. De esta forma y mediante realimentación, el controlador puede sincronizar las señales de excitación.
+\bigskip
+
+\textit{Fuerza contra-electromotriz:} Este método se basa en medir la fuerza electromotriz inducida en la bobina que no está excitada en un momento dado debido al movimiento del rotor y de las otras dos bobinas. Por la ley de Lentz, la fuerza electromotriz se opone a la fuerza que la produce (motor en movimiento) y mediante esta medida se puede conocer el estado del motor y en función de él sincronizar las señales de excitación.
+\bigskip
+
+
+La dificultad para el uso de estos motores requiere de una gran electrónica lo que incrementaría el consumo, el coste y el tamaño total ocupado por el motor.
+
+Por otra parte, los métodos de sincronismo vistos solo funcionan correctamente cuando el motor trabaja a alta velocidad haciéndolos inservibles para este proyecto puesto que esto provoca un consumo elevado.
+\bigskip
+
+\textbf{Conclusión:} Motores descartados para este proyecto.
+
+\subsubsection{Motores paso a paso}
+
+Pueden considerarse un tipo de motores BLDC sin embargo su modo de empleo es totalmente distinto.
+
+Se componen de 2 bobinas en diferentes posiciones, y mediante una serie de excitación de las distintas bobinas, el motor se mueve una serie de posiciones discretas.
+
+Este tipo de motores se divide a su vez en dos tipos, unipolares y bipolares y lo que los diferencia es la manera de usar las dos bobinas.
+
+\bigskip
+
+\textbf{\underline{Unipolar:}}
+
+La única diferencia con los motores bipolares es que a la mitad de la bobina hay una conexión denominada común. Esta se conecta a una fuente de tensión y mediante la conmutación a masa en los otros dos extremos de la bobina, se generan campos que atraen el imán. Por lo tanto estos motores pueden tener 5 o 6 cables dependiendo si los terminales "común" esta unidos internamente o no.
+
+La ventaja de estos motores es su sencillez de manejo. La desventaja es que producen poco par.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/unipolar}  
+        \caption{Esquema de un motor unipolar.}
+        \label{fig:cap6:unipolar}
+\end{figure}
+\FloatBarrier
+
+\textbf{Conclusión:} Motor apto para el proyecto.
+\bigskip
+
+\textbf{\underline{Bipolar:}} 
+
+Dado que solo tiene 4 conexiones, la única manera de invertir la polaridad de una bobina es invirtiendo el sentido de la corriente que circula por ella. Esto se consigue con un puente H para cada bobina, por lo tanto para excitar este tipo de motores hace falta un circuito que integre dos puentes H. La ventaja de estos motores es que generan mas par que los unipolares pero a costa de una dificultad mayor en el manejo.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/bipolar}  
+        \caption{Esquema de un motor bipolar.}
+        \label{fig:cap6:bipolar}
+\end{figure}
+\FloatBarrier
+\textbf{Conclusión:} Motor apto para el proyecto.
+\bigskip
+
+Dado que los motores paso a paso se usan excitando una bobina cada vez, el consumo se reduce.
+\bigskip
+
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{||l | c | c | c | r||}
+\hline
+\hline
+Tipo de motor & Consumo & Tamaño & Par &¿Es adecuado?\\
+\hline
+C. Continua & No & Si & Si & Si\\
+\hline
+BLDC & No & No & Si & No\\
+\hline
+Unipolar & Si & Si & No & Si\\
+\hline
+Bipolar & Si & Si & Si & Si\\
+\hline
+
+
+
+\end{tabular}
+\caption{Tabla comparativa de motores.}
+\label{tab:cap4:motores aptos}
+\end{center}
+\end{table}
 
 
 %-------------------------------------------------------------------
-\section{chargerSHIELD performance test}
+\section{Micro controlador}
 %-------------------------------------------------------------------
-\label{cap6:sec:charger}
+\label{cap6:sec:micro}
 %-------------------------------------------------------------------
 
 
