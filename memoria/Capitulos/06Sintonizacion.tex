@@ -668,11 +668,122 @@ Bipolar & Si & Si & Si & Si\\
 
 
 %-------------------------------------------------------------------
+\section{Circuitos controladores de motores}
+%-------------------------------------------------------------------
+\label{cap6:sec:integrados}
+%-------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------
 \section{Micro controlador}
 %-------------------------------------------------------------------
 \label{cap6:sec:micro}
 %-------------------------------------------------------------------
 
+La inteligencia del sistema va a residir en el micro-controlador. Va ser el encargado de ejecutar los algoritmos propuestos.
+
+A continuación se va a realizar un estudio de los microcontroladores disponibles y su idoneidad para este proyecto:
+
+\subsection{Estudio de micro-controladores}
+
+El primer paso es dimensionar el micro, estimar la potencia de calculo, el consumo y el número de pines de entrada/salida necesarios para el proyecto. 
+\bigskip
+
+En cuanto la potencia de calculo, dado los algoritmos simples que se han propuesto, no va ser necesario que sea muy elevada y puesto que el proyecto se basa en la generación de energía, se buscará un micro de bajo consumo.
+\bigskip
+
+La familia de 8 bits de Microchip\textregistered
+ va a satisfacer estas necesidades.
+Los controladores que encontramos aquí van desde el PIC 10, el mas bajo de la gama hasta el PIC 16.
+
+\subsubsection{PIC 10LF320}
+
+El primer microcontrolador que se estudia es el PIC 10LF320. 
+\bigskip
+
+Este micro tiene un consumo mínimo: 25$\mu$A alimentado a 1,8V.
+
+Su frecuencia de funcionamiento es de 16MHz lo que da la suficiente capacidad de calculo para poder implementar los algoritmos propuestos.
+\bigskip
+
+Sin embargo se ha detectado que la memoria de programa es muy limitada (512 palabras), llenándose casi por completo con el algoritmo más básico lo que ha sido suficiente para causar su descarte y el paso a un micro con mas memoria.
+
+\textbf{\underline{Conclusión del estudio:}}
+\bigskip
+
+Aunque el micro cumple con las especificaciones de potencia y consumo, su \textbf{limitada memoria de programa} hace que se busque el siguiente micro en la serie PIC 12 donde se puede encontrar uno con la suficiente memoria.
+
+\subsubsection{PIC 12LF1571}
+
+Los micros de la serie PIC 12 tienen mas memoria y su consumo aumenta ligeramente.
+
+En concreto se ha seleccionado el PIC 12LF1571, cuyo consumo es 30$\mu$A a 1,8V.
+
+La memoria de programa es en este caso de casi 2000 palabras, 4 veces mas que en caso anterior.
+Se han cargado varios algoritmos y se ha comprobado que este espacio es suficiente incluso si se quisiese aumentar el tamaño del programa, por lo tanto se ha alcanzado el objetivo del tamaño de la memoria.
+
+Llegados a este punto hay que tomar una decisión en cuanto al numero de pines de entrada/salida necesarios. Este micro dispone de 5 pines, hay que ver si son suficientes o es necesario buscar un micro con más.
+\bigskip
+
+Como se ha visto se dispone de circuitos integrados controladores de motores de continua  y de motores paso a paso unipolares y bipolares.
+
+Ya solo el integrado DRV8833 necesita 5 pines para su funcionamiento lo que nos dejaría sin pines de entrada en el micro para hacer las capturas de energía producida por el generador.
+
+Aunque en un caso de producto final la solución podría ser tan fácil como multiplexar un pin en el tiempo (para hacer medidas y para mover el motor), esto es un proyecto didáctico, y se ha decidido buscar un micro con mas pines, para que se puedan incorporar mas funcionalidades en un futuro y sea mas fácil la depuración del código de los algoritmos.
+
+\textbf{\underline{Conclusión del estudio:}}
+\bigskip
+
+Aunque este micro es valido para el proyecto, en aras de conseguir un sistema más didáctico, se va a buscar un micro con mas pines de entrada/salida. El siguiente paso lógico, por tanto, será ir a la serie PIC 16, con mas pines que la serie PIC 12.
+
+\subsubsection{PIC 16LF1503}
+
+el inconveniente que presenta es su limitado número de pines de entrada/salida contando solo con 3.
+Llegado este punto se hace necesaria la toma de una decisión respecto al compromiso consumo/funcionalidad. Si el objeto de este proyecto  fuese un sistema final, sin duda este sería el controlador adecuado porque ante la falta de pines de I/O , estos se podrían multiplexar en el tiempo, por código. Sin embargo, para la construcción de una primera placa, se opta por un micro controlador con más salidas, que permita la construcción de una placa con mayor flexibilidad el en diseño y en la realización escenarios para realizar los test del prototipo.
+Este nuevo controlador es el PIC16LF1503 también de bajo consumo. En lugar de 3 pines hábiles dispone de 11 y su consumo aumenta ligeramente hasta 30uA@1,8V.
+Implementacion de los algoritmos
+Algoritmos de captura:
+La primera funcionalidad que hay que implementar es la captura de la señal de entrada para saber si el generador esta sintonizado. Como ya se ha expuesto esta señal puede obtenerse de dos puntos.
+Directamente de la salida de la bobina o a la salida del multiplicador.
+Medida a la salida de la bobina.
+La señal en este punto es de la forma:
+[imagen de la señal producida por la bobina]
+En este caso y suponiendo que el nivel de tensión de pico fuese suficiente para ser detectado por el PIC,  bastaría implementar un modo de captura que cuando detecte una caída de ese nivel, lo interprete como una desintonización. Sin embargo, en cada periodo habrá una caída por lo que detectaría desintonizaciones falsas.
+Este problema se soluciona mediante la inclusión del concepto de frecuencia. Sabiendo la frecuencia de la señal producida, se puede implementar una captura que detecte desintonización cuando la caída de tensión dure mas de un periodo. Pero por la misma razón que no se podían adaptar impedancias en el capitulo 4, este método aquí no es implementable de forma inmediata dado que la frecuencia de trabajo no es única y para cada movimiento del sintonizador habría que reajustar la duración del periodo para la medida.
+Aunque la realización de este método es posible como sigue:
+Mediante la inclusión en el programa de la formula de la frecuencia de resonancia y estableciendo una relaccion entre el tiempo que gira el motor y la distancia que se mueve el sintonizador. De esta manera a cada orden de mover el motor, se reajustaría una variable que contendría la longitud efectiva de la lámina y a partir de esta se calcularía la nueva frecuencia de resonancia y por lo tanto el periodo de medida. 
+Seria además necesaria una inicialización manual para establecer la frecuencia inicial para que el micro controlador supiese a partir de donde tiene que trabajar.
+Realizar la medida en este punto tiene una ventaja importante sobre realizarla tras el multiplicador, y es la inmediatez tanto de la subida como de la caída de la señal. Por lo que la detección de la sintonización y de la desintonizacion seria inmediata.
+//tabla con las ventaja y desventajas de este método
+//desv: poco nivel, complejidad en el código
+//vent: inmediatez en la caída subida
+Medida a la salida del multiplicador:
+En este punto tiene un nivel de continua alto. Del orden de la alimentación del micro. Por lo tanto realizar la medida aquí es bastante simple.
+
+Modos de medida [ADC / Comparador]
+El micro controlador proporciona dos módulos para la medición de señales externas. Estos son el conversor analógico digital (ADC) y el comparador.
+Conversor analógico digital:
+Convierte una señal analógica en una representación binaria de esa señal en 10 bits.
+Algoritmos de sintonización.
+Caracteristicas principales:
+Pines de entrada/salida: 12
+Tension de alimentación: 1.8V-3.6V
+Oscilador interno: 16MHz
+Maxima corriente de salida: 25mA.
+Consumo en uso: 30uA @ 1,8V
+Consumo en reposo: 20nA @ 1,8V
+ADC: 10 bits de resolución.
+Modulos PWM: 4.
+//foto del susodicho PIC
 
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
