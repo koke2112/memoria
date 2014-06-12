@@ -104,7 +104,11 @@ En esta caso, el circuito es el generador, en concreto la lámina, que como ya he
 Y la frecuencia a la que hay que llegar es la frecuencia de vibración del entorno en el que se encuentre el generador.
 
 \textbf{\underline{Calculo teórico de la frecuencia de resonancia de la lámina.}}
-$$f_{r}=\frac{1}{2\pi}\sqrt{\frac{K}{m}}$$
+\begin{equation}
+f_{r}=\frac{1}{2\pi}\sqrt{\frac{K}{m}}
+\label{cap6:equation:fresonancia}
+\end{equation}
+
 
 $f_{r}:$Frecuencia de resonancia.[Hz]
 
@@ -304,46 +308,7 @@ Volviendo a la tabla \ref{fig:cap6:maneras} se aprecia que los métodos de sinton
 %-------------------------------------------------------------------
 Para maximizar la generación de energía hace falta implementar un sistema que sea capaz de decidir si la frecuencia de resonancia del sistema coincide con la del entorno y en función de esto tomar las medidas necesarias para sintonizarlo de forma eficiente. El núcleo de este sistema estará formado por un micro controlador PIC de microchip encargado de la ejecución de algoritmo que derivaran en el sintonizado del sistema.
 
-\subsection{Micro controlador}
-
-
-Siguiendo la línea del bajo consumo que se quiere alcanzar, este micro controlador tiene que tener unas características tales que maximicen su utilidad y minimicen el consumo.
-
-Su funcionamiento básico es como sigue:
-\begin{itemize}
-\item Mide la energía que se está produciendo en cada momento.
-\item Comprueba si es máxima, (generador sintonizado) o no.
-\item Si no está sintonizado ejecuta el algoritmo encargado de colocar el sintonizador en la posición de máxima producción de energía
-\end{itemize}
-
-Dado el uso tan específico que se va a hacer de estos controladores,  como primera decisión en esta parte del proyecto se opta por la familia de PICs de 8 bits de microchip.
-
-La mayoría de controladores de esta familia disponen de ADC, comparadores, señales PWM y distinto numero de pines digitales de entrada/salida, lo que va a ser suficiente para el control del dispositivo. Como ventaja añadida, esta familia de 8 bits proporciona unas características de bajo consumo que van a ser muy útiles para aumentar la eficiencia del sistema.
-
-
-\subsection{Medida de la señal producida}
-El generador sintonizado produce una tensión que puede ser fácilmente medida, de esta manera, se puede identificar una situación de desintonizado mediante la detección de la caída en la tensión que está generando.  Este método es trivial puesto que por la alta Q que presentan estos generadores, una mínima desviación en la frecuencia de vibración, produciría una súbita caída en la tensión generada.
-Por otro lado hay dos puntos de donde se puede extraer y medir esta señal. El primero es a la salida de la bobina (figura \ref{fig:cap5:villardin}) y el segundo es a la salida del multiplicador de Villard (figura \ref{fig:cap5:villardout}).
-\bigskip
-
-\underline{Salida de la bobina:} Como se ve en la figura \ref{fig:cap5:villardin}, en este punto la señal , alterna centrada en 0, presenta dificultades para su captura por dos razones:
-\bigskip
-
-La frecuencia de esta señal, es la frecuencia de resonancia del generador y por lo tanto variable. De esta manera no se sabe que tipo de señal se espera medir.
-
-\bigskip
-
-El otro motivo es el poco nivel de tensión que presenta.
-
-Estas dos razones hacen que medir en este punto con un micro-controlador sea mas difícil que la otra alternativa.
-\bigskip
-
-\underline{Salida del multiplicador:} En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas.
-En la sección [microcontrolador el como] se discute esto en profundidad.
-
-\subsection{Algoritmos}
-
-Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir esto son los algoritmos.
+Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir este objetivo son en gran parte los algoritmos.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/algoritmo_ejemplo}  
@@ -352,7 +317,7 @@ Si antes se ha comentado que lo más importante del proyecto es la sintonización 
 \end{figure}
 \FloatBarrier
 
-Llegados a este punto hay que diferenciar entre dos conceptos importantes, ambos asociados a unos algoritmos que les darán eficiencia.
+Llegados a este punto hay que diferenciar entre dos conceptos importantes, cada uno asociado a un algoritmo distinto.
 \bigskip
 
 \textbf{El primero} de ellos son los algoritmos de captura de señal y su interpretación que darán lugar a la identificación de una situación de sintonización o su opuesta. Serán llamados algoritmos de captura.
@@ -367,9 +332,39 @@ Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sin
 
 
 Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior [micro controlador al final] se estudiará la implementación.
-\subsection{Algoritmos de captura:}
 
-Aquí se exponen los modos que se han propuesto para detectar una situación de desintonzado lo mas eficientemente posible.
+
+
+
+
+
+
+
+\subsection{Algoritmos de captura:}
+\label{cap6:subsec:propone_captura}
+Aquí se exponen los modos que se han propuesto para detectar una situación de desintonzado lo mas eficientemente posible. Pero lo primero es decidir donde se va a medir la energía producida.
+\subsubsection{Medida de la señal producida}
+El generador sintonizado produce una tensión que puede ser fácilmente medida, de esta manera, se puede identificar una situación de desintonizado mediante la detección de la caída en la tensión que está generando.  Este método es trivial puesto que por la alta Q que presentan estos generadores, una mínima desviación en la frecuencia de vibración, produciría una súbita caída en la tensión generada.
+Por otro lado hay dos puntos de donde se puede extraer y medir esta señal. El primero es a la salida de la bobina (figura \ref{fig:cap5:villardin}) y el segundo es a la salida del multiplicador de Villard (figura \ref{fig:cap5:villardout}).
+\bigskip
+
+\underline{Salida de la bobina:} Como se ve en la figura \ref{fig:cap5:villardin}, en este punto la señal , alterna centrada en 0, presenta dificultades para su captura por dos razones:
+\bigskip
+
+La frecuencia de esta señal, es la frecuencia de resonancia del generador y por lo tanto variable. De esta manera es difícil sabe que tipo de señal (periodo) se espera medir en cada momento.
+
+\bigskip
+
+El otro motivo es el poco nivel de tensión que presenta.
+
+Estas dos razones hacen que medir en este punto con un micro-controlador sea mas difícil que la otra alternativa.
+\bigskip
+
+\underline{Salida del multiplicador:} En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas sin embargo el uso de condensadores provoca que la caída de la señal, cuando el generador se desintoniza, no sea inmediata, lo que provoca problemas para detectar con rapidez esta situación.
+
+\bigskip
+
+En la sección \ref{cap6:subsubsec:implementacion} se proponen modos de implementar ambas opciones con un micro-controlador real.
 
 \subsubsection{Algoritmo de captura 1: Medidas periódicas.}
 Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una primera aproximación que puede ser implementada.
@@ -409,7 +404,7 @@ Esta filosofía es óptima cuando el sistema está la mayor parte del tiempo sinton
 
 
 \subsection{Algoritmos de sintonización:}
-
+\label{cap6:subsec:propone_sinto}
 Una vez que se sabe que el sistema no trabaja a la frecuencia del entorno hay que lanzar los algoritmos de sintonizado para reajustar la frecuencia de resonancia.
 
 Estos algoritmos no son más que la manera de mover el sintonizador para conseguir la sintonización en el menor tiempo posible y con el menor gasto de energía posible.
@@ -668,7 +663,7 @@ Bipolar & Si & Si & Si & Si\\
 
 
 %-------------------------------------------------------------------
-\section{Circuitos controladores de motores}
+\subsection{Circuitos controladores de motores}
 %-------------------------------------------------------------------
 \label{cap6:sec:integrados}
 %-------------------------------------------------------------------
@@ -684,16 +679,25 @@ Bipolar & Si & Si & Si & Si\\
 
 
 %-------------------------------------------------------------------
-\section{Micro controlador}
+\subsection{Micro controlador}
 %-------------------------------------------------------------------
 \label{cap6:sec:micro}
 %-------------------------------------------------------------------
 
 La inteligencia del sistema va a residir en el micro-controlador. Va ser el encargado de ejecutar los algoritmos propuestos.
 
+Siguiendo la línea del bajo consumo que se quiere alcanzar, este micro controlador tiene que tener unas características tales que maximicen su utilidad y minimicen el consumo.
+
+Su funcionamiento básico será como sigue:
+\begin{itemize}
+\item Mide la energía que se está produciendo en cada momento.
+\item Comprueba si es máxima, (generador sintonizado) o no.
+\item Si no está sintonizado ejecuta el algoritmo encargado de colocar el sintonizador en la posición de máxima producción de energía
+\end{itemize}
 A continuación se va a realizar un estudio de los microcontroladores disponibles y su idoneidad para este proyecto:
 
-\subsection{Estudio de micro-controladores}
+%\subsection{Estudio de micro-controladores}
+\bigskip
 
 El primer paso es dimensionar el micro, estimar la potencia de calculo, el consumo y el número de pines de entrada/salida necesarios para el proyecto. 
 \bigskip
@@ -701,9 +705,13 @@ El primer paso es dimensionar el micro, estimar la potencia de calculo, el consu
 En cuanto la potencia de calculo, dado los algoritmos simples que se han propuesto, no va ser necesario que sea muy elevada y puesto que el proyecto se basa en la generación de energía, se buscará un micro de bajo consumo.
 \bigskip
 
-La familia de 8 bits de Microchip\textregistered
- va a satisfacer estas necesidades.
+Dado el uso tan específico que se va a hacer de estos controladores, y siguiendo el camino del bajo consumo, como primera decisión en esta parte del proyecto se opta por la familia de PICs de 8 bits de Microchip\textregistered.
+
+La mayoría de controladores de esta familia disponen de ADC, comparadores, señales PWM y distinto numero de pines digitales de entrada/salida, lo que va a ser suficiente para el control del dispositivo.
+
 Los controladores que encontramos aquí van desde el PIC 10, el mas bajo de la gama hasta el PIC 16.
+
+
 
 \subsubsection{PIC 10LF320}
 
@@ -743,47 +751,136 @@ Aunque en un caso de producto final la solución podría ser tan fácil como multip
 \textbf{\underline{Conclusión del estudio:}}
 \bigskip
 
-Aunque este micro es valido para el proyecto, en aras de conseguir un sistema más didáctico, se va a buscar un micro con mas pines de entrada/salida. El siguiente paso lógico, por tanto, será ir a la serie PIC 16, con mas pines que la serie PIC 12.
+Aunque este micro es valido para el proyecto, en aras de conseguir un sistema más didáctico, se va a buscar un micro con mas pines de entrada/salida para aumentar la flexibilidad de la solución final. El siguiente paso lógico, por tanto, será ir a la serie PIC 16, con mas pines que la serie PIC 12.
 
 \subsubsection{PIC 16LF1503}
 
-el inconveniente que presenta es su limitado número de pines de entrada/salida contando solo con 3.
-Llegado este punto se hace necesaria la toma de una decisión respecto al compromiso consumo/funcionalidad. Si el objeto de este proyecto  fuese un sistema final, sin duda este sería el controlador adecuado porque ante la falta de pines de I/O , estos se podrían multiplexar en el tiempo, por código. Sin embargo, para la construcción de una primera placa, se opta por un micro controlador con más salidas, que permita la construcción de una placa con mayor flexibilidad el en diseño y en la realización escenarios para realizar los test del prototipo.
-Este nuevo controlador es el PIC16LF1503 también de bajo consumo. En lugar de 3 pines hábiles dispone de 11 y su consumo aumenta ligeramente hasta 30uA@1,8V.
-Implementacion de los algoritmos
-Algoritmos de captura:
+Se ha llegado a este microcontrolador en la búsqueda de uno con mas pines que el PIC 12LF1571.
+
+Este en concreto dispone de 11 pines de entrada/salida lo que proporciona una flexibilidad mayor que teniendo los pines limitados.
+
+
+Su consumo es el mismo que el del PIC 12, 30$\mu$A a 1,8V y la frecuencia de trabajo se mantiene a 16MHz.
+
+La memoria de programa es de 2048 palabras y la RAM es de 735 bytes, siendo de los tres vistos, es que mejor características presenta.
+
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{||l | c | c | c||}
+\hline
+\hline
+Micro-controlador & Consumo ($\mu$A @1.8V) & Pines I/O &  Memoria flash (palabras)\\
+\hline
+PIC 10LF320 & 25 & 3  &512\\
+\hline
+PIC 12LF1571 & 30 & 5  &2000\\
+\hline
+PIC 16LF1503 & 30 & 11  &2048\\
+\hline
+
+\end{tabular}
+\caption{Comparación de Micro-controladores.}
+\label{tab:cap4:micros}
+\end{center}
+\end{table}
+
+
+
+
+\subsubsection{Implementación de los algoritmos}
+
+\label{cap6:subsubsec:implementacion}
+En el apartado \ref{cap6:subsec:propone_captura} se propusieron los métodos de monitorización de la energía producida para detectar un cambio en la frecuencia del entorno y actuar en consecuencia, pero será en esta sección donde se expondrá como se han implementado y programado en el micro-controlador.
+\bigskip
+
+
+
+\textbf{\underline{Algoritmos de captura:}}
+\bigskip
+
 La primera funcionalidad que hay que implementar es la captura de la señal de entrada para saber si el generador esta sintonizado. Como ya se ha expuesto esta señal puede obtenerse de dos puntos.
 Directamente de la salida de la bobina o a la salida del multiplicador.
-Medida a la salida de la bobina.
-La señal en este punto es de la forma:
-[imagen de la señal producida por la bobina]
-En este caso y suponiendo que el nivel de tensión de pico fuese suficiente para ser detectado por el PIC,  bastaría implementar un modo de captura que cuando detecte una caída de ese nivel, lo interprete como una desintonización. Sin embargo, en cada periodo habrá una caída por lo que detectaría desintonizaciones falsas.
-Este problema se soluciona mediante la inclusión del concepto de frecuencia. Sabiendo la frecuencia de la señal producida, se puede implementar una captura que detecte desintonización cuando la caída de tensión dure mas de un periodo. Pero por la misma razón que no se podían adaptar impedancias en el capitulo 4, este método aquí no es implementable de forma inmediata dado que la frecuencia de trabajo no es única y para cada movimiento del sintonizador habría que reajustar la duración del periodo para la medida.
-Aunque la realización de este método es posible como sigue:
-Mediante la inclusión en el programa de la formula de la frecuencia de resonancia y estableciendo una relaccion entre el tiempo que gira el motor y la distancia que se mueve el sintonizador. De esta manera a cada orden de mover el motor, se reajustaría una variable que contendría la longitud efectiva de la lámina y a partir de esta se calcularía la nueva frecuencia de resonancia y por lo tanto el periodo de medida. 
-Seria además necesaria una inicialización manual para establecer la frecuencia inicial para que el micro controlador supiese a partir de donde tiene que trabajar.
-Realizar la medida en este punto tiene una ventaja importante sobre realizarla tras el multiplicador, y es la inmediatez tanto de la subida como de la caída de la señal. Por lo que la detección de la sintonización y de la desintonizacion seria inmediata.
-//tabla con las ventaja y desventajas de este método
-//desv: poco nivel, complejidad en el código
-//vent: inmediatez en la caída subida
-Medida a la salida del multiplicador:
-En este punto tiene un nivel de continua alto. Del orden de la alimentación del micro. Por lo tanto realizar la medida aquí es bastante simple.
+\bigskip
 
-Modos de medida [ADC / Comparador]
-El micro controlador proporciona dos módulos para la medición de señales externas. Estos son el conversor analógico digital (ADC) y el comparador.
-Conversor analógico digital:
-Convierte una señal analógica en una representación binaria de esa señal en 10 bits.
-Algoritmos de sintonización.
-Caracteristicas principales:
-Pines de entrada/salida: 12
-Tension de alimentación: 1.8V-3.6V
-Oscilador interno: 16MHz
-Maxima corriente de salida: 25mA.
-Consumo en uso: 30uA @ 1,8V
-Consumo en reposo: 20nA @ 1,8V
-ADC: 10 bits de resolución.
-Modulos PWM: 4.
-//foto del susodicho PIC
+\textbf{Medida a la salida de la bobina:}
+
+La señal en este punto es de la forma mostrada en la figura \ref{fig:cap5:villardin}.
+\bigskip
+
+En este caso y suponiendo que el nivel de tensión de pico fuese suficiente para ser detectado por el PIC,  bastaría implementar un modo de captura para que cuando detecte una caída de ese nivel, lo interprete como una desintonización. \textbf{Sin embargo, en cada periodo habrá una caída por lo que detectaría des-sintonizaciones falsas.}
+\bigskip
+
+
+Este problema se soluciona mediante la inclusión del concepto de frecuencia. Sabiendo la frecuencia de la señal producida, se puede implementar una captura que detecte desintonización cuando la caída de tensión dure mas de un periodo. Pero por la misma razón por la que no se podían adaptar impedancias siempre en \ref{cap5:sec:adaptacion}, este método aquí no es implementable de forma inmediata dado que \textbf{la frecuencia de trabajo no es única, cambia con cada nueva sintonización.}
+\bigskip
+
+
+La solución de este nuevo problema es como sigue:
+
+Mediante la inclusión en el programa de la formula de la frecuencia de resonancia (\ref{cap6:equation:fresonancia}) y estableciendo una relación entre el tiempo de giro del motor y la distancia que se mueve el sintonizador, el microcontrolador puede estimar en todo momento a que frecuencia esta trabajando el sistema y en función de ella calcular el periodo de la señal que tiene que medir.
+
+
+Sería además necesaria una inicialización siempre en la misma posición para fijar la frecuencia inicial para que el micro controlador supiese a partir de donde tiene que empezar a trabajar.
+\bigskip
+
+Por tanto el proceso quedaría así:
+\begin{enumerate}
+\item Mediante la fórmula de la frecuencia de resonancia estimar a que frecuencia se esta trabajando.
+\item Detectar si la señal medida supera un cierto umbral prefijado.
+\item Volver a medir y ver si en un tiempo cercano a un periodo, la señal vuelve a superar el umbral
+\item Si en ese tiempo no se ha detectado señal, se supone situación de desintonizado.
+\item Tras ejecutar el algoritmo de sintonización se reajusta la frecuencia y se vuelven a tomar capturas con el nuevo periodo supuesto.
+\end{enumerate}
+
+Realizar la medida en este punto tiene una ventaja importante sobre realizarla tras el multiplicador, y es la inmediatez tanto de la subida como de la caída de la señal. Por lo que la detección de la sintonización y de la desintonización sería inmediata.
+\bigskip
+
+
+\bigskip
+\begin{itemize}
+\item \textit{Ventajas:}
+
+Rapidez en la detección tanto de sintonización como de desintonización.
+\item \textit{Desventajas:}
+
+Alta dificultad en la implementación.
+\medskip
+Poco nivel de tensión en la señal.
+\end{itemize}
+
+
+\bigskip
+
+\textbf{Medida a la salida del multiplicador:}
+\bigskip
+
+En este punto tiene un nivel de continua alto. Del orden de la alimentación del micro (3-5V). Por lo tanto realizar la medida aquí es bastante simple.
+\bigskip
+
+Para realizar esta medida se pueden emplear dos módulos del microcontrolador:
+
+\begin{enumerate}
+\item \textbf{Conversor analógico/digital:} Convierte una señal analógica en una representación binaria de esa señal en 10 bits. Una vez obtenida se pude usar para estimar si es suficiente para considerar que el generador esta sintonizado.
+\item \textbf{Comparador:} Se fija una tensión de referencia, y si la señal que se esta midiendo cae por debajo del umbral en algún momento, se puede considerar que el generador se ha desintonizado.
+\end{enumerate}
+\bigskip
+
+\begin{itemize}
+\item \textit{Ventajas:}
+
+Facilidad en la captura y medida de la señal.
+\item \textit{Desventajas:}
+
+Poca capacidad de reacción a la caída de señal puesto que los condensadores que conforman el multiplicador impiden que el nivel de la señal caiga bruscamente.
+\end{itemize}
+
+\bigskip
+
+\textbf{\underline{Algoritmos de sintonización:}}
+\bigskip
+
+
+
 
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
