@@ -5,7 +5,7 @@
 %---------------------------------------------------------------------
 
 \chapter{Sintonización}
-
+\label{cap6}
 %\begin{FraseCelebre}
 %\begin{Frase}
 %She's up all night to the sun\\
@@ -34,7 +34,7 @@ En concreto para este generador la mejor opción de sintonización pasa por modifi
 %-------------------------------------------------------------------
 \section{Sintonización}
 %-------------------------------------------------------------------
-\label{cap6:sec:computing}
+\label{cap6:sec:sinto}
 %-------------------------------------------------------------------
 
 
@@ -292,17 +292,19 @@ La primera opción que se plantea es el uso de micro-motores. Los distintos tipo 
 El problema que se presenta es que con los micro-motores se consigue producir movimiento, pero este movimiento es circular, hay que encontrar una manera de transformarlo en movimiento lineal.
 
 \subsection{Solución al movimiento circular}
-
+\label{cap6:subsec:sinfin}
 
 Tras barajar varias opciones,  (correa pasadora,  engranajes) la manera que se ha pensado que es mas efectiva es mediante  un tornillo sin fin conectado a la vez al motor y al sintonizador.
 De esta manera, mediante el giro del motor, gira el tornillo, y este a su vez, convierte el movimiento circular en lineal al pasar por una tuerca incrustada en el sintonizador.
+
+El tornillo empleado para este proyecto será de métrica 4 con un paso de 0.7mm.
 \bigskip
 
 Volviendo a la tabla \ref{fig:cap6:maneras} se aprecia que los métodos de sintonización mecánica, en concreto cambiar las dimensiones, como es el método que aquí se utiliza, no son aplicables mientras el generador esta funcionando, sin embargo mediante la técnica aquí presentada del sintonizador, ese problema desaparece y el generador puede ser sintonizado aun cuando esta activo. Esta es la mejora principal conseguida con este proyecto.
 \bigskip
 
 %-------------------------------------------------------------------
-\section{Algoritmos de funcionamiento}
+\section{Propuesta de algoritmos de funcionamiento}
 %-------------------------------------------------------------------
 \label{cap6:sec:algoritmos}
 %-------------------------------------------------------------------
@@ -543,7 +545,7 @@ Se tratará:
 
 
 \subsection{Motores}
-
+\label{cap6:subsec:motor}
 Llegados a este punto, ya esta diseñado el sintonizador, pero resta implementar el medio físico que lo desplace. El actuador más lógico seria un motor eléctrico y dado que se está generando una tensión continua, un motor eléctrico de corriente continua.
 
 
@@ -653,31 +655,164 @@ Unipolar & Si & Si & No & Si\\
 Bipolar & Si & Si & Si & Si\\
 \hline
 
-
-
 \end{tabular}
 \caption{Tabla comparativa de motores.}
 \label{tab:cap4:motores aptos}
 \end{center}
 \end{table}
 
+\subsubsection{Motores disponibles}
+\label{cap6:subsubsec:disponibles}
+Tras una búsqueda de los motores mas apropiados se han seleccionado los siguientes para las pruebas:
 
+\textbf{\underline{Motores de corriente continua:}}
+
+Para estos motores se ha recurrido al fabricante Precision Microdrivers \cite{precisionmicro}.
+
+En concreto se han adquirido los siguientes motores:
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{||l | c | c||}
+\hline
+\hline
+Motor & Consumo (V)& R.P.M  \\
+\hline
+210-002 & 2.5 & 58\\
+\hline
+210-008 & 2.5 & 42\\
+\hline
+206-108 & 3 & 28\\
+\hline
+206-109 & 3 & 140\\
+\hline
+\end{tabular}
+\caption{Motores comprados en \cite{precisionmicro}.}
+\label{tab:cap4:motores aptos}
+\end{center}
+\end{table}
+
+Las caracteristicas de estos motores se pueden consultar en el anexo [PONER EL ANEXO DONDE LAS DATASHEETS DE LOS MOTORES]
+\bigskip
+
+\textbf{\underline{Motor paso a paso unipolar:}}
+
+Unipolar de 6 hilos ( el común de las dos bobinas esta separado) y 3Vdc.
+\bigskip
+
+\textbf{\underline{Motor paso a paso bipolar:}}
+Bipolar de 4 hilos de Cannon. 3Vdc.
+
+Diámetro del eje: 1,5mm.
+
+Tamaño: 7mmX6mm.
 %-------------------------------------------------------------------
 \subsection{Circuitos controladores de motores}
 %-------------------------------------------------------------------
 \label{cap6:sec:integrados}
 %-------------------------------------------------------------------
 
+Dado que los distintos tipos de motores que se van a emplear (c. continua, unipolares y bipolares)  necesitan distintos circuitos controladores hay que buscar distintos integrados que nos proporcionen estas funciones.
+
+La mayoría de estos circuitos se compone de puentes H.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap6/hbridge}  
+        \caption{Puente H.}
+        \label{fig:cap6:puenteH}
+\end{figure}
+\FloatBarrier
+
+El puente H de la imagen \ref{fig:cap6:puenteH} es un circuito simplificado implementado con interruptores pero se ve la idea claramente. 
+
+\begin{itemize}
+\item Si B1 y B2 están abiertos y A1 y A2 cerrados (izquierda), el motor gira en un sentido. 
+\item Si B1 y B2 están cerrados y A1 y A2 abiertos (derecha), el motor gira en el otro sentido.
+\item Si A1 y B2 están abiertos, el motor gira libremente.
+\item Si A1 y B2 están cerrados, el motor esta bloqueado y no se puede mover.
+\end{itemize}
+
+Los puentes H que integran los circuitos que se van a emplear están construidos con transistores como se ve en \ref{fig:cap6:puenteH2}.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/hbridge2}  
+        \caption{Puente H de transistores.}
+        \label{fig:cap6:puenteH2}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Controlador de motores de continua}
+
+Estos motores por su construcción, necesitan un puente H para controlar el sentido de giro puesto que cuentan con una sola bobina, y según el sentido de circulación de la corriente por ella, varía el sentido de giro del motor.
+
+\subsubsection{Controlador de motores unipolares}
+
+Según se ve en la figura \ref{fig:cap6:unipolar} el funcionamiento de estos motores no se realiza mediante un puente H.
+
+Se conecta el común a una fuente de tensión, y se conmutan los restantes 4 extremos de las bobinas a tierra secuencialmente para que se desplace paso a paso.
+
+Esta función se realiza mediante un circuito encoder que conecte los extremos de las bobinas a tierra.
+
+\subsubsection{Controlador de motores Bipolares}
+
+Puesto que estos motores no tienen terminal común no se pueden usar como los unipolares. Es necesario invertir la corriente por las bobinas con puentes H. Puesto que están formados por dos bobinas, serán necesarios dos puentes H.
+
+\subsubsection{Controlador DRV8833}
+\label{cap6:subsubsec:drv8833}
+Este circuito es un driver que tiene internamente dos puentes H por lo que se puede emplear tanto para mover un motor de continua (usando solamente uno de los puentes) como un bipolar.
 
 
 
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap6/8833}  
+        \caption{Diagrama interno del DRV8833.}
+        \label{fig:cap6:8833}
+\end{figure}
+\FloatBarrier
+
+Tiene 4 entradas digitales (AIN1, AIN2, BIN1 y BIN2). AIN1 y AIN2 controlan un puente H y BIN1 y BIN2 controlan el otro puente.
+
+Tiene una quinta entrada que es la señal de $\overline{sleep}$. La usaremos para apagar el driver cuando no se este usando y reducir el consumo.
+\bigskip
+
+\textbf{\underline{Conclusión:}}
+
+Este integrado será usado tanto para los motores de corriente continua como para los paso a paso bipolares.
 
 
 
+\subsubsection{Controlador ULN2003A}
+
+Es un array de transistores Darlington. Según se estimule la entrada, conecta una u otra de sus salidas a tierra, convirtiendo este pin en un sumidero de corriente. Este funcionamiento es lo que buscábamos para poder usar un motor paso a paso unipolar.
+
+
+\begin{figure}[!h]
+        \centering
+        \subfloat[Diagrama lógico del ULN2003.]{\label{fig:cap4:2003a}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/20032}} 
+        \qquad
+		\subfloat[Uno de los 7 pares Darlington.]{\label{fig:cap4:2003b}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap6/2003}}
+\caption{ULN2003.}
+        \label{fig:cap4:2003}
+\end{figure}
+\FloatBarrier
+
+Para usar un motor unipolar con este integrado solo necesitamos los 4 primeros pares Darlington. Cada uno conectado a un extremo de bobina.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap6/uln2003}  
+        \caption{Conexión del motor unipolar.}
+        \label{fig:cap6:2003uni}
+\end{figure}
+\FloatBarrier
 
 
 
+\textbf{\underline{Conclusión:}}
 
+Este integrado será usado para los motores paso a paso unipolares.
 %-------------------------------------------------------------------
 \subsection{Micro controlador}
 %-------------------------------------------------------------------
@@ -723,6 +858,7 @@ Este micro tiene un consumo mínimo: 25$\mu$A alimentado a 1,8V.
 Su frecuencia de funcionamiento es de 16MHz lo que da la suficiente capacidad de calculo para poder implementar los algoritmos propuestos.
 \bigskip
 
+\underline{Problema de memoria}
 Sin embargo se ha detectado que la memoria de programa es muy limitada (512 palabras), llenándose casi por completo con el algoritmo más básico lo que ha sido suficiente para causar su descarte y el paso a un micro con mas memoria.
 
 \textbf{\underline{Conclusión del estudio:}}
@@ -734,17 +870,19 @@ Aunque el micro cumple con las especificaciones de potencia y consumo, su \textb
 
 Los micros de la serie PIC 12 tienen mas memoria y su consumo aumenta ligeramente.
 
-En concreto se ha seleccionado el PIC 12LF1571, cuyo consumo es 30$\mu$A a 1,8V.
+En busca del objetivo de conseguir más memoria se ha seleccionado el PIC 12LF1571 con casi 2000 palabras en la memoria de programa, cuyo consumo es 30$\mu$A a 1,8V.
 
-La memoria de programa es en este caso de casi 2000 palabras, 4 veces mas que en caso anterior.
-Se han cargado varios algoritmos y se ha comprobado que este espacio es suficiente incluso si se quisiese aumentar el tamaño del programa, por lo tanto se ha alcanzado el objetivo del tamaño de la memoria.
+La memoria de programa es en este caso es 4 veces mas que en el caso anterior.
 
-Llegados a este punto hay que tomar una decisión en cuanto al numero de pines de entrada/salida necesarios. Este micro dispone de 5 pines, hay que ver si son suficientes o es necesario buscar un micro con más.
+Se han vuelto a cargar varios algoritmos y se ha comprobado que este espacio es suficiente incluso si se quisiese aumentar el tamaño del programa, por lo tanto se ha alcanzado el objetivo del tamaño de la memoria.
 \bigskip
 
-Como se ha visto se dispone de circuitos integrados controladores de motores de continua  y de motores paso a paso unipolares y bipolares.
+\underline{Problema de pines I/O}
 
-Ya solo el integrado DRV8833 necesita 5 pines para su funcionamiento lo que nos dejaría sin pines de entrada en el micro para hacer las capturas de energía producida por el generador.
+Llegados a este punto hay que tomar una decisión en cuanto al numero de pines de entrada/salida necesarios. Este micro dispone de 5 pines, hay que ver si son suficientes o es necesario buscar un micro-controlador con más.
+\bigskip
+
+Como se ha visto en \ref{cap6:subsubsec:drv8833}, ya solo el integrado DRV8833 necesita 5 pines para su funcionamiento lo que nos dejaría sin pines de entrada en el micro para hacer las capturas de energía producida por el generador.
 
 Aunque en un caso de producto final la solución podría ser tan fácil como multiplexar un pin en el tiempo (para hacer medidas y para mover el motor), esto es un proyecto didáctico, y se ha decidido buscar un micro con mas pines, para que se puedan incorporar mas funcionalidades en un futuro y sea mas fácil la depuración del código de los algoritmos.
 
@@ -784,10 +922,28 @@ PIC 16LF1503 & 30 & 11  &2048\\
 \end{center}
 \end{table}
 
+\subsection{Placa PCB desarrollada para integrar esta electrónica}
+
+Como se deduce de la sección anterior, en la PCB desarrollada se incluirá un Micro-controlador PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
+[Esquema de conexiones]
+
+\underline{Pines compartidos entre los controladores}
+
+Puesto que no van a estar los dos controladores conectados a la vez pueden compartir pines del microcontrolador. Esto facilita la comprensión del sistema y facilita la implementación de los algoritmos en el micro puesto que independientemente del motor y del controlador que haya conectado, este siempre usa los mismo pines.
+
+Para que puedan compartir los pines, se incluye un mutiplexor cuadruple 2:1.
+
+Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos multiplexores internos se le conecta uno de los 4 pines del micro-controlador, y a las salidas se conectan los controladores.
+[dibujo del multiplexor]
 
 
+\underline{Conector para la programación del PIC}
 
-\subsubsection{Implementación de los algoritmos}
+Puesto que esta placa esta concebida como una plataforma de pruebas para experimentar con distintos algoritmos, es un requisito básico que sea fácil cargar los programas desarrollados en el PIC.
+
+EXPLICAR LO DEL RJ11 DEL ICD3 Y LA FACILIDAD DE CONEXIÓN.
+
+\section{Implementación de los algoritmos de funcionamiento}
 
 \label{cap6:subsubsec:implementacion}
 En el apartado \ref{cap6:subsec:propone_captura} se propusieron los métodos de monitorización de la energía producida para detectar un cambio en la frecuencia del entorno y actuar en consecuencia, pero será en esta sección donde se expondrá como se han implementado y programado en el micro-controlador.
@@ -795,14 +951,14 @@ En el apartado \ref{cap6:subsec:propone_captura} se propusieron los métodos de m
 
 
 
-\textbf{\underline{Algoritmos de captura:}}
+\subsection{Algoritmos de captura:}
 \bigskip
 
 La primera funcionalidad que hay que implementar es la captura de la señal de entrada para saber si el generador esta sintonizado. Como ya se ha expuesto esta señal puede obtenerse de dos puntos.
 Directamente de la salida de la bobina o a la salida del multiplicador.
 \bigskip
 
-\textbf{Medida a la salida de la bobina:}
+\subsubsection{Medida a la salida de la bobina:}
 
 La señal en este punto es de la forma mostrada en la figura \ref{fig:cap5:villardin}.
 \bigskip
@@ -851,7 +1007,7 @@ Poco nivel de tensión en la señal.
 
 \bigskip
 
-\textbf{Medida a la salida del multiplicador:}
+\subsubsection{Medida a la salida del multiplicador:}
 \bigskip
 
 En este punto tiene un nivel de continua alto. Del orden de la alimentación del micro (3-5V). Por lo tanto realizar la medida aquí es bastante simple.
@@ -871,17 +1027,97 @@ Para realizar esta medida se pueden emplear dos módulos del microcontrolador:
 Facilidad en la captura y medida de la señal.
 \item \textit{Desventajas:}
 
-Poca capacidad de reacción a la caída de señal puesto que los condensadores que conforman el multiplicador impiden que el nivel de la señal caiga bruscamente.
+Poca capacidad de reacción a la caída de señal puesto que los condensadores que conforman el multiplicador impiden que el nivel de la señal caiga o suba bruscamente.
 \end{itemize}
 
 \bigskip
 
-\textbf{\underline{Algoritmos de sintonización:}}
+\subsection{Algoritmos de sintonización:}
 \bigskip
 
 
+Para la implementación de estos algoritmos hay que tomar una serie de medida previas.
+\begin{itemize}
+\item Conocer la velocidad de giro del motor. (RPM) 
+\item Conocer el paso del tornillo sinfín. Es decir, cuantos giros corresponden al desplazamiento de una unidad lineal, este caso el milímetro, a su paso por la tuerca del sintonizador.
+\end{itemize}
+
+Conociendo estos datos se puede relacionar el tiempo del excitación del motor con la longitud desplazada por el sintonizador.
+\begin{equation}
+L=r.p.m * paso * t
+\label{cap6:equ:motor}
+\end{equation}
+
+\bigskip
+
+$L:$ Longitud recorrida por el sintonizador.
+
+$r.p.m:$ Revoluciones por minuto del motor.
+
+$paso:$ Paso del tornillo sin fin. Distancia entre dos crestas de la rosca. Es la relación entre una vuelta y la distancia que se desplazaría si se estuviese enroscando.
+
+$t:$ Tiempo de excitación del motor.
+\bigskip
+
+El tornillo empleado para este proyecto es de métrica 4, con un paso de 0.7mm. (\ref{cap6:subsec:sinfin}).
+\bigskip
+
+La implementación de uno u otro de estos algoritmos va a ser la que determine la eficiencia de del sistema. De esta manera según sea el entorno se usarán unos u otros como se explicará a continuación.
 
 
+\subsubsection{Algoritmos no predictivos}
+
+Como se mencionó en la sección \ref{cap6:subsec:propone_sinto} este tipo de algoritmos se empleará en entornos donde las frecuencias de las vibraciones sigan una distribución mas o menos uniforme, es decir, no haya unas mas probables que otras. De esta manera cuando se ha detectado la desintonización, la probabilidad de encontrar la nueva frecuencia de trabajo se reparte uniformemente a lo largo de toda la lámina.
+\bigskip
+
+Para la ejecución de este tipo de algoritmos basta con saber la distancia que se quiere mover el sintonizador en cada iteración y aplicar la formula \ref{cap6:equ:motor} para conocer el tiempo que se tiene que activar la salida correspondiente del micro-controlador.
+\bigskip
+
+De esta manera se simplifica la programación de los dos tipos vistos, el lineal y el alternante.
+\bigskip
+
+\textbf{\underline{Ejemplo:}}
+
+Con el motor 212-008 (\ref{cap6:subsubsec:disponibles}) alimentado a 2,5V se obtienen 42rpm.
+
+Por lo tanto si se quiere desplazar el sintonizador 1mm habría que alimentarlo durante:
+$$t=L*\frac{1}{paso}*\frac{1}{rpm}$$
+$$t=1*\frac{1}{0.7}*\frac{1}{42}$$
+$$t=0.03 minutos=2.04segundos$$
+
+Implementando esta simple formula en el micro, se pueden ejecutar los algoritmos no predictivos.
+
+\subsubsection{Algoritmos predictivos}
+
+Estos algoritmos son mas complicados de implementar que los anteriores.
+
+Son útiles cuando el ambiente puede ser modelado y se pueden encontrar unas frecuencias características de él.
+
+En este caso el micro iría recorriendo las frecuencias mas usuales hasta dar con la correcta.
+
+Para esto además de la formula anterior habría que implementar la de la frecuencia de resonancia. (\ref{cap6:equation:fresonancia})
+\bigskip
+
+La ejecución será como sigue:
+
+\begin{enumerate}
+\item Calibración.
+\item Detección de desintonización.
+\item Búsqueda en memoria de la  siguiente frecuencia con mayor probabilidad.
+\item Aplicación de la formula \ref{cap6:equation:fresonancia} para calcular la distancias que hay que desplazar el sintonizador a partir de la frecuencia origen.
+\item Aplicación de la formula \ref{cap6:equ:motor}  para calcular el tiempo de excitación del motor en función de la distancia a recorrer.
+\item Comprobar sintonización. Si aun no esta en sintonía, buscar en la siguiente frecuencia mas probable.
+\end{enumerate}
+
+Para que se pueda emplear este método el micro-controlador tiene que conocer en todo momento la frecuencia a la que está trabajando el sistema.
+\bigskip
+
+\underline{Calibración:}
+
+La calibración es una parte fundamental de estos algoritmos. Es la encargada de que el micro conozca en cada momento la frecuencia de trabajo. Al inicializar el algoritmo, el sintonizador se desplazaría a una posición fija para la cual el micro conoce la frecuencia que corresponde.
+\bigskip
+
+Esto se implementa mediante un sensor fin de carrera que active el sintonizador al colocarse en determinada posición. A partir de este momento el micro fija la frecuencia a determinado valor, que será el correspondiente a esa posición. Esto es posible puesto que el generador es de dimensiones fijas, por lo que el sintonizador en una posición determinada siempre asegura la misma frecuencia de resonancia en la lámina.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX
