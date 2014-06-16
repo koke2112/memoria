@@ -922,26 +922,7 @@ PIC 16LF1503 & 30 & 11  &2048\\
 \end{center}
 \end{table}
 
-\subsection{Placa PCB desarrollada para integrar esta electrónica}
 
-Como se deduce de la sección anterior, en la PCB desarrollada se incluirá un Micro-controlador PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
-[Esquema de conexiones]
-
-\underline{Pines compartidos entre los controladores}
-
-Puesto que no van a estar los dos controladores conectados a la vez pueden compartir pines del microcontrolador. Esto facilita la comprensión del sistema y facilita la implementación de los algoritmos en el micro puesto que independientemente del motor y del controlador que haya conectado, este siempre usa los mismo pines.
-
-Para que puedan compartir los pines, se incluye un mutiplexor cuadruple 2:1.
-
-Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos multiplexores internos se le conecta uno de los 4 pines del micro-controlador, y a las salidas se conectan los controladores.
-[dibujo del multiplexor]
-
-
-\underline{Conector para la programación del PIC}
-
-Puesto que esta placa esta concebida como una plataforma de pruebas para experimentar con distintos algoritmos, es un requisito básico que sea fácil cargar los programas desarrollados en el PIC.
-
-EXPLICAR LO DEL RJ11 DEL ICD3 Y LA FACILIDAD DE CONEXIÓN.
 
 \section{Implementación de los algoritmos de funcionamiento}
 
@@ -1118,6 +1099,72 @@ La calibración es una parte fundamental de estos algoritmos. Es la encargada de 
 \bigskip
 
 Esto se implementa mediante un sensor fin de carrera que active el sintonizador al colocarse en determinada posición. A partir de este momento el micro fija la frecuencia a determinado valor, que será el correspondiente a esa posición. Esto es posible puesto que el generador es de dimensiones fijas, por lo que el sintonizador en una posición determinada siempre asegura la misma frecuencia de resonancia en la lámina.
+
+
+
+\section{Placa PCB desarrollada para integrar la electrónica}
+
+Como se deduce de la sección anterior, en la PCB desarrollada se incluirá un Micro-controlador PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap6/esquema_placa}  
+        \caption{Esquema de la estructura de la placa.}
+        \label{fig:cap6:esque_placa}
+\end{figure}
+\FloatBarrier
+
+
+\subsection{Pines compartidos entre los controladores}
+
+Puesto que no van a estar los dos controladores conectados a la vez pueden compartir pines del microcontrolador. Esto facilita la comprensión del sistema y facilita la implementación de los algoritmos en el micro puesto que independientemente del motor y del controlador que haya conectado, este siempre usa los mismo pines.
+
+Para que puedan compartir los pines, se incluye un mutiplexor cuadruple 2:1.
+
+Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos multiplexores internos se le conecta uno de los 4 pines del micro-controlador, y a las salidas se conectan los controladores.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap6/mux}  
+        \caption{Conexión de los multiplexores}
+        \label{fig:cap6:esque_placa}
+\end{figure}
+\FloatBarrier
+
+
+
+\subsection{Partes de la placa}
+
+
+Llegados a este punto tenemos el esquema básico de la PCB \ref{fig:cap6:placa}.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/placa}  
+        \caption{Representación de la placa diseñada}
+        \label{fig:cap6:placa}
+\end{figure}
+\FloatBarrier
+
+\begin{itemize}
+\item \textit{U1} DRV8833: Driver de motores de corriente continua y Bipolares.
+\item \textit{U2} ULN2003A: Driver de motores unipolares.
+\item \textit{U3} TS3A44159: Quad-Multiplexor 2:1.
+\item \textit{U4} PIC 16LF1503: Micro-controlador.
+\item \textit{S1} Micro-pulsador.
+\item \textit{P1} Puerto de conexión de los motores DC y bipolares.
+\item \textit{P2} Puerto de conexión de los motores unipolares.
+\item \textit{P3} Switch de selección del multiplexor.
+\item \textit{P4} Puerto para la medida de las salidas del PIC.
+\end{itemize}
+
+
+
+
+
+
+\subsection{Puerto para programación del PIC}
+
+Puesto que esta placa esta concebida como una plataforma de pruebas para experimentar con distintos algoritmos, es un requisito básico que sea fácil cargar los programas desarrollados en el PIC.
+
+EXPLICAR LO DEL RJ11 DEL ICD3 Y LA FACILIDAD DE CONEXIÓN.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX
