@@ -38,6 +38,20 @@
 
 @entry{Dem, , \emph{Acoplo electromagnético}}
 
+@entry{MCU, , \emph{Microcontrolador}}
+
+@entry{PCB, , \emph{Placa de circuitos impresos}}
+
+@entry{ADC, ,\emph{Convertidor analógico-digital}}
+
+@entry{LED, ,\emph{Diodo emisor de luz}}
+
+@entry{ICD3, , \emph{In-Circuit Debugger}}
+
+
+
+
+
 
 @entry{ITU, , \emph{International Telecommunication Union}} 
 
@@ -123,7 +137,7 @@
 
 @entry{PIC, , \emph{Peripheral Interface Controller}}
 
-@entry{MCU, , \emph{Microcontroller}}
+
 
 @entry{MIPS, , \emph{Microprocessor without Interlocked Pipeline Stages}}
 
@@ -221,7 +235,7 @@
 
 @entry{OTG, , \emph{On-The-Go}}
 
-@entry{ADC, ,\emph{Analog-to-Digital Converter}}
+
 
 @entry{RTCC, ,\emph{Real-Time Clock/Calendar}}
 
@@ -231,7 +245,7 @@
 
 @entry{FSK, ,\emph{Frequency-Shift Keying}}
 
-@entry{LED, ,\emph{Light-Emitting Diode}}
+
 
 @entry{SMD, ,\emph{Surface-Mount Devices}}
 
@@ -245,7 +259,7 @@
 
 @entry{RMII, , \emph{Reduced Media Independent Interface}}
 
-@entry{ICD, , \emph{In-Circuit Debugger}}
+
 
 @entry{IDE, ,\emph{Integrated development environment}}
 

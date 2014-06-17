@@ -247,7 +247,7 @@ Estas soluciones presentadas además conllevan un problema que no se ha mencionad
 Para contrarrestar este efecto, se podría pensar en implementar otro mecanismo que moviese la bobina a la vez que la lámina para que siempre estuviesen enfrentados imanes y bobina algo que requeriría una complejidad desmedida que además iría asociada a una pérdida de eficiencia considerable. Este problema nos lleva a la tercera solución donde se implementa la idea de longitud efectiva y el sintonizador.
 \bigskip
 
-\textbf{Tercera solución:}
+\textbf{Tercera solución: Variación de la longitud efectiva y sintonizador.}
 \bigskip
 
 Una solución basada en la idea de longitud efectiva no requiere el desplazamiento de la lámina, por lo tanto no habría que preocuparse del anclaje de esta a la base, ni del desacoplo de la bobina respecto a los imanes.
@@ -308,7 +308,7 @@ Volviendo a la tabla \ref{fig:cap6:maneras} se aprecia que los métodos de sinton
 %-------------------------------------------------------------------
 \label{cap6:sec:algoritmos}
 %-------------------------------------------------------------------
-Para maximizar la generación de energía hace falta implementar un sistema que sea capaz de decidir si la frecuencia de resonancia del sistema coincide con la del entorno y en función de esto tomar las medidas necesarias para sintonizarlo de forma eficiente. El núcleo de este sistema estará formado por un micro controlador PIC de microchip encargado de la ejecución de algoritmo que derivaran en el sintonizado del sistema.
+Para maximizar la generación de energía hace falta implementar un sistema que sea capaz de decidir si la frecuencia de resonancia del sistema coincide con la del entorno y en función de esto tomar las medidas necesarias para sintonizarlo de forma eficiente. El núcleo de este sistema estará formado por un \ac{MCU} PIC de microchip encargado de la ejecución de algoritmo que derivaran en el sintonizado del sistema.
 
 Si antes se ha comentado que lo más importante del proyecto es la sintonización del generador, los encargados de conseguir este objetivo son en gran parte los algoritmos.
 \begin{figure}[!h]
@@ -329,11 +329,11 @@ Llegados a este punto hay que diferenciar entre dos conceptos importantes, cada 
 
 En la imagen \ref{fig:cap6:algo_ejem} estos dos conceptos aparecen juntos en un intento de dar una imagen general del sistema.
 
-Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos (tamaño del generador, amplitud de las vibraciones, variaciones en la frecuencia de las vibraciones). De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del micro-controlador y precisión de los motores.
+Los dos conceptos en conjunto son los encargados de que el sistema pueda ser sintonizado de la manera más eficiente posible en base a unos parámetros físicos establecidos (tamaño del generador, amplitud de las vibraciones, variaciones en la frecuencia de las vibraciones). De esta manera distintos algoritmos implementados sobre el mismo sistema darán lugar a distintos resultados. Es objetivo de este proyecto desarrollar y probar los mejores algoritmos posibles dadas las limitaciones sobre las que se implementan, tales como: bajo consumo, limitación de recursos del \ac{MCU} y precisión de los motores.
 \bigskip
 
 
-Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior [micro controlador al final] se estudiará la implementación.
+Para hacer la redacción de este proyecto más legible, se va a separar la definición e implementación de los dos tipos de algoritmos antes mencionados. En este apartado se estudiara la definición y en un apartado posterior \ref{cap6:subsubsec:implementacion} se estudiará la implementación.
 
 
 
@@ -359,14 +359,14 @@ La frecuencia de esta señal, es la frecuencia de resonancia del generador y por 
 
 El otro motivo es el poco nivel de tensión que presenta.
 
-Estas dos razones hacen que medir en este punto con un micro-controlador sea mas difícil que la otra alternativa.
+Estas dos razones hacen que medir en este punto con un \ac{MCU} sea mas difícil que la otra alternativa.
 \bigskip
 
-\underline{Salida del multiplicador:} En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del microcontrolador y por lo tanto es más adecuado para tomar las medidas sin embargo el uso de condensadores provoca que la caída de la señal, cuando el generador se desintoniza, no sea inmediata, lo que provoca problemas para detectar con rapidez esta situación.
+\underline{Salida del multiplicador:} En este punto hay un nivel de tensión continua comparable a los valores de funcionamiento del \ac{MCU} y por lo tanto es más adecuado para tomar las medidas sin embargo el uso de condensadores provoca que la caída de la señal, cuando el generador se desintoniza, no sea inmediata, lo que provoca problemas para detectar con rapidez esta situación.
 
 \bigskip
 
-En la sección \ref{cap6:subsubsec:implementacion} se proponen modos de implementar ambas opciones con un micro-controlador real.
+En la sección \ref{cap6:subsubsec:implementacion} se proponen modos de implementar ambas opciones con un \ac{MCU} real.
 
 \subsubsection{Algoritmo de captura 1: Medidas periódicas.}
 Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una primera aproximación que puede ser implementada.
@@ -379,7 +379,7 @@ Desarrollando el algoritmo de ejemplo para darle un sentido real, se obtiene una
 \end{figure}
 \FloatBarrier
 
-Este algoritmo permite tiempos en los que el micro-controlador esta dormido y por lo tanto no está consumiendo. Sin embargo si este tiempo es muy grande puede ser que, para cuando se mida la energía que se esta produciendo, el generador lleve tiempo desintonizado.
+Este algoritmo permite tiempos en los que el \ac{MCU} esta dormido y por lo tanto no está consumiendo. Sin embargo si este tiempo es muy grande puede ser que, para cuando se mida la energía que se esta produciendo, el generador lleve tiempo desintonizado.
 Esta filosofía es óptima cuando el sistema pasa poco tiempo sintonizado y los cambios en la frecuencia del medio son frecuentes.
 \bigskip
 
@@ -388,7 +388,7 @@ Esta filosofía es óptima cuando el sistema pasa poco tiempo sintonizado y los ca
 
 \textbf{Desventajas:} Poca capacidad de reacción ante cambios en la frecuencia de vibración.
 \subsubsection{Algoritmo de captura 2: Basado en interrupciones.}
-En situación de sintonización el micro controlador está dormido. Cuando se detecta una caída en la entrada, se dispara una interrupción que le despierta para que inicie una rutina de sintonizado. Mientras esta desintonizado el micro controlador no se duerme hasta que encuentra la posición de sintonizado.
+En situación de sintonización el \ac{MCU} está dormido. Cuando se detecta una caída en la entrada, se dispara una interrupción que le despierta para que inicie una rutina de sintonizado. Mientras esta desintonizado el \ac{MCU} no se duerme hasta que encuentra la posición de sintonizado.
 
 De esta manera no hay que realizar medidas periódicas, lo que deriva en un mayor ahorro de energía.
 \bigskip
@@ -414,7 +414,7 @@ Estos algoritmos no son más que la manera de mover el sintonizador para consegui
 Dado que el generador presenta una alta \ac{Q} y suponiendo un desconocimiento de los comportamientos del entorno, (frecuencias de resonancias mas frecuentes) la única forma de encontrar la nueva frecuencia de resonancia es mediante un barrido a lo largo de la lámina. 
 \bigskip
 
-Si se conociesen las frecuencias mas usuales del entorno, se podría implementar un sistema predictivo para buscar primero en esas frecuencias. Esto es posible mediante la implementación del sistema antes mencionado, para que el micro-controlador conozca en todo momento la frecuencia a la que esta trabajando el generador en función de la posición del sintonizador y sea capaz de calcular el desplazamiento necesario de este para fijar una determinada frecuencia.
+Si se conociesen las frecuencias mas usuales del entorno, se podría implementar un sistema predictivo para buscar primero en esas frecuencias. Esto es posible mediante la implementación del sistema antes mencionado, para que el \ac{MCU} conozca en todo momento la frecuencia a la que esta trabajando el generador en función de la posición del sintonizador y sea capaz de calcular el desplazamiento necesario de este para fijar una determinada frecuencia.
 \bigskip
 
 Por lo tanto se va a trabajar sobre dos tipos de algoritmos.
@@ -437,7 +437,7 @@ Empieza a mover el sintonizador desde la ultima posición de sintonización hasta 
 \end{figure}
 \FloatBarrier
 
-Este algoritmo es el mas inmediato, es sencillo de implementar y no requiere muchos recursos del micro-controlador. La parte negativa es que en determinadas circunstancias el tiempo de sintonizado es muy grande, esto se da por ejemplo si la nueva frecuencia de resonancia se desplaza hacia el sentido opuesto al que el microcontrolador empieza a barrer. Si esto pasa, para encontrar la nueva situación de sintonización, el sintonizador primeramente tendrá que recorrer todo un lado de la lamina, para recorrer posteriormente la zona donde se halla el objetivo.
+Este algoritmo es el mas inmediato, es sencillo de implementar y no requiere muchos recursos del \ac{MCU}. La parte negativa es que en determinadas circunstancias el tiempo de sintonizado es muy grande, esto se da por ejemplo si la nueva frecuencia de resonancia se desplaza hacia el sentido opuesto al que el \ac{MCU} empieza a barrer. Si esto pasa, para encontrar la nueva situación de sintonización, el sintonizador primeramente tendrá que recorrer todo un lado de la lamina, para recorrer posteriormente la zona donde se halla el objetivo.
 \bigskip
 
 \textbf{Ventajas:}
@@ -497,7 +497,7 @@ Para intentar minimizar el efecto producido por grandes diferencias en las frecu
 
 
 \subsubsection{Algoritmos predictivos:}
-En estos, el microcontrolador conoce la frecuencia de resonancia (frecuencia de trabajo actual del generador) y es capaz de relacionarla con los cambios en la posición del sintonizador.
+En estos, el \ac{MCU} conoce la frecuencia de resonancia (frecuencia de trabajo actual del generador) y es capaz de relacionarla con los cambios en la posición del sintonizador.
 
 Con esta funcionalidad implementada, habría que establecer unas condiciones iniciales, ya sea con sensores fin de carrera o manualmente, para que al iniciarse pueda ser calibrado indicándole la frecuencia de resonancia de ese punto.
 \begin{figure}[!h]
@@ -510,7 +510,7 @@ Con esta funcionalidad implementada, habría que establecer unas condiciones inic
 
 Además para aumentar la eficiencia, hay que caracterizar previamente el entorno. Encontrar las frecuencias que más se repiten y con qué asiduidad para asignarles probabilidades.
 
-De esta manera si se detecta una desintonización el microcontrolador desplazaría el sintonizador a la siguiente frecuencia con más probabilidad, y así sucesivamente hasta volver a estar sintonizado.
+De esta manera si se detecta una desintonización el \ac{MCU} desplazaría el sintonizador a la siguiente frecuencia con más probabilidad, y así sucesivamente hasta volver a estar sintonizado.
 
 Estos algoritmos son más eficientes que los no predictivos, sin embargo presentan mayor dificultad de implementación y requieren calibración periódica puesto que si se desvían sus parámetros iniciales, no conseguiría volver a sintonizarse.
 \bigskip
@@ -539,7 +539,7 @@ En esta sección se detalla la electrónica implementada y como se ha diseñado par
 Se tratará:
 \begin{itemize}
 \item El estudio de los motores disponibles y sus ventajas/desventajas para su uso en este proyecto.
-\item El estudio de los microcontroladores disponibles y en detalle el elegido.
+\item El estudio de los \ac{MCU} disponibles y en detalle el elegido.
 \item El estudio de la electrónica adicional necesaria, como circuitos integrados
 \end{itemize} 
 
@@ -578,7 +578,7 @@ Por otra parte la dificultad que presentan es que necesitan un puente H para pod
 
 \textbf{\underline{Motores sin escobillas o BLDC:}}
 
-Son motores de 3 hilos, con una alta eficiencia a altas revoluciones, pero con una mayor dificultad de manejo. Como no tienen un sistema mecánico de escobillas para determinar su posición, su sincronización se hace más compleja. Se necesita un micro-controlador junto con dos estrategias para determinar en cada momento la situación del rotor y en función de ella excitar una bobina u otra: sensores de efecto Hall y cálculo mediante el efecto de fuerza contra-electromotriz (back EMF).
+Son motores de 3 hilos, con una alta eficiencia a altas revoluciones, pero con una mayor dificultad de manejo. Como no tienen un sistema mecánico de escobillas para determinar su posición, su sincronización se hace más compleja. Se necesita un \ac{MCU} junto con dos estrategias para determinar en cada momento la situación del rotor y en función de ella excitar una bobina u otra: sensores de efecto Hall y cálculo mediante el efecto de fuerza contra-electromotriz (back EMF).
 \bigskip
 
 \textit{Efecto Hall:} En un conductor por el que circula corriente, en presencia de un campo magnético perpendicular al movimiento de las cargas, aparece un campo eléctrico transversal a este movimiento. 
@@ -814,14 +814,14 @@ Para usar un motor unipolar con este integrado solo necesitamos los 4 primeros p
 
 Este integrado será usado para los motores paso a paso unipolares.
 %-------------------------------------------------------------------
-\subsection{Micro controlador}
+\subsection{Micro controlador o MCU}
 %-------------------------------------------------------------------
 \label{cap6:sec:micro}
 %-------------------------------------------------------------------
 
-La inteligencia del sistema va a residir en el micro-controlador. Va ser el encargado de ejecutar los algoritmos propuestos.
+La inteligencia del sistema va a residir en el \ac{MCU}. Va ser el encargado de ejecutar los algoritmos propuestos.
 
-Siguiendo la línea del bajo consumo que se quiere alcanzar, este micro controlador tiene que tener unas características tales que maximicen su utilidad y minimicen el consumo.
+Siguiendo la línea del bajo consumo que se quiere alcanzar, este \ac{MCU} tiene que tener unas características tales que maximicen su utilidad y minimicen el consumo.
 
 Su funcionamiento básico será como sigue:
 \begin{itemize}
@@ -829,15 +829,15 @@ Su funcionamiento básico será como sigue:
 \item Comprueba si es máxima, (generador sintonizado) o no.
 \item Si no está sintonizado ejecuta el algoritmo encargado de colocar el sintonizador en la posición de máxima producción de energía
 \end{itemize}
-A continuación se va a realizar un estudio de los microcontroladores disponibles y su idoneidad para este proyecto:
+A continuación se va a realizar un estudio de los \ac{MCU} disponibles y su idoneidad para este proyecto:
 
 %\subsection{Estudio de micro-controladores}
 \bigskip
 
-El primer paso es dimensionar el micro, estimar la potencia de calculo, el consumo y el número de pines de entrada/salida necesarios para el proyecto. 
+El primer paso es dimensionar el \ac{MCU}, estimar la potencia de calculo, el consumo y el número de pines de entrada/salida necesarios para el proyecto. 
 \bigskip
 
-En cuanto la potencia de calculo, dado los algoritmos simples que se han propuesto, no va ser necesario que sea muy elevada y puesto que el proyecto se basa en la generación de energía, se buscará un micro de bajo consumo.
+En cuanto la potencia de calculo, dado los algoritmos simples que se han propuesto, no va ser necesario que sea muy elevada y puesto que el proyecto se basa en la generación de energía, se buscará un \ac{MCU} de bajo consumo.
 \bigskip
 
 Dado el uso tan específico que se va a hacer de estos controladores, y siguiendo el camino del bajo consumo, como primera decisión en esta parte del proyecto se opta por la familia de PICs de 8 bits de Microchip\textregistered.
@@ -850,25 +850,25 @@ Los controladores que encontramos aquí van desde el PIC 10, el mas bajo de la ga
 
 \subsubsection{PIC 10LF320}
 
-El primer microcontrolador que se estudia es el PIC 10LF320. 
+El primer \ac{MCU} que se estudia es el PIC 10LF320. 
 \bigskip
 
-Este micro tiene un consumo mínimo: 25$\mu$A alimentado a 1,8V.
+Este \ac{MCU} tiene un consumo mínimo: 25$\mu$A alimentado a 1,8V.
 
 Su frecuencia de funcionamiento es de 16MHz lo que da la suficiente capacidad de calculo para poder implementar los algoritmos propuestos.
 \bigskip
 
 \underline{Problema de memoria}
-Sin embargo se ha detectado que la memoria de programa es muy limitada (512 palabras), llenándose casi por completo con el algoritmo más básico lo que ha sido suficiente para causar su descarte y el paso a un micro con mas memoria.
+Sin embargo se ha detectado que la memoria de programa es muy limitada (512 palabras), llenándose casi por completo con el algoritmo más básico lo que ha sido suficiente para causar su descarte y el paso a un \ac{MCU} con mas memoria.
 
 \textbf{\underline{Conclusión del estudio:}}
 \bigskip
 
-Aunque el micro cumple con las especificaciones de potencia y consumo, su \textbf{limitada memoria de programa} hace que se busque el siguiente micro en la serie PIC 12 donde se puede encontrar uno con la suficiente memoria.
+Aunque el \ac{MCU} cumple con las especificaciones de potencia y consumo, su \textbf{limitada memoria de programa} hace que se busque el siguiente \ac{MCU} en la serie PIC 12 donde se puede encontrar uno con la suficiente memoria.
 
 \subsubsection{PIC 12LF1571}
 
-Los micros de la serie PIC 12 tienen mas memoria y su consumo aumenta ligeramente.
+Los \ac{MCU} de la serie PIC 12 tienen mas memoria y su consumo aumenta ligeramente.
 
 En busca del objetivo de conseguir más memoria se ha seleccionado el PIC 12LF1571 con casi 2000 palabras en la memoria de programa, cuyo consumo es 30$\mu$A a 1,8V.
 
@@ -879,21 +879,21 @@ Se han vuelto a cargar varios algoritmos y se ha comprobado que este espacio es 
 
 \underline{Problema de pines I/O}
 
-Llegados a este punto hay que tomar una decisión en cuanto al numero de pines de entrada/salida necesarios. Este micro dispone de 5 pines, hay que ver si son suficientes o es necesario buscar un micro-controlador con más.
+Llegados a este punto hay que tomar una decisión en cuanto al numero de pines de entrada/salida necesarios. Este \ac{MCU} dispone de 5 pines, hay que ver si son suficientes o es necesario buscar un \ac{MCU} con más.
 \bigskip
 
-Como se ha visto en \ref{cap6:subsubsec:drv8833}, ya solo el integrado DRV8833 necesita 5 pines para su funcionamiento lo que nos dejaría sin pines de entrada en el micro para hacer las capturas de energía producida por el generador.
+Como se ha visto en \ref{cap6:subsubsec:drv8833}, ya solo el integrado DRV8833 necesita 5 pines para su funcionamiento lo que nos dejaría sin pines de entrada en el \ac{MCU} para hacer las capturas de energía producida por el generador.
 
-Aunque en un caso de producto final la solución podría ser tan fácil como multiplexar un pin en el tiempo (para hacer medidas y para mover el motor), esto es un proyecto didáctico, y se ha decidido buscar un micro con mas pines, para que se puedan incorporar mas funcionalidades en un futuro y sea mas fácil la depuración del código de los algoritmos.
+Aunque en un caso de producto final la solución podría ser tan fácil como multiplexar un pin en el tiempo (para hacer medidas y para mover el motor), esto es un proyecto didáctico, y se ha decidido buscar un \ac{MCU} con mas pines, para que se puedan incorporar mas funcionalidades en un futuro y sea mas fácil la depuración del código de los algoritmos.
 
 \textbf{\underline{Conclusión del estudio:}}
 \bigskip
 
-Aunque este micro es valido para el proyecto, en aras de conseguir un sistema más didáctico, se va a buscar un micro con mas pines de entrada/salida para aumentar la flexibilidad de la solución final. El siguiente paso lógico, por tanto, será ir a la serie PIC 16, con mas pines que la serie PIC 12.
+Aunque este \ac{MCU} es valido para el proyecto, en aras de conseguir un sistema más didáctico, se va a buscar un \ac{MCU} con mas pines de entrada/salida para aumentar la flexibilidad de la solución final. El siguiente paso lógico, por tanto, será ir a la serie PIC 16, con mas pines que la serie PIC 12.
 
 \subsubsection{PIC 16LF1503}
 
-Se ha llegado a este microcontrolador en la búsqueda de uno con mas pines que el PIC 12LF1571.
+Se ha llegado a este \ac{MCU} en la búsqueda de uno con mas pines que el PIC 12LF1571.
 
 Este en concreto dispone de 11 pines de entrada/salida lo que proporciona una flexibilidad mayor que teniendo los pines limitados.
 
@@ -927,7 +927,7 @@ PIC 16LF1503 & 30 & 11  &2048\\
 \section{Implementación de los algoritmos de funcionamiento}
 
 \label{cap6:subsubsec:implementacion}
-En el apartado \ref{cap6:subsec:propone_captura} se propusieron los métodos de monitorización de la energía producida para detectar un cambio en la frecuencia del entorno y actuar en consecuencia, pero será en esta sección donde se expondrá como se han implementado y programado en el micro-controlador.
+En el apartado \ref{cap6:subsec:propone_captura} se propusieron los métodos de monitorización de la energía producida para detectar un cambio en la frecuencia del entorno y actuar en consecuencia, pero será en esta sección donde se expondrá como se han implementado y programado en el \ac{MCU}.
 \bigskip
 
 
@@ -951,13 +951,24 @@ En este caso y suponiendo que el nivel de tensión de pico fuese suficiente para 
 Este problema se soluciona mediante la inclusión del concepto de frecuencia. Sabiendo la frecuencia de la señal producida, se puede implementar una captura que detecte desintonización cuando la caída de tensión dure mas de un periodo. Pero por la misma razón por la que no se podían adaptar impedancias siempre en \ref{cap5:sec:adaptacion}, este método aquí no es implementable de forma inmediata dado que \textbf{la frecuencia de trabajo no es única, cambia con cada nueva sintonización.}
 \bigskip
 
+\begin{tikzpicture}[domain=0:10]
+    \draw[very thin,color=gray] (-0.1,-1.1) grid (10,3);
+    %\draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    %\draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+    \draw[color=red] (3,0) to[-|-] (4,1);
+    \draw[color=red]    plot (\x,0.7)    node[right] {$Umbral$};
+    \draw[color=blue]   plot (\x,{sin(\x r)})   node[right] {$f(x) = \sin x$};
+   % \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right]
+       % {$f(x) = \frac{1}{20} \mathrm e^x$};
+\end{tikzpicture}
+
 
 La solución de este nuevo problema es como sigue:
 
-Mediante la inclusión en el programa de la formula de la frecuencia de resonancia (\ref{cap6:equation:fresonancia}) y estableciendo una relación entre el tiempo de giro del motor y la distancia que se mueve el sintonizador, el microcontrolador puede estimar en todo momento a que frecuencia esta trabajando el sistema y en función de ella calcular el periodo de la señal que tiene que medir.
+Mediante la inclusión en el programa de la formula de la frecuencia de resonancia (\ref{cap6:equation:fresonancia}) y estableciendo una relación entre el tiempo de giro del motor y la distancia que se mueve el sintonizador, el \ac{MCU} puede estimar en todo momento a que frecuencia esta trabajando el sistema y en función de ella calcular el periodo de la señal que tiene que medir.
 
 
-Sería además necesaria una inicialización siempre en la misma posición para fijar la frecuencia inicial para que el micro controlador supiese a partir de donde tiene que empezar a trabajar.
+Sería además necesaria una inicialización siempre en la misma posición para fijar la frecuencia inicial para que el \ac{MCU} supiese a partir de donde tiene que empezar a trabajar.
 \bigskip
 
 Por tanto el proceso quedaría así:
@@ -991,10 +1002,10 @@ Poco nivel de tensión en la señal.
 \subsubsection{Medida a la salida del multiplicador:}
 \bigskip
 
-En este punto tiene un nivel de continua alto. Del orden de la alimentación del micro (3-5V). Por lo tanto realizar la medida aquí es bastante simple.
+En este punto tiene un nivel de continua alto. Del orden de la alimentación del \ac{MCU} (3-5V). Por lo tanto realizar la medida aquí es bastante simple.
 \bigskip
 
-Para realizar esta medida se pueden emplear dos módulos del microcontrolador:
+Para realizar esta medida se pueden emplear dos módulos del \ac{MCU}:
 
 \begin{enumerate}
 \item \textbf{Conversor analógico/digital:} Convierte una señal analógica en una representación binaria de esa señal en 10 bits. Una vez obtenida se pude usar para estimar si es suficiente para considerar que el generador esta sintonizado.
@@ -1051,7 +1062,7 @@ La implementación de uno u otro de estos algoritmos va a ser la que determine la
 Como se mencionó en la sección \ref{cap6:subsec:propone_sinto} este tipo de algoritmos se empleará en entornos donde las frecuencias de las vibraciones sigan una distribución mas o menos uniforme, es decir, no haya unas mas probables que otras. De esta manera cuando se ha detectado la desintonización, la probabilidad de encontrar la nueva frecuencia de trabajo se reparte uniformemente a lo largo de toda la lámina.
 \bigskip
 
-Para la ejecución de este tipo de algoritmos basta con saber la distancia que se quiere mover el sintonizador en cada iteración y aplicar la formula \ref{cap6:equ:motor} para conocer el tiempo que se tiene que activar la salida correspondiente del micro-controlador.
+Para la ejecución de este tipo de algoritmos basta con saber la distancia que se quiere mover el sintonizador en cada iteración y aplicar la formula \ref{cap6:equ:motor} para conocer el tiempo que se tiene que activar la salida correspondiente del \ac{MCU}.
 \bigskip
 
 De esta manera se simplifica la programación de los dos tipos vistos, el lineal y el alternante.
@@ -1066,7 +1077,7 @@ $$t=L*\frac{1}{paso}*\frac{1}{rpm}$$
 $$t=1*\frac{1}{0.7}*\frac{1}{42}$$
 $$t=0.03 minutos=2.04segundos$$
 
-Implementando esta simple formula en el micro, se pueden ejecutar los algoritmos no predictivos.
+Implementando esta simple formula en el \ac{MCU}, se pueden ejecutar los algoritmos no predictivos.
 
 \subsubsection{Algoritmos predictivos}
 
@@ -1074,7 +1085,7 @@ Estos algoritmos son mas complicados de implementar que los anteriores.
 
 Son útiles cuando el ambiente puede ser modelado y se pueden encontrar unas frecuencias características de él.
 
-En este caso el micro iría recorriendo las frecuencias mas usuales hasta dar con la correcta.
+En este caso el \ac{MCU} iría recorriendo las frecuencias mas usuales hasta dar con la correcta.
 
 Para esto además de la formula anterior habría que implementar la de la frecuencia de resonancia. (\ref{cap6:equation:fresonancia})
 \bigskip
@@ -1090,21 +1101,21 @@ La ejecución será como sigue:
 \item Comprobar sintonización. Si aun no esta en sintonía, buscar en la siguiente frecuencia mas probable.
 \end{enumerate}
 
-Para que se pueda emplear este método el micro-controlador tiene que conocer en todo momento la frecuencia a la que está trabajando el sistema.
+Para que se pueda emplear este método el \ac{MCU} tiene que conocer en todo momento la frecuencia a la que está trabajando el sistema.
 \bigskip
 
 \underline{Calibración:}
 
-La calibración es una parte fundamental de estos algoritmos. Es la encargada de que el micro conozca en cada momento la frecuencia de trabajo. Al inicializar el algoritmo, el sintonizador se desplazaría a una posición fija para la cual el micro conoce la frecuencia que corresponde.
+La calibración es una parte fundamental de estos algoritmos. Es la encargada de que el \ac{MCU} conozca en cada momento la frecuencia de trabajo. Al inicializar el algoritmo, el sintonizador se desplazaría a una posición fija para la cual el \ac{MCU} conoce la frecuencia que corresponde.
 \bigskip
 
-Esto se implementa mediante un sensor fin de carrera que active el sintonizador al colocarse en determinada posición. A partir de este momento el micro fija la frecuencia a determinado valor, que será el correspondiente a esa posición. Esto es posible puesto que el generador es de dimensiones fijas, por lo que el sintonizador en una posición determinada siempre asegura la misma frecuencia de resonancia en la lámina.
+Esto se implementa mediante un sensor fin de carrera que active el sintonizador al colocarse en determinada posición. A partir de este momento el \ac{MCU} fija la frecuencia a determinado valor, que será el correspondiente a esa posición. Esto es posible puesto que el generador es de dimensiones fijas, por lo que el sintonizador en una posición determinada siempre asegura la misma frecuencia de resonancia en la lámina.
 
 
 
-\section{Placa PCB desarrollada para integrar la electrónica}
+\section{Placa PCB desarrollada para integrar la electrónica ``MC1''}
 
-Como se deduce de la sección anterior, en la PCB desarrollada se incluirá un Micro-controlador PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
+Como se deduce de la sección \ref{cap6:sec:electronica}, en la PCB desarrollada se incluirá un \ac{MCU} PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap6/esquema_placa}  
@@ -1116,11 +1127,11 @@ Como se deduce de la sección anterior, en la PCB desarrollada se incluirá un Mic
 
 \subsection{Pines compartidos entre los controladores}
 
-Puesto que no van a estar los dos controladores conectados a la vez pueden compartir pines del microcontrolador. Esto facilita la comprensión del sistema y facilita la implementación de los algoritmos en el micro puesto que independientemente del motor y del controlador que haya conectado, este siempre usa los mismo pines.
+Puesto que no es necesario que estén los dos controladores conectados a la vez, pueden compartir pines del \ac{MCU}. Esto facilita la comprensión del sistema y facilita la implementación de los algoritmos en el \ac{MCU} puesto que independientemente del motor y del controlador que haya conectado, este siempre usa los mismo pines de salida.
 
 Para que puedan compartir los pines, se incluye un mutiplexor cuadruple 2:1.
 
-Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos multiplexores internos se le conecta uno de los 4 pines del micro-controlador, y a las salidas se conectan los controladores.
+Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos multiplexores internos se le conecta uno de los 4 pines del \ac{MCU} utilizados, y a las salidas se conectan los controladores.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap6/mux}  
@@ -1137,6 +1148,14 @@ Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos mul
 Llegados a este punto tenemos el esquema básico de la PCB \ref{fig:cap6:placa}.
 \begin{figure}[!h]
         \centering
+		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/esquema_placa2}  
+        \caption{Esquema detallado de las conexiones principales}
+        \label{fig:cap6:placa}
+\end{figure}
+\FloatBarrier
+Y aqui una representación de la placa finalizada.
+\begin{figure}[!h]
+        \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/placa}  
         \caption{Representación de la placa diseñada}
         \label{fig:cap6:placa}
@@ -1144,15 +1163,18 @@ Llegados a este punto tenemos el esquema básico de la PCB \ref{fig:cap6:placa}.
 \FloatBarrier
 
 \begin{itemize}
-\item \textit{U1} DRV8833: Driver de motores de corriente continua y Bipolares.
-\item \textit{U2} ULN2003A: Driver de motores unipolares.
-\item \textit{U3} TS3A44159: Quad-Multiplexor 2:1.
-\item \textit{U4} PIC 16LF1503: Micro-controlador.
-\item \textit{S1} Micro-pulsador.
-\item \textit{P1} Puerto de conexión de los motores DC y bipolares.
-\item \textit{P2} Puerto de conexión de los motores unipolares.
-\item \textit{P3} Switch de selección del multiplexor.
-\item \textit{P4} Puerto para la medida de las salidas del PIC.
+\item \textit{U1:} DRV8833: Driver de motores de corriente continua y Bipolares.
+\item \textit{U2:} ULN2003A: Driver de motores unipolares.
+\item \textit{U3:} TS3A44159: Quad-Multiplexor 2:1.
+\item \textit{U4:} PIC 16LF1503: \ac{MCU}.
+\item \textit{S1:} Micro-pulsador.
+\item \textit{P1:} Puerto de conexión de los motores DC y bipolares.
+\item \textit{P2:} Puerto de conexión de los motores unipolares.
+\item \textit{P3:} Switch de selección del multiplexor.
+\item \textit{P4:} Puerto para la medida de las salidas del PIC.
+\item \textit{ALIM:} Puerto para alimentación de la placa y los motores.
+\item \textit{D1:} \ac{LED} indicador de encendido de la placa.
+\item \textit{D2:} \ac{LED} indicador de potencia en los motores.
 \end{itemize}
 
 
@@ -1160,11 +1182,17 @@ Llegados a este punto tenemos el esquema básico de la PCB \ref{fig:cap6:placa}.
 
 
 
-\subsection{Puerto para programación del PIC}
+\subsubsection{Puerto para programación del PIC}
 
-Puesto que esta placa esta concebida como una plataforma de pruebas para experimentar con distintos algoritmos, es un requisito básico que sea fácil cargar los programas desarrollados en el PIC.
+En la parte inferior izquierda de la placa esta situado el puerto para la programación del PIC, es un conector RJ 11. 
 
-EXPLICAR LO DEL RJ11 DEL ICD3 Y LA FACILIDAD DE CONEXIÓN.
+Puesto que esta placa esta concebida como una plataforma de pruebas para experimentar con distintos algoritmos, es un requisito básico que sea fácil cargar los programas desarrollados en el \ac{MCU}.
+
+La herramienta utilizada para esto es el \ac{ICD3} que ofrece un puerto RJ 11 para la conexión con el PIC.
+
+Esta herramienta se verá en profundidad en su sección correspondiente. \ref{cap7:sub:icd3}.
+
+
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX
