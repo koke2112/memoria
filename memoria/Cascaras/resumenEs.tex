@@ -4,7 +4,7 @@
 %
 %---------------------------------------------------------------------
 %
-% Contiene el capítulo del resumen en inglés.
+% Contiene el capítulo del resumen en español.
 %
 % Se crea como un capítulo sin numeración.
 %
@@ -12,32 +12,20 @@
 
 \chapter{Resumen}
 \cabeceraEspecial{Resumen}
+Uno de los campos de trabajo más activos en la actualidad dentro del mundo de las nubes de sensores inalámbricos es la recolección de energía ``Energy Harvesting'' que permitan a los nodos tener una autonomía ilimitada.
 
-Actualmente, las redes de sensores inalámbricas están sometidas a impedimentos que dificultan su desarrollo y despliegue. Un ejemplo de estas limitaciones es la creciente saturación del espectro radioeléctrico en las bandas de frecuencia libres.
+Dentro de esta temática los recolectores de energía mecánica son una solución con un gran potencial dado que la energía que teóricamente puede extraerse es considerable.
 
-\vspace{.1cm}
+En general, los medios de donde se capta la energía tienen una \ac{Q} bastante elevada, por lo que, para obtener la máxima eficiencia se ha de sintonizar el sistema de captación, haciendo coincidir su frecuencia de funcionamiento con la del medio. La forma de universalizar un sistema de recolección es que éste sea sintonizable de forma automática en función de la energía que puede captar del medio.
 
-Las redes cognitivas, apoyándose en un modelo de comunicación cooperativo, representan un nuevo paradigma que tiene por objetivo un uso  más eficiente del espectro y la mejora de las comunicaciones inalámbricas. Las redes de sensores cognitivas aplican propiedades cognitivas en redes de sensores comunes, desarrollando así nuevas estrategias para mitigar la ineficiencia en las comunicaciones que sufren estas redes.
+En el presente Proyecto se plantea el diseño y construcción de un sistema capaz de captar energía aprovechando las vibraciones mecánicas de la estructura (medio) sobre la que vaya montado a través de un transductor electromagnético y cuyo fin será alimentar un nodo de una nube de sensores. Además deberá ser capaz de maximizar la energía captada a través de la sintonización del generador y la optimización del bucle de control.
 
-\vspace{.1cm}
+El sistema se compondrá de un micro-generador que será el encargado de captar la energía, una etapa para aumentar la tensión obtenida, un micro-controlador y un motor capaz de actuar mecánicamente sobre el generador para modificar alguno de sus parámetros.
 
-Es importante investigar modelos cognitivos para explorar los beneficios que pueden aportar a nuestras redes de sensores, especialmente limitadas en energía y recursos. Sin embargo, pocas plataformas y con funcionalidades generalmente pobres o demasiado específicas permiten su estudio debido a un estado del arte aún inmaduro. La mayoría de las investigaciones se llevan a cabo sobre simuladores, los cuales muestran resultados parciales o incompletos.
+Dado que en nuestro escenario el máximo de energía que se puede obtener varía con la frecuencia, el generador también tendrá que tener un alto \ac{Q} sintonizable, con vistas a conseguir la máxima energía posible en una frecuencia muy concreta.
+Esto se conseguirá a través de un micro-controlador que realizará medidas e intentará encontrar la frecuencia óptima de funcionamiento modificando el generador a través de un motor eléctrico.
 
-\vspace{.1cm}
 
-Este documento presenta el diseño y la implementación una plataforma versátil que integra propiedades cognitivas en las redes de sensores. Se han combinado módulos hardware y software en un instrumento que ayude a la investigación de las redes de sensores cognitivas. La plataforma permite comunicación sobre tres bandas distintas de radiofrecuencia, siendo la única plataforma para redes de sensores que lo permite, y el hardware se ajusta a exigencias de tamaño, coste y energía. Además, su diseño modular y escalable es ampliamente adaptable a cualquier aplicación para redes de sensores.
-
-\vspace{.5cm}
-
-\begin{table}[h!]
-\Large
-\scalebox{0.8}{
-\begin{tabular}{ l l }
-\textbf{\emph{KEY WORDS}}:	& \emph{redes cognitivas}, \emph{radio cognitiva}, \emph{redes de sensores inalámbricas}, \\ 
- 				& \emph{plataforma}, \emph{banco de pruebas}, \emph{nodo}, \emph{dispositivo},\\
-				& \emph{redes de sensores inalámbricas cognitivas}.
-\end{tabular}}
-\end{table}
 
 \endinput
 % Variable local para emacs, para  que encuentre el fichero maestro de
