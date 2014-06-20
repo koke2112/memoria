@@ -57,6 +57,15 @@
 \usepackage{placeins}
 \usepackage{enumitem}
 \usepackage{amsmath}
+
+%Para insertar un pdf
+\usepackage{color}
+\pagecolor{white}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{everyshi}
 %\pretolerance=10000
 %\tolerance=10000
 
@@ -157,7 +166,7 @@ constantes,guionado,Cascaras/bibliografia,config%
 
 \include{Cascaras/resumenEs}
 
-\include{Cascaras/resumenEn}
+%\include{Cascaras/resumenEn}
 
 \include{Cascaras/dedicatoria}
 
@@ -192,8 +201,10 @@ constantes,guionado,Cascaras/bibliografia,config%
 \appendix
 \include{Apendices/ParteApendices}
 \include{Apendices/Schematics}
-\include{Apendices/Layouts}
+\include{Apendices/vibgen}
 
+
+\include{Apendices/comergen}
 
 %\backmatter
 

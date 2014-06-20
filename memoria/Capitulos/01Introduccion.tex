@@ -21,19 +21,54 @@ In this chapter, a global description of the project is given. This global descr
 \end{resumen}
 
 
-%-------------------------------------------------------------------
-\section{Background}
-%-------------------------------------------------------------------
-\label{cap1:sec:background}
-%-------------------------------------------------------------------
-
- A \ac{WSN} consists of a spatially distributed number of sensors spread across a geographical 
 
 %-------------------------------------------------------------------
-\section{Goals}
+\section{Nubes de sensores inalámbricos}
 %-------------------------------------------------------------------
-\label{cap1:sec:goals}
+\label{cap1:sec:sensores}
 %-------------------------------------------------------------------
+
+
+%-------------------------------------------------------------------
+\section{Problemas de alimentación y Energy Harvesting}
+%-------------------------------------------------------------------
+\label{cap1:sec:alim}
+%-------------------------------------------------------------------
+
+
+Uno de los campos de trabajo más activos en la actualidad dentro del
+mundo de las nubes de sensores es la recolección de energía ?Energy
+Harvesting? que permitan a los nodos tener una autonomía ilimitada.
+Dentro de esta temática los recolectores de energía mecánica son
+una solución con un gran potencial dado que la energía que
+teóricamente puede extraerse es bastante elevada.
+En general, los medios de donde se capta la energía tienen una Q
+bastante elevada, por lo que, para obtener una máxima eficiencia se
+ha de sintonizar el sistema de captación con el medio. La forma de
+universalizar un sistema de recolección es que éste sea sintonizable
+de forma automática en función de la energía que puede captar del
+medio.
+En el presente Proyecto se plantea el diseño y construcción de un
+sistema capaz de captar energía aprovechando las vibraciones
+mecánicas de la estructura (medio) sobre la que vaya montado y
+cuyo fin será alimentar un nodo de una nube de sensores. Además
+deberá ser capaz de maximizar la energía captada a través de la
+sintonización del generador y la optimización del bucle de control
+para la maximización de la energía recolectada.
+El sistema se compondrá de un micro-generador que será el
+encargado de captar la energía, una etapa para aumentar la tensión
+obtenida, un micro-controlador y un motor capaz de actuar
+mecánicamente sobre el generador para modificar alguno de sus
+parámetros.
+
+Dado que en nuestro escenario el máximo de energía que se puede
+obtener varía con la frecuencia, el generador también tendrá que
+tener un alto Q sintonizable, por lo que éste habrá de ser sintonizable
+con vistas a conseguir la máxima energía posible.
+Esto se conseguirá a través de un micro-controlador que realizará
+medidas e intentará encontrar la frecuencia óptima de
+funcionamiento modificando el generador a través de un motor
+eléctrico
 
 
 %-------------------------------------------------------------------
