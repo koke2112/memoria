@@ -27,28 +27,31 @@ En este capitulo se da una descripción global del proyecto. Esta descripción aba
 %-------------------------------------------------------------------
 \label{cap1:sec:sensores}
 %-------------------------------------------------------------------
+Una red de sensores inalámbricos \ac{WSN} consiste en una serie de sensores repartidos en un área geográfica. Cada sensor tiene comunicación inalámbrica y determinado nivel de inteligencia para procesamiento de señal y comunicación. Estas redes \ac{WSN} proporcionan una solución descentralizada para aplicaciones de vigilancia, seguridad, seguimiento, localización, salud, control industrial o mantenimiento de estructuras. Se han posicionado recientemente como  uno de los principales temas de investigación debido a su potencial económico a largo plazo, y su capacidad de transformar nuestras vidas.
 
+Puesto que para muchas aplicaciones el numero de nodos puede ser muy elevado o acceder a ellos puede no ser posible. Es estos casos es un requisito principal minimizar el consumo de energía y el coste de los nodos. Esto afecta al modo de operación  del sistema forzándolo a tener bajos recursos (memoria, capacidad de procesamiento, etc...).
 
 %-------------------------------------------------------------------
 \section{Problemas de alimentación y Energy Harvesting}
 %-------------------------------------------------------------------
 \label{cap1:sec:alim}
 %-------------------------------------------------------------------
+En este proyecto nos vamos a centrar en lo relativo a la minimización del consumo.
 
 Las opciones actuales para alimentar un nodo inalámbrico son dos. 
 \smallskip
 Se pueden emplear baterías con su consiguiente ciclo de agotamiento y recarga o, más a largo plazo, su sustitución por otra, o se pueden emplear métodos de recolección de energía.
 
 
-El termino ?Energy Harvesting? o recolección de energía cubre el campo de la conversión de energía disponible en el entorno en energía eléctrica. El principal interés en este campo deriva de su capacidad de actuar como un suministro de energía independiente para sistemas inalámbricos auto alimentados, en contraste con el uso de baterías.
-El ?energy harvesting? basado en vibraciones que aprovecha la energía cinética presente en el entorno es solo uno de los tipos que existen.
+El termino ``Energy Harvesting'' o recolección de energía cubre el campo de la conversión de energía disponible en el entorno en energía eléctrica. El principal interés en este campo deriva de su capacidad de actuar como un suministro de energía independiente para sistemas inalámbricos auto alimentados, en contraste con el uso de baterías.
+El ``energy harvesting'' basado en vibraciones que aprovecha la energía cinética presente en el entorno es solo uno de los tipos que existen.
 También se puede producir energía eléctrica mediante efectos fotovoltaicos o termoeléctricos, en función de la luz o la temperatura del entorno. 
 \bigskip
 
 La generación a partir de vibraciones es especialmente adecuada para entornos industriales donde los movimientos y vibraciones son frecuentes, y los sensores pueden estar colocados en lugares oscuros y sucios.
 \medskip
 
-Otra fuente de vibraciones para ?energy harvesting? es el cuerpo humano, donde un amplio rango de dispositivos ha sido desarrollado para extraer su energía de las pisadas (deceleración brusca), movimiento de muñeca (relojes cinéticos) o sistemas montados en distintas prendas y complementos donde se den esas aceleraciones necesarias.
+Otra fuente de vibraciones para ``energy harvesting'' es el cuerpo humano, donde un amplio rango de dispositivos ha sido desarrollado para extraer su energía de las pisadas (deceleración brusca), movimiento de muñeca (relojes cinéticos) o sistemas montados en distintas prendas y complementos donde se den esas aceleraciones necesarias.
 \medskip
 
 En aplicaciones basadas en máquinas, los niveles de vibración pueden ser muy pequeños ($<1ms^{-2}$) a frecuencias que normalmente coinciden con la frecuencia del suministro de energía de la maquina (50 Hz). Estas amplitudes tan pequeñas fuerzan que la manera mas eficiente de extraer energía de estas vibraciones sea mediante generadores inerciales con una frecuencia de resonancia característica.
@@ -61,7 +64,7 @@ En aplicaciones basadas en máquinas, los niveles de vibración pueden ser muy peq
 \label{cap1:sec:magnet}
 %-------------------------------------------------------------------
 
-
+En este proyecto se construirá un generador electromagnético que será la base sobre la que se desarrollará el sistema de sintonización y los posteriores estudios.
 
 
 
