@@ -29,7 +29,7 @@ En este capitulo se da una descripción global del proyecto. Esta descripción aba
 %-------------------------------------------------------------------
 Una red de sensores inalámbricos \ac{WSN} consiste en una serie de sensores repartidos en un área geográfica. Cada sensor tiene comunicación inalámbrica y determinado nivel de inteligencia para procesamiento de señal y comunicación. Estas redes \ac{WSN} proporcionan una solución descentralizada para aplicaciones de vigilancia, seguridad, seguimiento, localización, salud, control industrial o mantenimiento de estructuras. Se han posicionado recientemente como  uno de los principales temas de investigación debido a su potencial económico a largo plazo, y su capacidad de transformar nuestras vidas.
 
-Puesto que para muchas aplicaciones el numero de nodos puede ser muy elevado o acceder a ellos puede no ser posible. Es estos casos es un requisito principal minimizar el consumo de energía y el coste de los nodos. Esto afecta al modo de operación  del sistema forzándolo a tener bajos recursos (memoria, capacidad de procesamiento, etc...).
+Puesto que para muchas aplicaciones el numero de nodos puede ser muy elevado o acceder a ellos puede no ser posible, es un requisito principal minimizar el consumo de energía y su coste. Esto afecta al modo de operación  del sistema forzándolo a tener bajos recursos (memoria, capacidad de procesamiento, etc...).
 
 %-------------------------------------------------------------------
 \section{Problemas de alimentación y Energy Harvesting}
@@ -38,9 +38,11 @@ Puesto que para muchas aplicaciones el numero de nodos puede ser muy elevado o a
 %-------------------------------------------------------------------
 En este proyecto nos vamos a centrar en lo relativo a la minimización del consumo.
 
-Las opciones actuales para alimentar un nodo inalámbrico son dos. 
+Puesto que estos nodos no pueden estar alimentados mediante cables las opciones actuales para alimentarlos son dos. 
 \smallskip
-Se pueden emplear baterías con su consiguiente ciclo de agotamiento y recarga o, más a largo plazo, su sustitución por otra, o se pueden emplear métodos de recolección de energía.
+Se pueden emplear baterías con su consiguiente ciclo de agotamiento y recarga o, más a largo plazo, su sustitución por otra batería, o \textbf{se pueden emplear métodos de recolección de energía.}
+
+Las baterías presentan la desventaja de que se agotan y hace falta recargarlas. Minimizar el consumo del nodo maximizaría el tiempo de uso de una batería hasta su siguiente recarga pero no evitaría el agotamiento de esta al final de su vida útil.
 
 
 El termino ``Energy Harvesting'' o recolección de energía cubre el campo de la conversión de energía disponible en el entorno en energía eléctrica. El principal interés en este campo deriva de su capacidad de actuar como un suministro de energía independiente para sistemas inalámbricos auto alimentados, en contraste con el uso de baterías.
@@ -66,6 +68,11 @@ En aplicaciones basadas en máquinas, los niveles de vibración pueden ser muy peq
 
 En este proyecto se construirá un generador electromagnético que será la base sobre la que se desarrollará el sistema de sintonización y los posteriores estudios.
 
+El funcionamiento básico de estos generadores se basa en el desplazamiento relativo entre un imán y una bobina próxima. 
+
+Este movimiento produce una variación del flujo magnético que atraviesa las espiras de la bobina. La variación de este flujo en el tiempo es la que induce una corriente eléctrica en la bobina.
+
+Una vez construido este generador, vendrá la fase de sintonización, que es básicamente conseguir el máximo desplazamiento entre el imán y la bobina para cada frecuencia de las vibraciones del entorno.
 
 
 
