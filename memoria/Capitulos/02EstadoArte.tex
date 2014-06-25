@@ -5,7 +5,7 @@
 %---------------------------------------------------------------------
 
 \chapter{Micro Generadores de ``Energy Harvesting'': Estado del arte}
-
+\label{cap2}
 %\begin{FraseCelebre}
 %\begin{Frase}
 %Television rules the nation
@@ -116,19 +116,65 @@ Por otro lado en cuanto al tamaño los generadores construidos ocupan un volumen 
         \label{fig:cap2:beeby5img}
 \end{figure}
 
+Estos generadores están montados sobre estructuras rígidas de aluminio para transmitir las máximas vibraciones posibles al sistema resorte-masa.
+\medskip
 
+En este estudio se presenta también un primer esquema de banco de trabajo, que incluye un generador de funciones, un generador de vibraciones y un sistema de captura de energía.
 
-
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/esquemabeeby5}  
+        \caption{Diagrama del entorno de trabajo empleado}
+        \label{fig:cap2:beeby5esq}
+\end{figure}     
+\FloatBarrier
 \bigskip
 
-En \cite{beeby2}, de los mismos autores que \cite{beeby5}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas...
+En \cite{beeby2}, de los mismos autores que \cite{beeby5}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas. En concreto se desarrolla un generador con un volumen de 0.15$cm^{3}$
+\medskip
 
-En \cite{beeby3} (sistema completo poner al final)
+El objetivo en este caso era minimizar el tamaño de un generador electromagnético, maximizando al mismo tiempo su eficiencia. Para ello se lleva a cabo un estudio exhaustivo de materiales para la lamina, de imanes y su relación tamaño/fuerza magnética, y de los parámetros de la bobina.
+\medskip
+
+Como se ve en la figura \ref{fig:cap2:beeby2pot}, el factor de calidad de estos generadores es elevado y sera una característica muy útil a la hora de implementar el concepto de sintonización.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/beeby2pot}  
+        \caption{Simulación de potencia de salida con este generador}
+        \label{fig:cap2:beeby2pot}
+\end{figure}     
+\FloatBarrier
+
+En \cite{beeby3} el enfoque esa centrado en el post-procesado de la energía producida, su monitorización y adaptabilidad a un nodo inalámbrico. Aunque su contenido se aleje de los objetivos de este proyecto si es de utilidad para conocer los metodos de acondicionamiento de la energía producida.
+\medskip
+
+Se presentan multiplicadores de tensión como los vistos en \cite{marcin}, pero además se introduce un sistema controlado por un microcontrolador PIC que mide la energía almacenada en un super-capacitor y cuando alcanza cierto nivel despierta al nodo para que transmita.
+
+Esta funcionalidad sera de gran ayuda para la realización de este proyecto a la hora de medir la energía que se está produciendo y decidir si es necesaria la sintonización o no.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/beeby3gen}  
+        \caption{Montaje real de un micro-generador con nodo inalámbrico}
+        \label{fig:cap2:beeby3gen}
+\end{figure}     
+\FloatBarrier
 
 
+%-------------------------------------------------------------------
+\section{Sintonización}
+%-------------------------------------------------------------------
+\label{cap2:sec:sinto}
+%-------------------------------------------------------------------
+Una característica común a todos estos estudios es que prácticamente ninguno se basa en la construcción de un generador sintonizable.
 
-Pero si hay algo en lo que se ha investigado de manera superficial y no se ha prototipado hasta la redacción de este escrito es en sintonización de estos generadores.
-Como ya se ha comentado, para extraer el máximo de energía de un entorno donde es escasa, hay que trabajar en la frecuencia de resonancia de los generadores, haciéndola coincidir con la del entorno. Esto es inmediato en una situación ideal, pero en el mundo real, la frecuencia del entorno no es constante, puede variar, y es aquí donde hay que profundizar, porque y siendo una conclusión trivial, el estudio de la viabilidad de modificar la frecuencia de resonancia para adaptarse al entorno no se ha llevado a cabo con la suficiente exhaustividad, y este es el espacio que se viene a llenar con este proyecto
+Esto es algo en lo que se ha investigado de manera superficial y no se ha prototipado hasta la redacción de este escrito.
+
+Si bien es cierto que se han discutido ampliamente las formas aumentar la recolección de energía (\cite{sintonization}) ya sea sintonizando o aumentando el ancho de banda de los generadores, y que se ha publicado alguna investigación sobre ello, se hace muy difícil encontrar algún estudio en el que se desarrolle el diseño y la construcción de un generador sintonizable.
+
+Puesto que se ha detectado esta carencia, el presente proyecto se propone como un primer acercamiento a la construcción de un generador sintonizable y sobre todo como un punto de inicio para seguir investigando en este campo.
+
+
 
 
 
