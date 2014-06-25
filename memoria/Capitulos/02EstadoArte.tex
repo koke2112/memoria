@@ -39,24 +39,36 @@ Por otro lado hay ciertos grupos de investigación en universidades como las que 
 %-------------------------------------------------------------------
 \label{cap2:sec:comer}
 %-------------------------------------------------------------------
-Actualmente existen soluciones comerciales de estos generadores
+Actualmente existen algunas compañías que fabrican generadores eléctricos a partir de vibraciones. Son generadores básicos soluciones comerciales de estos generadores
+\bigskip
 
-\underline{Microstrain:}
+\textbf{\underline{Microstrain:}}
 
 Esta compañía produce dos tipos, electromagnéticos y piezoeléctricos. Estos generadores funcionan en el rango de 15-60Hz y su frecuencia de resonancia se puede fijar de forma manual antes del funcionamiento.
 \medskip
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/gen_strain}  
+        \caption{Generador de Microstrain}
+        \label{fig:cap2:strain}
+\end{figure}     
 
 
-\underline{Microgensystems:}
-
+\textbf{\underline{Microgensystems:}}
 Esta compañía produce unos microgeneradores de frecuencia fija, por lo que previamente a adquirirlo habría que caracterizar el entorno vibrante y encontrar la frecuencia a la que las vibraciones tienen mayor potencia.
 \medskip
 
 
-\underline{Perpetuum:}
+\textbf{\underline{Perpetuum:}}
 
-Esta empresa que nació como un spin-off de la Universidad de Southhampton se dedica a la comercialización de generadores electromagnéticos, cuya frecuencia de resonancia se puede fijar manualmente.      
-
+Esta empresa que nació como un spin-off de la Universidad de Southhampton se dedica a la comercialización de generadores electromagnéticos, cuya frecuencia de resonancia se puede fijar manualmente. 
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/gen_perpetum}  
+        \caption{Generador de Perpetuum}
+        \label{fig:cap2:perpetum}
+\end{figure}     
+\FloatBarrier
 \bigskip
 
 Las hojas con las características de estos generadores se pueden encontrar en el apéndice \ref{ap2:comergen}
@@ -88,11 +100,28 @@ En \cite{beeby5} se presenta la construcción de un micro-generador electromagnét
 
 \medskip
 
-La producción de este generador va desde una potencia media de 157$\mu$W hasta picos de 3,9mW.[seguir rellenando]
+La producción de este generador va desde una potencia media de 157$\mu$W hasta picos de 3,9mW.
+
+Se presentan dos prototipos con la diferencia de la colocación de la bobina respecto a los imanes. Se declara que uno de ellos es mas eficiente y por lo tanto este será el elegido para empezar a construir el generador. 
+ 
+En \ref{cap4:sec:arquitectura} se estudia a fondo esta arquitectura y se demuestra que es la mas eficiente.
+
+Por otro lado en cuanto al tamaño los generadores construidos ocupan un volumen de 0.84 y 3,15$cm^{3}$
+\begin{figure}[!h]
+        \centering
+        \subfloat[Prototipo de 0.84$cm^{3}$.]{\label{fig:cap2:prota}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/beeby5_1}} 
+        \qquad
+		\subfloat[Prototipo de 3.15$cm^{3}$.]{\label{fig:cap2:protb}\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap2/beeby5_2}}
+\caption{Prototipos desarrollados en \cite{beeby5}.}
+        \label{fig:cap2:beeby5img}
+\end{figure}
+
+
+
 
 \bigskip
 
-En \cite{beeby2}, de los mismos autores que \cite{beeby3}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas...
+En \cite{beeby2}, de los mismos autores que \cite{beeby5}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas...
 
 En \cite{beeby3} (sistema completo poner al final)
 
