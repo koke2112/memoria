@@ -85,7 +85,7 @@ En la mayoría de los casos los generadores propuestos son solo prototipos sin ap
 A continuación se muestran los estudios realizados sobre diferentes generadores.
 \bigskip
 
-En \cite{marcin} se detalla un micro-generador capaz de alimentar un pequeño nodo inalámbrico de forma totalmente autónoma. Aunque el transductor empleado es piezoeléctrico, el generador en sí esta basado en un estructura resonante, como el que se va a construir en este proyecto.
+\textbf{En \cite{marcin}} se detalla un micro-generador capaz de alimentar un pequeño nodo inalámbrico de forma totalmente autónoma. Aunque el transductor empleado es piezoeléctrico, el generador en sí esta basado en un estructura resonante, como el que se va a construir en este proyecto.
 \medskip
 
 Lo que presenta este estudio es que los generadores electromagnéticos no pueden ser de tamaño reducido puesto que las bobinas e imanes tienen volúmenes no despreciables. Por lo tanto si en un futuro se quieren fabricar micro-generadores de un tamaño del orden de milímetros, habría que usar transductores piezoeléctricos.
@@ -96,7 +96,7 @@ Estas etapas son necesarias en este tipo de generadores ya que el voltaje produc
 
 \bigskip
 
-En \cite{beeby5} se presenta la construcción de un micro-generador electromagnético resonante. Esta será la linea principal que se seguirá en este proyecto en cuanto a la construcción del generador se refiere. 
+\textbf{En \cite{beeby5}} se presenta la construcción de un micro-generador electromagnético resonante. Esta será la linea principal que se seguirá en este proyecto en cuanto a la construcción del generador se refiere. 
 
 \medskip
 
@@ -104,7 +104,7 @@ La producción de este generador va desde una potencia media de 157$\mu$W hasta p
 
 Se presentan dos prototipos con la diferencia de la colocación de la bobina respecto a los imanes. Se declara que uno de ellos es mas eficiente y por lo tanto este será el elegido para empezar a construir el generador. 
  
-En \ref{cap4:sec:arquitectura} se estudia a fondo esta arquitectura y se demuestra que es la mas eficiente.
+En \ref{cap4:sec:arquitectura} se estudiará a fondo esta arquitectura y se demostrará que es la más eficiente.
 
 Por otro lado en cuanto al tamaño los generadores construidos ocupan un volumen de 0.84 y 3,15$cm^{3}$
 \begin{figure}[!h]
@@ -130,7 +130,7 @@ En este estudio se presenta también un primer esquema de banco de trabajo, que i
 \FloatBarrier
 \bigskip
 
-En \cite{beeby2}, de los mismos autores que \cite{beeby5}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas. En concreto se desarrolla un generador con un volumen de 0.15$cm^{3}$
+\textbf{En \cite{beeby2}}, de los mismos autores que \cite{beeby5}, se estudia la fabricación de un generador electromagnético reduciendo al máximo sus dimensiones físicas. En concreto se desarrolla un generador con un volumen de 0.15$cm^{3}$
 \medskip
 
 El objetivo en este caso era minimizar el tamaño de un generador electromagnético, maximizando al mismo tiempo su eficiencia. Para ello se lleva a cabo un estudio exhaustivo de materiales para la lamina, de imanes y su relación tamaño/fuerza magnética, y de los parámetros de la bobina.
@@ -146,7 +146,7 @@ Como se ve en la figura \ref{fig:cap2:beeby2pot}, el factor de calidad de estos 
 \end{figure}     
 \FloatBarrier
 
-En \cite{beeby3} el enfoque esa centrado en el post-procesado de la energía producida, su monitorización y adaptabilidad a un nodo inalámbrico. Aunque su contenido se aleje de los objetivos de este proyecto si es de utilidad para conocer los metodos de acondicionamiento de la energía producida.
+\textbf{En \cite{beeby3}} el enfoque esa centrado en el post-procesado de la energía producida, su monitorización y adaptabilidad a un nodo inalámbrico. Aunque su contenido se aleje de los objetivos de este proyecto si es de utilidad para conocer los metodos de acondicionamiento de la energía producida.
 \medskip
 
 Se presentan multiplicadores de tensión como los vistos en \cite{marcin}, pero además se introduce un sistema controlado por un microcontrolador PIC que mide la energía almacenada en un super-capacitor y cuando alcanza cierto nivel despierta al nodo para que transmita.
@@ -166,11 +166,11 @@ Esta funcionalidad sera de gran ayuda para la realización de este proyecto a la 
 %-------------------------------------------------------------------
 \label{cap2:sec:sinto}
 %-------------------------------------------------------------------
-Una característica común a todos estos estudios es que prácticamente ninguno se basa en la construcción de un generador sintonizable.
+Una característica común a todos estos estudios es que prácticamente ninguno trata la construcción de un generador sintonizable, siendo uno de los medios, a priori, mas sencillos para aumentar la eficiencia.
 
-Esto es algo en lo que se ha investigado de manera superficial y no se ha prototipado hasta la redacción de este escrito.
+La sintonización es algo en lo que se ha investigado de manera superficial y teórica, no habiéndose prototipado hasta la redacción de este escrito.
 
-Si bien es cierto que se han discutido ampliamente las formas aumentar la recolección de energía (\cite{sintonization}) ya sea sintonizando o aumentando el ancho de banda de los generadores, y que se ha publicado alguna investigación sobre ello, se hace muy difícil encontrar algún estudio en el que se desarrolle el diseño y la construcción de un generador sintonizable.
+Si bien es cierto que se han discutido ampliamente las formas aumentar la recolección de energía \cite{sintonization} ya sea sintonizando o aumentando el ancho de banda de los generadores, y que se ha publicado alguna investigación sobre ello, se hace muy difícil encontrar algún estudio en el que se desarrolle el diseño y la construcción de un generador sintonizable.
 
 Puesto que se ha detectado esta carencia, el presente proyecto se propone como un primer acercamiento a la construcción de un generador sintonizable y sobre todo como un punto de inicio para seguir investigando en este campo.
 

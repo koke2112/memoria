@@ -535,8 +535,17 @@ Si la nueva frecuencia no coincide con ninguna de las características, hay que l
 \label{cap6:sec:electronica}
 %-------------------------------------------------------------------
 En esta sección se detalla la electrónica implementada y como se ha diseñado para que cumpla la función requerida, que es la de sintonizar el generador. 
+\medskip
 
-Se tratará:
+La electrónica tiene que:
+\begin{enumerate}
+\item Medir energía producida.
+\item interpretar si es necesaria una sintonización.
+\item En caso afirmativo tiene que actuar sobre un motor para desplazar el sintonizador.
+\end{enumerate} 
+
+
+En este capítulo se tratará:
 \begin{itemize}
 \item El estudio de los motores disponibles y sus ventajas/desventajas para su uso en este proyecto.
 \item El estudio de los \ac{MCU} disponibles y en detalle el elegido.
@@ -661,7 +670,7 @@ Bipolar & Si & Si & Si & Si\\
 \end{center}
 \end{table}
 
-\subsubsection{Motores disponibles}
+\subsubsection{Motores adquiridos}
 \label{cap6:subsubsec:disponibles}
 Tras una búsqueda de los motores mas apropiados se han seleccionado los siguientes para las pruebas:
 
@@ -706,7 +715,7 @@ Diámetro del eje: 1,5mm.
 
 Tamaño: 7mmX6mm.
 %-------------------------------------------------------------------
-\subsection{Circuitos controladores de motores}
+\subsection{Circuitos integrados controladores de motores}
 %-------------------------------------------------------------------
 \label{cap6:sec:integrados}
 %-------------------------------------------------------------------
@@ -1070,7 +1079,7 @@ Para realizar esta medida se pueden emplear dos módulos del \ac{MCU}:
 Facilidad en la captura y medida de la señal.
 \item \textit{Desventajas:}
 
-Poca capacidad de reacción a la caída de señal puesto que los condensadores que conforman el multiplicador impiden que el nivel de la señal caiga o suba bruscamente.
+Poca capacidad de reacción a la caída de señal puesto que los condensadores que conforman el multiplicador impiden que el nivel de la señal baje o suba bruscamente.
 \end{itemize}
 
 \bigskip
@@ -1196,7 +1205,7 @@ Este multiplexor tiene internamente 4 multiplexores 2:1. A cada uno de estos mul
 \subsection{Partes de la placa}
 
 
-Llegados a este punto tenemos el esquema básico de la PCB \ref{fig:cap6:placa}.
+Llegados a este punto tenemos el esquema básico de la PCB en la figura \ref{fig:cap6:placa}.
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.8\textwidth]{Imagenes/imagenes/cap6/esquema_placa2}  
@@ -1213,6 +1222,7 @@ Y aqui una representación de la placa finalizada.
 \end{figure}
 \FloatBarrier
 
+Los componentes principales son:
 \begin{itemize}
 \item \textit{U1:} DRV8833: Driver de motores de corriente continua y Bipolares.
 \item \textit{U2:} ULN2003A: Driver de motores unipolares.
@@ -1241,7 +1251,7 @@ Puesto que esta placa esta concebida como una plataforma de pruebas para experim
 
 La herramienta utilizada para esto es el \ac{ICD3} que ofrece un puerto RJ 11 para la conexión con el PIC.
 
-Esta herramienta se verá en profundidad en su sección correspondiente. \ref{cap7:sub:icd3}.
+Esta herramienta se verá en profundidad en su sección correspondiente. \ref{cap9:sec:icd3}.
 
 
 %\includegraphics{pdf/strain.pdf}

@@ -1,0 +1,145 @@
+%---------------------------------------------------------------------
+%
+%                          Capítulo 9
+%
+%---------------------------------------------------------------------
+
+\chapter{Herramientas Software}
+\label{cap9}
+%\begin{FraseCelebre}
+%\begin{Frase}
+%At last the long wait is over \\
+%the weight is off my shoulders \\
+%I'm taking all control, yeah
+%\end{Frase}
+%\begin{Fuente}
+%Thomas \& Guy-Manuel, Daft Punk
+%\end{Fuente}
+%\end{FraseCelebre}
+
+\begin{resumen}
+En este capítulo de verán las herramientas software empleadas, como pueden ser las de programación del micro-controlador o las que se han empleado para la creación de piezas 3D.
+\end{resumen}
+
+
+
+
+%-------------------------------------------------------------------
+\section{Autodesk Inventor}
+%-------------------------------------------------------------------
+\label{cap9:sec:inventor}
+%-------------------------------------------------------------------
+
+Este software ha sido el empleado para el diseño de las piezas 3D que conforman el generador. 
+\medskip
+
+Es un software de la compañía Autodesk de modelado parámetrico. 
+\medskip
+
+Realizando operaciones booleanas sobre formas básicas (cubos, cilindros y esferas) se puede construir cualquier figura básica. 
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap9/inventor}  
+        \caption{Software Inventor}
+        \label{fig:cap9:inventor}
+\end{figure}
+\FloatBarrier
+
+Otros softwares para este cometido son Blender, Open Scad, Solid Work o Solid edge.
+\medskip
+
+Lo importante tras generar el modelo 3D, es exportarlo en formato .stl.
+%-------------------------------------------------------------------
+\section{Cura}
+%-------------------------------------------------------------------
+\label{cap9:sec:cura}
+%-------------------------------------------------------------------
+
+Tras haber generado un archivo .stl con el inventor o algún otro programa de diseño 3D, es necesario acondicionarlo para que pueda ser impreso.
+\medskip
+
+El funcionamiento de una impresora 3D se basa en impresión de capas horizontales. Es decir, no imprime la figura de una vez, sino que imprime capa a capa.
+\medskip
+
+Cada capa a su vez se compone de GCodes, que son ordenes de movimiento simples que un \ac{MCU} se encarga de transformar en pasos de un motor bipolar.
+\medskip
+
+Por esto es necesario un software que descomponga capa a capa la pieza 3D que hay en el archivo .stl y que además las traduzca a GCode.
+\medskip
+
+Esta función la realizan los software slicer (loncheador). 
+\medskip
+
+Un ejemplo es el software Cura \cite{cura}.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap9/cura}  
+        \caption{Software Cura}
+        \label{fig:cap9:cura}
+\end{figure}
+\FloatBarrier
+
+
+%-------------------------------------------------------------------
+\section{MPLAB X}
+%-------------------------------------------------------------------
+\label{cap9:sec:mplab}
+%-------------------------------------------------------------------
+MPLAB X \ac{IDE} es un software multi-plataforma para desarrollar aplicaciones para los \ac{MCU} de Microchip.
+\medskip
+
+Se llama entorno de desarrollo integrado porque proporciona una plataforma unica para programar, desde el compilador hasta el cargador del programa en el \ac{MCU}. Esta basado en NetBeans de Oracle.
+
+Algunas de sus características son:
+
+\begin{itemize}
+\item Soporte de múltiples configuraciones para cada proyecto.
+\item Herramientas de depurado.
+\item Proporciona enlaces rápidos a las declaraciones de funciones o variables.
+\end{itemize}
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.9\textwidth]{Imagenes/imagenes/cap9/mplab}  
+        \caption{MPLAB X con un programa de PIC 16}
+        \label{fig:cap9:mpalb}
+\end{figure}
+\FloatBarrier
+
+%-------------------------------------------------------------------
+\subsection{Programador: ICD 3}
+%-------------------------------------------------------------------
+\label{cap9:sec:icd3}
+%-------------------------------------------------------------------
+
+Este dispositivo, es el encargado de cargar el programa en el \ac{MCU}. Funciona en conjunto con MPLAB X.
+
+Ademas proporciona la capacidad de depurar (debug) usando el \ac{IDE}.
+\medskip
+
+Su interfaz con el ordenador es mediante un bus \ac{USB}, y con el \ac{MCU} mediante un conector RJ11.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.7\textwidth]{Imagenes/imagenes/cap9/ICD3}  
+        \caption{Interfaz del IDC 3 con el MCU}
+        \label{fig:cap9:icd3}
+\end{figure}
+\FloatBarrier
+
+
+
+
+
+
+
+%
+% Variable local para emacs, para  que encuentre el fichero maestro de
+% compilación y funcionen mejor algunas teclas rápidas de AucTeX
+%%%
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../Tesis.tex"
+%%% End:
