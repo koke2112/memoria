@@ -25,7 +25,7 @@ En este capitulo se expondrán las lineas futuras del proyecto, mejoras y lineas 
 \section{Introducción}
 
 
-Puesto que este proyecto es una plataforma para la investigación en energy harvesting con generadores inerciales, se pueden proponer muchas lineas de investigación pero sobre todo mejoras específicas sobre este generador.
+Puesto que este proyecto es una plataforma para la investigación en energy harvesting con generadores inerciales, se pueden proponer muchas lineas de investigación pero sobre todo mejoras específicas sobre este generador para dejar un entorno funcional y estable.
 
 
 %-------------------------------------------------------------------
@@ -33,11 +33,34 @@ Puesto que este proyecto es una plataforma para la investigación en energy harve
 %-------------------------------------------------------------------
 \label{cap8:sec:mejoras}
 %-------------------------------------------------------------------
+
+
+Las mejoras son modificaciones sobre el proyecto actual, que mejorarían su rendimiento.
+
+\subsection{Nuevos diseños de piezas}
+Las piezas diseñadas hasta ahora (Base,Sintonizador,etc) podrían ser optimizadas, buscando reducción de peso o mejora de los puntos de equilibrio.
+\subsection{Detección de limite de recorrido}
+El generador actual no limita el recorrido, no se puede detectar cuando el sintonizador llega al final del su recorrido. Por lo tanto en el estado actual, el motor seguiría girando aun cuando el sintonizador no puede moverse mas. Esto causaría que alguna parte se rompiese.
+\bigskip
+
+Por esto, como mejora se propone la inclusión de sensores fin de carrera que sean activados por el sintonizador cuando se acerque al limite de su recorrido. Una vez activados, el \ac{MCU} actualizaría en su memoria la posición del sintonizador y actuaria en consecuencia (No permitiendo movimientos mayores de donde se encuentra en ese momento)
+
+
 %-------------------------------------------------------------------
 \section{Estudios futuros}
 %-------------------------------------------------------------------
 \label{cap8:sec:furtherStudies}
 %-------------------------------------------------------------------
+
+Las lineas futuras de este proyecto comprenden las modificaciones a las que se le puede someter y que implicarían un cambio en el concepto.
+
+\subsection{Reducción de tamaño}
+
+Cuando se hayan realizado todas las pruebas sobre la plataforma actual, se puede investigar en la reducción del tamaño del generador. Las piezas imprimibles, no supondrían problema, pero no así la lámina y la bobina que requerirían otro estudio
+
+\subsection{Auto-Alimentación}
+
+\subsection{Búsqueda de mejores materiales}
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX
