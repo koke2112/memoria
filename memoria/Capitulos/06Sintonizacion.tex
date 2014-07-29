@@ -689,11 +689,13 @@ Motor & Consumo (V)& R.P.M  \\
 \hline
 210-002 & 2.5 & 58\\
 \hline
-210-008 & 2.5 & 42\\
+212-008 & 2.5 & 42\\
 \hline
 206-108 & 3 & 28\\
 \hline
 206-109 & 3 & 140\\
+\hline
+212-108 & 5 & 42\\
 \hline
 \end{tabular}
 \caption{Motores comprados en \cite{precisionmicro}.}
@@ -701,7 +703,7 @@ Motor & Consumo (V)& R.P.M  \\
 \end{center}
 \end{table}
 
-Las caracteristicas de estos motores se pueden consultar en el anexo [PONER EL ANEXO DONDE LAS DATASHEETS DE LOS MOTORES]
+Las características de estos motores se pueden consultar en el anexo [PONER EL ANEXO DONDE LAS DATASHEETS DE LOS MOTORES]
 \bigskip
 
 \textbf{\underline{Motor paso a paso unipolar:}}
@@ -1175,7 +1177,7 @@ Esto se implementa mediante un sensor fin de carrera que active el sintonizador 
 
 
 \section{Placa PCB desarrollada para integrar la electrónica ``MC1''}
-
+\label{cap6:sec:placa}
 Como se deduce de la sección \ref{cap6:sec:electronica}, en la PCB desarrollada se incluirá un \ac{MCU} PIC 16LF1503, un driver de motores DRV8833 y un array de Darlingtons ULN2003A.
 \begin{figure}[!h]
         \centering

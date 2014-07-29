@@ -18,7 +18,7 @@
 %\end{FraseCelebre}
 
 \begin{resumen}
-En este capítulo se incluyen los resultados obtenidos tras las pruebas realizadas al prototipo y loas mejoras realizadas sobre el prototipo básico.
+En este capítulo se incluyen los resultados obtenidos tras las pruebas realizadas al prototipo y las mejoras realizadas sobre el prototipo básico.
 \end{resumen}
 
 %-------------------------------------------------------------------
@@ -28,6 +28,9 @@ En este capítulo se incluyen los resultados obtenidos tras las pruebas realizada
 %-------------------------------------------------------------------
 
 Se van a realizar pruebas por módulos, es decir se probarán las distintas partes del proyecto por separado y finalmente si todas las pruebas son satisfactorias se realizará la prueba final integrando todo el proyecto.
+\bigskip
+
+A continuación se detallan las diferentes pruebas realizadas al proyecto o a sus partes.
 
 \subsection{Amplificador de señal}
 Este amplificador visto en \ref{cap5:subsec:ampli} sirve para adecuar la señal que entrega el generador de funciones, al generador de vibraciones.
@@ -40,16 +43,147 @@ Como ya se vio en \ref{cap5:subsec:ampli}, el circuito amplifica y mantiene la f
 Durante la primera prueba se vio que los transistores alcanzaban una temperatura alta, y por lo tanto el disipador también, por esto se decidió realizar una prueba de resistencia, es decir, dejar el amplificador funcionando para ver si en algún momento esta alta temperatura causaba algún problema.
 
 \begin{itemize}
-\item Se pone en funcioanmiento el amplificador con el generador de vibraciones a la salida.
+\item Se pone en funcionamiento el amplificador con el generador de vibraciones a la salida.
 \item Tras 30 minutos en funcionamiento, el amplificador sigue funcionando con normalidad aunque el disipador alcance una alta temperatura.
 \item No se aprecian distorsiones en la salida, por lo tanto pasa la prueba de resistencia.
 \end{itemize}
  
+\subsection{Banco de tensiones}
+El banco visto en \ref{cap5:sec:tension} genera 3 y 5V estables a partir de los 12V de alimentación del amplificador.
 
+IMAGEN DEL LOS PRODUCIDO EN DOS SONDAS.
+
+\begin{itemize}
+\item Se conectan 12V a la entrada de los circuitos construidos con los reguladores
+\item Se miden las salidas y se comprueban las tensiones.
+\item Para la fuente de 5V se pide una corriente similar a la que necesita el motor. 200mA al arrancar y 91mA en régimen estable. El integrado es capaz de entregar una corriente máxima de 1A por lo que esta prueba la supera.
+\item Las pruebas realizadas fueron positivas, obteniendo tensiones estables como se requería.
+\end{itemize}
+
+\subsection{Placa de motores}
+
+En lo relativo a la placa, hay varias partes a probar:
+
+\begin{itemize}
+\item Firmware desarrollado para la implementación de algoritmos.
+\item Integración del \ac{MCU} con el resto de componentes.
+\item Funcionamiento de los periféricos.
+\end{itemize}
+
+\subsubsection{Firmware y algoritmos}
+
+Una vez programados los algoritmos es necesario depurarlos para eliminar posibles fallos en tiempo de ejecución.
+\medskip
+
+Puesto que la familia de PIC 8 no proporciona herramientas de depurado, se hace necesario implementar otra manera de encontrar los posibles errores para poder arreglarlos..
+\medskip
+
+Para esto se montó un PIC16LF1503 con encapsulado DIP en una placa de inserción, y colocando LEDs en las diferentes salidas, se puede saber mediante estimulo visual, si el \ac{MCU} estaba excitando las correctas en cada momento.
+\medskip
+
+También de esta manera se pueden ajustar los contadores y timers del controlador.
+
+\underline{{\textbf{Conclusiones:}} Tras las primeras pruebas se encontraron pequeños fallos en la programación que se resolvieron adecuadamente.
+
+Tras comprobar que el firmware y algún algoritmo estaban correctamente implementados, era hora de pasar a comprobar el funcionamiento del controlador junto al resto de componentes.
+
+
+\subsubsection{Integración del \ac{MCU} con el resto de componentes.}
+
+Como se vio en \ref{cap6:sec:placa} la placa esta compuesta por un \ac{MCU}, un multiplexor, y dos driver de motores, uno para motores de continua y bipolares y el otro para motores unipolares.
+
+Una vez montados y soldados todos los componentes se comprueba lo siguiente:
+\begin{itemize}
+\item No se han producido cortocircuitos.
+\item Todas las conexiones están bien soldadas y presentan continuidad.
+\item No faltan componentes.
+\end{itemize}
+
+Una vez que estas comprobaciones están realizadas, es momento de conectar la placa.
+
+\bigskip
+
+El primer paso es comprobar que los leds que indican que hay potencia tanto en la linea del \ac{MCU} como en la linea de los motores, están encendidos.
+
+\bigskip
+
+El siguiente paso es medir con el osciloscopio, en las salidas de los driver, para comprobar que se activan las correctas en función del algoritmo programado.
+
+La prueba se realizó con el algoritmo alternante y se comprobó que las salidas AOUT1 y AOUT2 se activaban de forma alterna, y ademas cumpliendo con los tiempos que rige el algoritmo.
+
+\textbf{\underline{Conclusión:}} La prueba de la placa sin conectar los periféricos es satisfactoria. Solo resta conectar los motores y probar el conjunto.
+
+
+\subsubsection{Funcionamiento de los periféricos.}
+
+El único periférico que se va a probar debido a su disponibilidad es un motor DC. En concreto el 212-008 visto en \ref{cap6:subsubsec:disponibles}.
+\bigskip
+
+Se conectan los pines del motor a las salidas AOUT1 y AOUT2 del driver DRV8833. Como ya se vió anteriormente, estas salidas funcionaban correctamente por lo que no debería haber ningún problema.
+
+\bikskip
+
+Sin embargo, al conectar este motor, se ven problemas de movimiento. El motor cuando debería moverse permanece parado y emitiendo un ruido agudo. Solo en un porcentaje muy pequeño de las veces, el motor es capaz de moverse, pero al pararse y volver a arrancar ya no se mueve.
+\bigskip
+
+Tras un análisis del problemas se llega a dos posibles causas:
+
+\begin{itemize}
+\item El motor esta averiado.
+\item El driver no es capaz de arrancar el motor.
+\end{itemize}
+
+Para comprobar que no este averiado se pueden realizar dos pruebas.
+\medskip
+
+La primera es sustituirlo por otro igual, y la segunda es probarlo directamente conectado a una fuente de tensión.
+
+Tras realizar ambas pruebas se halla que el motor esta en perfectas condiciones.
+
+\bigskip
+
+Por lo tanto queda que el driver no sea capaz de dar la corriente de pico necesaria para arrancar el motor.
+
+Yendo a la hoja de características del 212-008 se ve que la corriente de arranque del motor es de 380mA y la de régimen estacionario es de 179mA.
+
+Pero al buscar la máxima corriente de pico que es capaz de entregar el driver, en su hoja de características no esta especificada. Lo único que aparece es que esta internamente limitada, pero no da ningún valor.
+
+\bigskip
+
+Para comprobar que es el driver el que limita, se prueba con otro motor, el 206-108 con 185mA de corriente de arranque y 95mA en régimen estacionario. 
+
+Se comprueba que \textbf{este motor funciona correctamente.}
+\bigskip
+
+Puesto que debido a su tamaño el 206-108 no es apto para este proyecto se decide adquirir el 212-108, que es un motor que trabaja a 5V y tiene una corriente de arranque de 200mA, y una corriente en estado estacionario de 91mA. Estas corrientes son casi la mitad que las del motor empleado originalmente.
+
+\bigskip
+
+Una vez probado el motor 212-108 \textbf{se comprueba que funciona correctamente.} por lo tanto será el motor empleado en las pruebas del proyecto.
+
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{||l | c | c|c||}
+\hline
+\hline
+Motor & Consumo (V)& Corriente de pico (mA) & ¿Apto? \\
+\hline
+212-008 & 2.5 & 380& NO\\
+\hline
+206-108 & 3 & 185&NO\\
+\hline
+212-108 & 5 & 200&SI\\
+\hline
+
+\end{tabular}
+\caption{Evaluación de tres motores.}
+\label{tab:cap7:motores aptos}
+\end{center}
+\end{table}
 %-------------------------------------------------------------------
 \section{Optimización}
 %-------------------------------------------------------------------
-\label{cap7:sec:icd3}
+\label{cap7:sec:opti}
 %-------------------------------------------------------------------
 
 

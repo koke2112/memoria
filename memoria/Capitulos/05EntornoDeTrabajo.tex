@@ -568,7 +568,7 @@ Como se ha visto, el multiplicador de Villard (adaptado al uso que se va a hacer
 Por lo tanto será de donde se extraerá la energía para el estudio de los diferentes métodos de almacenamiento como se verá en el capitulo \ref{cap7}.
 
 \section{Banco de tensiones}
-
+\label{cap5:sec:tension}
 Para poder alimentar las distintas placas y partes del proyecto, se ha implementado y desarrollado un banco de tensiones.
 
 \begin{itemize}
@@ -592,13 +592,13 @@ La forma mas inmediata de conseguir 5Vdc a partir de los 12V que ya había en la 
 
 Los condensadores mostrados sirven para estabilizar la entrada y la salida.
 
-\subsection{Generacion de 3V}
+\subsection{Generación de 3V}
 
 Para esta etapa, se ha empleado el regulador LM317. Este regulador no da una tensión fija como la familia de 78XX vista en el punto anterior. Su salida es regulable con un potenciómetro que en este caso ha sido implementado mediante un multivueltas.
 
 El principal problema encontrado a la hora de realizar esto, es que no se encuentran reguladores a 3V, lo mas próximo es 3,3V. 
 
-Las caracteristicas de este circuito es que puede generar desde 1,2V hasta 9V.
+Las características de este circuito es que puede generar desde 1,2V hasta 9V.
 
 
 
@@ -608,6 +608,19 @@ Las caracteristicas de este circuito es que puede generar desde 1,2V hasta 9V.
         \caption{Circuito regulador LM317.}
         \label{fig:cap5:reglm317}
 \end{figure}
+
+
+La expresión de la salida viene determinada por la siguiente formula:
+$$V_o=1.25(1+\frac{R_2}{R_1})+I_{ADJ}R_2 $$
+
+Donde $I_{ADJ}$ es la corriente que atraviesa $R_2$ y puede ser considerada despreciable.
+\bigskip
+
+Por lo tanto para obtener una tensión de 3V el valor del potenciómetro debería situarse en 336$\omega$
+
+\subsection{Montaje}
+
+INSERTAR FOTO DEL MONTAJE Y DEL ESQUEMATICO.
 %------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------
