@@ -311,6 +311,7 @@ A partir de este momento se decide como parámetro de diseño, no exigir la potenc
 %-------------------------------------------------------------------
 \subsection{Amplificador de potencia LME49710}
 %-------------------------------------------------------------------
+\label{cap5:subsec:ampli}
 Para la tercera y ultima solución se va a implementar un amplificador en dos etapas.
 La primera etapa se implementa con un amplificador operacional LME49710 específico para audio y de alta fidelidad. La diferencia más importante con el anterior integrado es la distorsión armónica que presenta para baja frecuencia.
 \begin{figure}[!h]
@@ -565,6 +566,48 @@ En la figura \ref{fig:cap5:Villard} se puede ver la salida de la bobina (\ref{fi
 Como se ha visto, el multiplicador de Villard (adaptado al uso que se va a hacer de él), transforma la señal producida por el generador, en una tensión apta para alimentar electrónica digital, en nuestro caso un nodo de una red.
 
 Por lo tanto será de donde se extraerá la energía para el estudio de los diferentes métodos de almacenamiento como se verá en el capitulo \ref{cap7}.
+
+\section{Banco de tensiones}
+
+Para poder alimentar las distintas placas y partes del proyecto, se ha implementado y desarrollado un banco de tensiones.
+
+\begin{itemize}
+\item El amplificador esta alimentado entre 12 y -12V.
+\item La placa pcb controladora de la sintonización esta alimentada a 3V.
+\item Los motores encargados de la sintonización se alimentan a 5V.
+\end{itemize}
+
+Para no utilizar una fuente de tension para cada una de estas partes, en la misma placa donde va montado el amplificador, se ha montado este circuito, aprovechando los 12 voltios a los que va alimentado. 
+
+\subsection{Generación de 5V}
+
+La forma mas inmediata de conseguir 5Vdc a partir de los 12V que ya había en la placa es mediante un regulador 7805 con el montaje que indica en su datasheet.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/7805}  
+        \caption{Circuito regulador 7805.}
+        \label{fig:cap5:reg7805}
+\end{figure}
+
+
+Los condensadores mostrados sirven para estabilizar la entrada y la salida.
+
+\subsection{Generacion de 3V}
+
+Para esta etapa, se ha empleado el regulador LM317. Este regulador no da una tensión fija como la familia de 78XX vista en el punto anterior. Su salida es regulable con un potenciómetro que en este caso ha sido implementado mediante un multivueltas.
+
+El principal problema encontrado a la hora de realizar esto, es que no se encuentran reguladores a 3V, lo mas próximo es 3,3V. 
+
+Las caracteristicas de este circuito es que puede generar desde 1,2V hasta 9V.
+
+
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap5/lm317}  
+        \caption{Circuito regulador LM317.}
+        \label{fig:cap5:reglm317}
+\end{figure}
 %------------------------------------------------------------------
 %\section*{\NotasBibliograficas}
 %-------------------------------------------------------------------

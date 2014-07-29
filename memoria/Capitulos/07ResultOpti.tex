@@ -27,8 +27,24 @@ En este capítulo se incluyen los resultados obtenidos tras las pruebas realizada
 \label{cap7:sec:mplabx}
 %-------------------------------------------------------------------
 
+Se van a realizar pruebas por módulos, es decir se probarán las distintas partes del proyecto por separado y finalmente si todas las pruebas son satisfactorias se realizará la prueba final integrando todo el proyecto.
 
+\subsection{Amplificador de señal}
+Este amplificador visto en \ref{cap5:subsec:ampli} sirve para adecuar la señal que entrega el generador de funciones, al generador de vibraciones.
 
+\subsubsection{Prueba de funcionamiento}
+Como ya se vio en \ref{cap5:subsec:ampli}, el circuito amplifica y mantiene la frecuencia de la señal original. Por lo tanto pasa la prueba básica de funcionamiento.
+
+\subsubsection{Prueba de resistencia}
+
+Durante la primera prueba se vio que los transistores alcanzaban una temperatura alta, y por lo tanto el disipador también, por esto se decidió realizar una prueba de resistencia, es decir, dejar el amplificador funcionando para ver si en algún momento esta alta temperatura causaba algún problema.
+
+\begin{itemize}
+\item Se pone en funcioanmiento el amplificador con el generador de vibraciones a la salida.
+\item Tras 30 minutos en funcionamiento, el amplificador sigue funcionando con normalidad aunque el disipador alcance una alta temperatura.
+\item No se aprecian distorsiones en la salida, por lo tanto pasa la prueba de resistencia.
+\end{itemize}
+ 
 
 %-------------------------------------------------------------------
 \section{Optimización}

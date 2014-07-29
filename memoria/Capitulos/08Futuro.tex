@@ -39,6 +39,10 @@ Las mejoras son modificaciones sobre el proyecto actual, que mejorarían su rendi
 
 \subsection{Nuevos diseños de piezas}
 Las piezas diseñadas hasta ahora (Base,Sintonizador,etc) podrían ser optimizadas, buscando reducción de peso o mejora de los puntos de equilibrio.
+
+Buscando siempre la eficiencia se podría reducir peso en las piezas, cambiar su forma para adaptarlas a la integración con un nodo.
+
+
 \subsection{Detección de limite de recorrido}
 El generador actual no limita el recorrido, no se puede detectar cuando el sintonizador llega al final del su recorrido. Por lo tanto en el estado actual, el motor seguiría girando aun cuando el sintonizador no puede moverse mas. Esto causaría que alguna parte se rompiese.
 \bigskip
@@ -52,15 +56,34 @@ Por esto, como mejora se propone la inclusión de sensores fin de carrera que sea
 \label{cap8:sec:furtherStudies}
 %-------------------------------------------------------------------
 
-Las lineas futuras de este proyecto comprenden las modificaciones a las que se le puede someter y que implicarían un cambio en el concepto.
+Las lineas futuras de este proyecto comprenden las modificaciones a las que se le puede someter y que implicarían un cambio en el concepto para acercarse más al objetivo último del proyecto que es la alimentación de nodos.
 
 \subsection{Reducción de tamaño}
 
-Cuando se hayan realizado todas las pruebas sobre la plataforma actual, se puede investigar en la reducción del tamaño del generador. Las piezas imprimibles, no supondrían problema, pero no así la lámina y la bobina que requerirían otro estudio
+Puesto que un nodo es un dispositivo de reducido tamaño, el generador también debería serlo. Para lograrlo, y una vez realizadas todas las pruebas sobre la plataforma actual, se puede investigar en la reducción de las distintas partes que lo componen. Las piezas imprimibles, no supondrían problema, pero no así la lámina y la bobina que requerirían otro estudio de materiales y arquitecturas respectivamente.
+
+Las piezas imprimibles bastaría con escalarlas en el programa slicer \ref{cap9:sec:cura}.
+\medskip
+
+Para la lámina, habría que reducirla en sus 3 dimensiones, puesto que su frecuencia de resonancia depende de las 3.
+
+Según \ref{cap6:equation:fresonancia2}, reduciendo solo la anchura y la longitud sin modificar el grosor la frecuencia de resonancia aumentaría en un factor de $w^3$.
+\medskip
+
+Para la bobina, habría que re-estudiar las diferentes arquitecturas vistas en \ref{cap4:sec:arquitectura} para adaptarlo al nuevo tamaño y necesidades.
+\subsection{Búsqueda de mejores materiales}
+
+Dada la poca energía que produce este tipo de generadores se hace necesario aumentar la eficiencia. Para ello, se podría dedicar una rama de investigación a la búsqueda de materiales mas aptos para esta clase de generadores, como por ejemplo láminas con un módulo de Young mayor, o bases mas rígidas que transfieran mejor las vibraciones.
+\bigskip
+
+Grafeno: El grafeno es un material con un alto módulo de Young (x5 el módulo del acero inoxidable) que sería perfecto para realizar pruebas de láminas vibrantes sin embargo actualmente aún es un material difícil de producir, por lo que se propone como material de fabricación futuro.
+\bigskip
+
+El material con el que esta construida la base actualmente es \ac{PLA}, este material 
 
 \subsection{Auto-Alimentación}
 
-\subsection{Búsqueda de mejores materiales}
+El objetivo final de esta vía de investigación debería ser la auto-alimentación. es decir, que la energía producida por el generador sea suficiente para alimentar el sistema de sintonización y al nodo al que este asociado.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX

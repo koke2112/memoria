@@ -131,6 +131,25 @@ Las posibilidades que ofrece la impresión 3D para prototipado rápido son incalcu
 \end{figure}
 Este termoplástico tiene una temperatura de fusión de 160º sin embargo su temperatura óptima de extrusión para impresión ronda los 200º.
 Su densidad es de $1.2g/cm^3$ lo que lo convierte en un material mas ligero que el \ac{PVC} ($1.4g/cm^3$)e igual al metacrilato ($1.18g/cm^3$). La principal ventaja de usar \ac{PLA} frente al \ac{PVC} o el metacrilato además de la facilidad para hacer piezas mas precisas, es la capacidad de variar la densidad interna de la pieza (cantidad de material empleado). De esta manera dos piezas de las mismas dimensiones de metacrilato y \ac{PLA}, pueden pesar distinto aunque la densidad del material sea la misma. Esto es útil a la hora de fabricar piezas de las que no se requiera grandes esfuerzos como se verá mas adelante.
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{| l | c | c |}
+\hline
+\hline
+Material & Densidad$(g/cm^{3})$ & Módulo de Young$[N/m^2]$ \\
+\hline
+PLA & 1.2 & $2.5*10^{9}$ \\
+\hline
+PVC & 1.4 & $3*10^{9}$ \\
+\hline
+Metacrilato & 1.18 & $3.2*10^{9}$  \\
+\hline
+
+\end{tabular}
+\caption{Bobinas construidas.}
+\label{tab:cap4:materiales}
+\end{center}
+\end{table}
 
 %-------------------------------------------------------------------
 \subsection{Bobina}
@@ -267,6 +286,7 @@ Bobina 3 & 0.3 & 1 & 0.3 & 0.2 & 12.7\\
 \label{tab:cap4:materiales}
 \end{center}
 \end{table}
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.5\textwidth]{Imagenes/imagenes/cap4/bobinas2}  
@@ -403,12 +423,12 @@ Por lo que una vez montados en el soporte, se requiere un manejo cuidadoso.
 
 
 %-------------------------------------------------------------------
-\section{Elección de arquitectura.}
+\section{Elección de arquitectura de la bobina.}
 %-------------------------------------------------------------------
 \label{cap4:sec:arquitectura}
 %-------------------------------------------------------------------
 
-\subsubsection{Elección de la arquitectura}
+
 
 A la hora de construir un generador un factor importante a tener en cuenta es su arquitectura. En función de la posición de la bobina respecto a los imanes se obtendrán unas características u otras como puede ser la tensión generada, o la potencia generada.
 
