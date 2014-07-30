@@ -22,7 +22,7 @@ En este capítulo se incluyen los resultados obtenidos tras las pruebas realizada
 \end{resumen}
 
 %-------------------------------------------------------------------
-\section{Resultados}
+\section{Pruebas del entorno}
 %-------------------------------------------------------------------
 \label{cap7:sec:mplabx}
 %-------------------------------------------------------------------
@@ -83,7 +83,7 @@ Para esto se montó un PIC16LF1503 con encapsulado DIP en una placa de inserción,
 
 También de esta manera se pueden ajustar los contadores y timers del controlador.
 
-\underline{{\textbf{Conclusiones:}} Tras las primeras pruebas se encontraron pequeños fallos en la programación que se resolvieron adecuadamente.
+\underline{\textbf{Conclusiones:}} Tras las primeras pruebas se encontraron pequeños fallos en la programación que se resolvieron adecuadamente.
 
 Tras comprobar que el firmware y algún algoritmo estaban correctamente implementados, era hora de pasar a comprobar el funcionamiento del controlador junto al resto de componentes.
 
@@ -102,8 +102,37 @@ Una vez montados y soldados todos los componentes se comprueba lo siguiente:
 Una vez que estas comprobaciones están realizadas, es momento de conectar la placa.
 
 \bigskip
-
 El primer paso es comprobar que los leds que indican que hay potencia tanto en la linea del \ac{MCU} como en la linea de los motores, están encendidos.
+
+A continuación hay que cargar el programa en el microcontrolador a través del puerto RJ11. Para ello se conecta el \ac{ICD3} a la placa y se configura para que sea el \ac{ICD3} el que alimente la placa a 3V. 
+
+\medskip
+
+En este punto se encuentra el problema de que el \ac{ICD3} no es capaz de cargar el programa, se detecta el error ''Failed to get Devide ID". Se comprueba la alimentación y las conexiones del puerto RJ11 y todo es correcto.
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/icderr}  
+        \caption{Error al cargar el programa.}
+        \label{fig:cap6:array}
+\end{figure}
+\FloatBarrier
+Durante la programación se detecta que el led que indica potencia en la linea del \ac{MCU} no se enciende. Esto puede ser un síntoma de que el \ac{ICD3} no este alimentando la placa correctamente.
+\medskip
+
+El siguiente paso sería alimentar la placa de forma independiente mientras se carga el programa. Para ello se alimenta con 3V entre Vdd y GND.
+
+Tras realizar este paso, se comprueba que el \ac{MCU} se programa correctamente.
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/icdok}  
+        \caption{Programa cargado correctamente.}
+        \label{fig:cap6:array}
+\end{figure}
+\FloatBarrier
+
+Tras esto el \ac{MCU} queda programado.
+
 
 \bigskip
 
@@ -121,7 +150,7 @@ El único periférico que se va a probar debido a su disponibilidad es un motor DC
 
 Se conectan los pines del motor a las salidas AOUT1 y AOUT2 del driver DRV8833. Como ya se vió anteriormente, estas salidas funcionaban correctamente por lo que no debería haber ningún problema.
 
-\bikskip
+\bigskip
 
 Sin embargo, al conectar este motor, se ven problemas de movimiento. El motor cuando debería moverse permanece parado y emitiendo un ruido agudo. Solo en un porcentaje muy pequeño de las veces, el motor es capaz de moverse, pero al pararse y volver a arrancar ya no se mueve.
 \bigskip
@@ -180,6 +209,32 @@ Motor & Consumo (V)& Corriente de pico (mA) & ¿Apto? \\
 \label{tab:cap7:motores aptos}
 \end{center}
 \end{table}
+\FloatBarrier
+
+
+\section{Montaje final}
+
+Tras las pruebas realizadas anteriormente, se pasa a montar el sistema completo.
+
+
+INSERTAR DIAGRAMA COMPLETO
+
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem1}  
+        \caption{Sistema completo.}
+        \label{fig:cap6:array}
+\end{figure}
+\FloatBarrier
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem2}  
+        \caption{Sistema en detalle.}
+        \label{fig:cap6:array}
+\end{figure}
+\FloatBarrier
+
+
 %-------------------------------------------------------------------
 \section{Optimización}
 %-------------------------------------------------------------------
