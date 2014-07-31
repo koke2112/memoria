@@ -4,7 +4,7 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Resultados y optimización}
+\chapter{Resultados}
 \label{cap7}
 %\begin{FraseCelebre}
 %\begin{Frase}
@@ -18,7 +18,7 @@
 %\end{FraseCelebre}
 
 \begin{resumen}
-En este capítulo se incluyen los resultados obtenidos tras las pruebas realizadas al prototipo y las mejoras realizadas sobre el prototipo básico.
+En este capítulo se incluyen los resultados obtenidos tras las pruebas realizadas al prototipo.
 \end{resumen}
 
 %-------------------------------------------------------------------
@@ -223,22 +223,167 @@ INSERTAR DIAGRAMA COMPLETO
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem1}  
         \caption{Sistema completo.}
-        \label{fig:cap6:array}
+        \label{fig:cap7:sistema}
 \end{figure}
 \FloatBarrier
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem2}  
         \caption{Sistema en detalle.}
-        \label{fig:cap6:array}
+        \label{fig:cap7:sistema2}
 \end{figure}
 \FloatBarrier
 
+\subsection{Configuración del banco de trabajo}
 
+Para las pruebas realizadas el banco de trabajo se ha configurado según se explica a continuación:
+\begin{itemize}
+\item Fuente de tensión en modo simétrico, entre -12V y 12V.
+\item Generador de funciones: Señal de 120mv de amplitud, con barridos desde 12Hz hasta 16Hz que es el rango donde se encuentran las posibles frecuencias de resonancia de la lámina.
+\item Multiplicador de Villard configurado para la máxima multiplicación.
+\end{itemize}
+
+\subsection{Pruebas realizadas}
+En esta sección se van a detallar las pruebas que se realizan sobre el sistema completo.
+\subsubsection{Funcionamiento de todas las partes integradas}
+Una vez se han probado todas las partes que componen en proyecto, (amplificador, multiplicador de Villard, generador de vibraciones, etc, ) es momento de integrarlas en un solo sistema fig \ref{fig:cap7:sistema2}.
+
+\begin{enumerate}
+\item Encender y conectar el generador de funciones al amplificador.
+\item Conectar la alimentación del amplificador a la fuente de tension.
+\item Conectar la salida del amplificador al generador de vibraciones.
+\item Montar el generador de ``Energy Harvesting'' en el generador de vibraciones.
+\item Conectar la salida de la bobina al multiplicador de Villard.
+\item Seleccionar el factor de multiplicación del multiplicador de Villard.
+\item Conectar la salida positiva del multiplicador al pin 7 del header de la placa de motores. (RC0), y la negativa al pin de masa de la placa.
+\item Conectar las salidas AOUT1 y AOUT2 a los polos del motor.
+\item Conectar la alimentación de la placa de motores al banco de tensiones.
+\end{enumerate}
+
+\subsubsection{Caracterización del generador}
+Colocando el sintonizador en diferentes posiciones se pueden calcular los anchos de banda de sintonización.
+\bigskip
+
+\underline{\emph{Ancho de banda de sintonización:}} Es el rango de frecuencias en el cual el \ac{MCU} detecta que el generador está sintonizado, es decir, son las frecuencia cuya  energía esta por encima del umbral fijado por el controlador
+
+\begin{center}
+
+\begin{figure}
+\centering
+
+\begin{tikzpicture}[domain=0:3.2]
+    %\draw[very thin,color=gray] (-0.1,-1.1) grid (10,3);
+    \draw[very thin,color=gray] (-0.1,0)--(4,0);
+    \draw[very thin,color=gray] (-0.1,-1.1)--(-0.1,2);
+    %\draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+    %\draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+    %\draw[color=red] (3,0) to[-|-] (4,1);
+    \draw (0.8,-1) node(a) [right] {}  (0.8,1.5) node(b) [above] {Ancho de sintonización};
+    \draw [color=green, line width=2pt] (a.south) |- (b.south);
+    \draw (2.1,-1) node(c) [right] {}  (2.1,1.5) node(d) [above] {};
+    \draw [color=green, line width=2pt] (c.south) |- (d.south);
+    %\draw (4.8,-1) node(c) [right] {}  (4.8,1.5) node(d) [right] {Perdida de señal};
+    %\draw [color=green, line width=2pt] (c.south) |- (d.south);
+  %\draw[color=red] (a.east) -| (2,1.5) -| (b.north);
+    \draw[color=red]    plot (\x,0.7)    node[right] {$Umbral$};
+    \draw[color=blue]   plot (\x,{sin(\x r)})   node[right] {};
+   % \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right]
+       % {$f(x) = \frac{1}{20} \mathrm e^x$};
+
+\end{tikzpicture}
+\caption{Función de transferencia del Energy harvester.}
+\end{figure}
+\end{center}
+
+Se comprueba que la amplitud física de la vibración que proporciona el generador de vibraciones disminuye al aumentar la frecuencia, como viene indicado en su datasheet. Por lo tanto \emph{cuanto mas alta sea la frecuencia, menor amplitud tendrán las vibraciones} y menor potencia se producirá en el generador. Esto implica que el ancho de banda de sintonización se reduzca.
+\medskip
+
+Por otro lado el estar el multiplicador formado por condensadores, cuando mas baja sea la frecuencia, mas impedancia presentarán a la señal producida por el generador, por lo que esta llegará mas atenuada a la salida del multiplicador y por ende al detector del \ac{MCU}.
+
+\bigskip
+
+Uniendo estas dos consideraciones se llega a la conclusión de que en la lámina hay una frecuencia para la cual la energía producida será máxima.
+
+Experimentalmente se halla que esta frecuencia se encuentra en 13.32Hz, donde presenta un ancho de banda de sintonización de 0,8Hz.
+
+\begin{table}[!hbt]
+\begin{center}
+\begin{tabular}{||l | c | c|c||}
+\hline
+\hline
+Frecuencia (Hz) & Inferior (Hz)& Superior (Hz)& Ancho de banda (Hz)\\
+\hline
+12.3 & 12.15 & 12.69& 0.55\\
+\hline
+13 & 12.7 & 13.46&0.76\\
+\hline
+13.32 & 13 & 13.81&0.81\\
+\hline
+14.7 & 14.40 & 15.1&0.7\\
+\hline
+\end{tabular}
+\caption{Anchos de banda de sintonización.}
+\label{tab:cap7:bw}
+\end{center}
+\end{table}
+\FloatBarrier
+
+
+
+\subsubsection{Algoritmos probados}
+
+Se han implementado y probado dos algoritmos:
+\begin{itemize}
+\item Algoritmo lineal.
+\item Algoritmo alternante.
+\end{itemize} 
+
+
+Los algoritmos se lanzarán una vez la frecuencia del entorno se desplaza más de la mitad del ancho de banda de sintonización.
+\medskip
+ 
+Una vez probados hay que determinar qué algoritmo es mejor y bajo qué circunstancias.
+\bigskip
+
+
+Puesto que la velocidad del motor es de 42rpm, se puede calcular el tiempo que tarda  el sintonizador en desplazarse una distancia X.
+$$T=\frac{dist}{42}*paso$$
+
+
+Para recorrer la lámina que mide 55mm, con el tornillo sinfín actual,  tardaría 1,3 minutos.
+\bigskip
+
+Como ya se vió en \ref{cap6:subsec:propone_sinto}, el algoritmo lineal es mejor cuanto mas lejos se haya desplazado la nueva frecuencia, puesto que es de barrido continuo, en contraposición con el algoritmo de barrido alternante.
+
+El incremento de una determinada distancia $·L=L_{1}-L_{2}$ en frecuencia es:
+
+$$f_{r1}=\frac{1}{2\pi}\sqrt{\frac{Ywh^{3}}{4L_{1}^{3}(m+0.24m_{c})}} $$
+
+$$f_{r2}=\frac{1}{2\pi}\sqrt{\frac{Ywh^{3}}{4L_{2}^{3}(m+0.24m_{c})}} $$
+
+
+
+Si se detecta que el generador esta desintonizado, el sintonizador tendría que recorrer como mínimo:
+
+
+$$·f_{r}=f_{r1}-f_{r2}$$
+
+Que es justo la frontera del ancho de banda de sintonización.
+
+Para el caso de la frecuencia inferior es $·f_{r}=0,15$ Hz que corresponde a aproximadamente 1mm.
+
+\underline{En el caso peor del algoritmo lineal}, el sintonizador se encontraría al principio de la lámina y el \ac{MCU} iniciaría el barrido hacia el sentido contrario de donde esta la nueva frecuencia del entorno por lo que tendría que recorrer casi dos veces la lámina entera.
+\medskip
+
+En el caso presentado, el algoritmo lineal tardaría \textbf{2.6 minutos} en encontrar la nueva frecuencia de sintonización, sin embargo, el algoritmo alternante tardaría el tiempo de dar un paso, es decir, \textbf{0.02 minutos}, o lo que es lo mismo, \textbf{1.2 segundos}.
+
+\bigskip
+
+\underline{El caso peor del algoritmo alternante} comprende el caso opuesto, que la frecuencia del entorno se encuentre en un extremo de la lámina, y la nueva frecuencia se desplace al otro extremo. Para ello el barrido lineal tardaría \textbf{1.3 minutos} (recorrer la lamina una vez), y el barrido alternante tardaría \textbf{120 minutos} realizando un barrido alterno con un paso de 1 mm.
 %-------------------------------------------------------------------
-\section{Optimización}
+%\section{Optimización}
 %-------------------------------------------------------------------
-\label{cap7:sec:opti}
+%\label{cap7:sec:opti}
 %-------------------------------------------------------------------
 
 
