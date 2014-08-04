@@ -49,7 +49,20 @@ El generador actual no limita el recorrido, no se puede detectar cuando el sinto
 
 Por esto, como mejora se propone la inclusión de sensores fin de carrera que sean activados por el sintonizador cuando se acerque al limite de su recorrido. Una vez activados, el \ac{MCU} actualizaría en su memoria la posición del sintonizador y actuaria en consecuencia (No permitiendo movimientos mayores de donde se encuentra en ese momento)
 
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.3\textwidth]{Imagenes/imagenes/cap8/limit-switch}  
+        \caption{Sensor fin de carrera.}
+        \label{fig:cap7:sistema}
+\end{figure}
+\FloatBarrier
 
+\subsection{Implementación y prueba de nuevos algoritmos}
+
+Al termino de la redacción de este proyecto, ningún algoritmo predictivo de los propuestos en \ref{cap6:subsubsec:algpred} ha sido implementado. Para poder incluir estos algoritmos es necesario instalar previamente un sensor de fin de carrera, para que cuando se active, fije la nueva frecuencia a un valor preestablecido.
+\medskip
+
+Por otro lado nuevos algoritmos, distintos a los aquí expuestos pueden ser desarrollados y probados. 
 %-------------------------------------------------------------------
 \section{Estudios futuros}
 %-------------------------------------------------------------------
@@ -92,6 +105,19 @@ Para ello primero es necesario un estudio en profundidad de la energía producida
 \bigskip
 
 Para hallar la energía producida habría que caracterizar el generador, con vibraciones de distinta amplitud y de distinta frecuencia para hallar su función de transferencia.
+\bigskip
+
+Los sistemas de almacenamiento de energía pueden ser dos. Supercapacitores o baterías. se requiere un estudio en profundidad de estos dos sistemas.
+\bigskip
+
+Por último, esta linea requiere la implementación de algoritmos que determinen las condiciones necesarias para hacer uso de esa energía, como:
+\medskip
+\begin{itemize}
+\item Cuanta energía hay que almacenar para poder lanzar una estrategia de sintonización teniendo en cuenta la que consume.
+\item Cuanta energía hay almacenada para poner el nodo que este alimentando a transmitir.
+\end{itemize}
+
+
 
 
 \subsection{Pruebas en entorno real}
@@ -100,7 +126,21 @@ Como último paso habría que desplegar el sistema en un entorno real, como puede 
 
 Para este despliegue solo es necesario emplear el generador de energy harvesting, el multiplicador de Villard y la placa de motores.
 
+\bigskip
 
+Un entorno real requeriría de la caracterización previa de las frecuencias mas usuales, y de la potencia de estas.
+
+En función de esta caracterización, habría que probar distintos algoritmos y decidir cuales se comportan mejor y bajo que condiciones.
+
+Una vez puesto en funcionamiento, resta medir la energía producida y almacenada y sus tasas de eficiencia.
+
+\subsection{¿Es aprovechable este tipo de generadores?}
+
+Finalmente, tras implementar las mejoras y las nuevas lineas de investigación hay que estudiar la viabilidad de la sintonización de un generador de energy harvesting basado en vibraciones. 
+
+\medskip
+
+Con la eficiencia del 0,3\% vista en \ref{cap7:subsubsec:auto} se propone la realización de un estudio que determine si este tipo de generadores son capaces de producir mas energía de la ya vista y si en ese caso el ciclo de trabajo resultante hace viable su utilización.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilación y funcionen mejor algunas teclas rápidas de AucTeX

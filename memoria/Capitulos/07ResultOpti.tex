@@ -4,7 +4,7 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Resultados}
+\chapter{Pruebas y Resultados}
 \label{cap7}
 %\begin{FraseCelebre}
 %\begin{Frase}
@@ -48,11 +48,20 @@ Durante la primera prueba se vio que los transistores alcanzaban una temperatura
 \item No se aprecian distorsiones en la salida, por lo tanto pasa la prueba de resistencia.
 \end{itemize}
  
+
+
+
+
 \subsection{Banco de tensiones}
 El banco visto en \ref{cap5:sec:tension} genera 3 y 5V estables a partir de los 12V de alimentación del amplificador.
 
-IMAGEN DEL LOS PRODUCIDO EN DOS SONDAS.
-
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/banco-ten}  
+        \caption{Salidas del banco de tensiones.}
+        \label{fig:cap7:bten}
+\end{figure}
+\FloatBarrier
 \begin{itemize}
 \item Se conectan 12V a la entrada de los circuitos construidos con los reguladores
 \item Se miden las salidas y se comprueban las tensiones.
@@ -113,7 +122,7 @@ En este punto se encuentra el problema de que el \ac{ICD3} no es capaz de cargar
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/icderr}  
         \caption{Error al cargar el programa.}
-        \label{fig:cap6:array}
+        \label{fig:cap7:array}
 \end{figure}
 \FloatBarrier
 Durante la programación se detecta que el led que indica potencia en la linea del \ac{MCU} no se enciende. Esto puede ser un síntoma de que el \ac{ICD3} no este alimentando la placa correctamente.
@@ -127,7 +136,7 @@ Tras realizar este paso, se comprueba que el \ac{MCU} se programa correctamente.
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/icdok}  
         \caption{Programa cargado correctamente.}
-        \label{fig:cap6:array}
+        \label{fig:cap7:array}
 \end{figure}
 \FloatBarrier
 
@@ -211,21 +220,20 @@ Motor & Consumo (V)& Corriente de pico (mA) & ¿Apto? \\
 \end{table}
 \FloatBarrier
 
-
-\section{Montaje final}
+%***************************************
+\section{Pruebas y montaje final}
+%***************************************
 
 Tras las pruebas realizadas anteriormente, se pasa a montar el sistema completo.
 
-
-INSERTAR DIAGRAMA COMPLETO
-
 \begin{figure}[!h]
         \centering
-		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem1}  
-        \caption{Sistema completo.}
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistema}  
+        \caption{Esquema del sistema completo.}
         \label{fig:cap7:sistema}
 \end{figure}
 \FloatBarrier
+
 \begin{figure}[!h]
         \centering
 		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem2}  
@@ -233,13 +241,20 @@ INSERTAR DIAGRAMA COMPLETO
         \label{fig:cap7:sistema2}
 \end{figure}
 \FloatBarrier
+\begin{figure}[!h]
+        \centering
+		\includegraphics[width=0.6\textwidth]{Imagenes/imagenes/cap7/sistem1}  
+        \caption{Sistema completo.}
+        \label{fig:cap7:sistema}
+\end{figure}
+\FloatBarrier
 
 \subsection{Configuración del banco de trabajo}
-
+\label{cap7:subsec:config}
 Para las pruebas realizadas el banco de trabajo se ha configurado según se explica a continuación:
 \begin{itemize}
 \item Fuente de tensión en modo simétrico, entre -12V y 12V.
-\item Generador de funciones: Señal de 120mv de amplitud, con barridos desde 12Hz hasta 16Hz que es el rango donde se encuentran las posibles frecuencias de resonancia de la lámina.
+\item Generador de funciones: Señal sinusoidal de 120mv de amplitud, con barridos desde 12Hz hasta 16Hz que es el rango donde se encuentran las posibles frecuencias de resonancia de la lámina.
 \item Multiplicador de Villard configurado para la máxima multiplicación.
 \end{itemize}
 
@@ -381,8 +396,48 @@ En el caso presentado, el algoritmo lineal tardaría \textbf{2.6 minutos} en enco
 
 \underline{El caso peor del algoritmo alternante} comprende el caso opuesto, que la frecuencia del entorno se encuentre en un extremo de la lámina, y la nueva frecuencia se desplace al otro extremo. Para ello el barrido lineal tardaría \textbf{1.3 minutos} (recorrer la lamina una vez), y el barrido alternante tardaría \textbf{120 minutos} realizando un barrido alterno con un paso de 1 mm.
 
+\subsection{Generación y consumo}
+En esta sección se realiza un estudio previo del consumo del sistema y de lo que es capaz de producir.
+\subsubsection{Consumo del sistema}
+Hay que caracterizar el consumo de las distintas partes:
+\begin{itemize}
+\item \ac{MCU}: 30$\mu$A $\gg$ 90$\mu$W
+\item Driver de motores DRV8833: 1.7 mA $\gg$ 5.1mW
+\item Motor: 91mA. $\gg$ 0.455W
+\end{itemize}
+
+\subsubsection{Generación}
+
+Midiendo a la salida de la bobina con una impedancia adaptada de 6,8$\Omega$ se obtiene una potencia de 1,65mW (@15Hz) con las condiciones descritas en \ref{cap7:subsec:config}.
 
 
+\subsubsection{Autoalimentación}
+\label{cap7:subsubsec:auto}
+Aunque a priori, el generador no seria capaz de alimentar la placa y el motor, si que se puede usar una técnica de almacenamiento de energía y liberarla en determinadas ocasiones.
+\medskip
+
+Para ello hay que calcular la energía necesaria para alimentar la placa y el motor durante una determinada cantidad de tiempo.
+\medskip
+
+Se realiza un simulacro con un supercapacitor Maxwell de 10F y 9mWh de energía máxima almacenada. 
+\medskip
+$$E[Wh]=P[W]*t[h] $$
+$$9m=0,46W*t$$
+$$t=70seg$$
+
+Con el supercapacitor cargado al máximo y en un caso ideal, se podría alimentar la placa y el motor durante 70 segundos.
+
+\medskip
+
+Por otro lado, el tiempo que se tardaría en cargar el condensador sería de 
+$$t=\frac{E}{P}$$
+$$t=5.45$$
+
+Lo que quiere decir que con el generador sintonizado se tardaría 5 horas y 27 minutos en cargar el supercapacitor.
+
+\bigskip
+
+Esto significa que cada 19.620 segundos, se puede activar la placa durante 70. Un ciclo de trabajo del 0.3\%.
 %-------------------------------------------------------------------
 %\section{Optimización}
 %-------------------------------------------------------------------
